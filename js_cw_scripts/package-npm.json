@@ -1,0 +1,19 @@
+{
+  "name": "cw-aprs",
+  "version": "0.0.1",
+  "description": "APRS-IS data connector for CommandWear platform",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewMartens/cw-aprs.git"
+  },
+  "author": "Andrew Martens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndrewMartens/cw-aprs/issues"
+  },
+  "homepage": "https://github.com/AndrewMartens/cw-aprs#readme"
+}

@@ -1,0 +1,18 @@
+{
+  "filter": {
+    "point": {
+      "latitude": 49.279,
+      "longitude": -123.147
+    },
+    "range": 50000,
+    "callsigns": ["TESTX", "TESTY", "TESTZ", "TESTU", "TESTV", "M3", "M2", "M1", "TYH0", "TESTS"]
+  },
+  "cw": {
+    "authToken": "",
+    "createNewUsers": true,
+    "username": "clustertest@cwtest.com",
+    "password": "command604",
+    "server": "https://cw-staging-1.herokuapp.com/",
+    "overrideTimestamp": true
+  }
+}
