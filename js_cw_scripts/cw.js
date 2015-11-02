@@ -1,7 +1,9 @@
 var request = require('request');
+var server = 'https://cw-staging-1.herokuapp.com';
+
 
 function cw() {
-  this.server = 'https://cw-staging-1.herokuapp.com';
+  this.server = server;
   return this;
 }
 
@@ -28,7 +30,7 @@ cw.login = function(params, callback) {
     },
     body: postData //Set the body as a string
   }, function(error, response, body){
-    if (response.statusCode === 403){
+    if ((response.statusCode === 403)||(response.statusCode === 404)){
       return callback(error, response, token, organization_id);
     }
     var parsed = JSON.parse(body);
