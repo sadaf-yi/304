@@ -1,15 +1,4 @@
-drop table material cascade constraints;
-drop table recipe cascade constraints;
-drop table product cascade constraints;
-drop table customer cascade constraints;
-drop table worder cascade constraints;
-drop table prodRecBuild cascade constraints;
-drop table orderPlacedFor cascade constraints;
-drop table resCreate cascade constraints;
-drop table sProdFilled cascade constraints;
-drop sequence matIdSeq;
-drop sequence recIdSeq;
-
+drop table ...,
 
 create table Material
     (matID char(40) not null,
