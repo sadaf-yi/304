@@ -19,7 +19,7 @@ create table Material
 matName varchar2(100) not null,
 matStock integer,
 matPrice integer,
-matUnit varchar2(6),
+matUnit varchar2(10),
 primary key (matID));
 
 grant select on Material to public;
@@ -71,7 +71,7 @@ prodPrice integer not null,
 prodID integer not null,
 prodName varchar2(40) not null,
 prodSize integer not null,
-prodUnit varchar2(6),
+prodUnit varchar2(10),
 primary key (prodID));
 
 grant select on Product to public;
@@ -119,7 +119,7 @@ orderID integer not null,
 numFilled integer,
 isShipped integer default 0,
 primary key (orderID, prodID),
-foreign key (prodID) references OrderProductProducesProduct,
+foreign key (prodID, dateupdated) references OrderProductProducesProduct(prodID, dateupdated),
 foreign key (orderID) references Cust_Order,
 check (isShipped >= 0 AND isShipped <= 1));
 
