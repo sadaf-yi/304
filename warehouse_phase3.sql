@@ -50,7 +50,7 @@ create table Recipe_Uses
     (recID integer not null,
     matID integer not null,
     quantity integer not null,
-    recUnit char(2) not null,
+    recUnit varchar(6) not null,
     primary key (recID, matID),
     foreign key (matID) references Material,
     foreign key (recID) references Recipe);
