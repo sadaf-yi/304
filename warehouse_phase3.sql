@@ -113,7 +113,7 @@ grant select on Customer to public;
 
 -- Filled_For is the relationship between Product-Produces-OrderProduct and Order
 create table Filled_For
-    (dateupdated varchar(20) not null,
+    (dateupdated DATE,
     prodID integer not null,
     orderID varchar(40) not null,
     numFilled integer,
