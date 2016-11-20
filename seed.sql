@@ -15,12 +15,12 @@ insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduc
 insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(9,'50ml Cannabis Healing Salve',50,'mL',45,100);
 insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(10,'15ml Cannabis Healing Salve',15,'mL',20,100);
 
--- populate the Order table with samples
-insert into Order(orderID) values (1);
-insert into Order(orderID) values (2);
-insert into Order(orderID) values (3);
-insert into Order(orderID) values (4);
-insert into Order(orderID) values (5);
+-- populate the Cust_Order table with samples
+insert into Cust_Order(orderID) values (1);
+insert into Cust_Order(orderID) values (2);
+insert into Cust_Order(orderID) values (3);
+insert into Cust_Order(orderID) values (4);
+insert into Cust_Order(orderID) values (5);
 
 -- populate the Recipe table with samples
 insert into Recipe(recID, recName, procedure) values(1,'Sativa Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
@@ -130,11 +130,11 @@ insert into Recipe_Uses(recID,matID,quantity,recUnit) values(7,1,30,'mL');
 insert into Recipe_Uses(recID,matID,quantity,recUnit) values(7,21,1,'bottle');
 
 -- populate the OrderProductProducesProduct table with samples
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 12:56 P.M.','DD-MON-YY HH:MI P.M.'),5,1);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 15:34 P.M.','DD-MON-YY HH:MI P.M.'),5,3);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 10:42 A.M.','DD-MON-YY HH:MI A.M.'),20,2);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 14:30 P.M.','DD-MON-YY HH:MI P.M.'),17,7);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 13:56 P.M.','DD-MON-YY HH:MI P.M.'),4,6);
+insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM'),5,1);
+insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 03:34 PM','DD-MON-YY HH:MI PM'),5,3);
+insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 10:42 AM','DD-MON-YY HH:MI PM'),20,2);
+insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 02:30 PM','DD-MON-YY HH:MI PM'),17,7);
+insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 01:56 PM','DD-MON-YY HH:MI PM'),4,6);
 
 -- populate the Reserves table with samples
 insert into Reserves(prodID,orderID,numProd) values(1,1,5);
@@ -144,11 +144,11 @@ insert into Reserves(prodID,orderID,numProd) values(7,4,17);
 insert into Reserves(prodID,orderID,numProd) values(6,5,4);
 
 -- populate the Filled_For table with samples
-insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 12:57 P.M.','DD-MON-YY HH:MI P.M.'),1,5,0);
-insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 15:35 P.M.','DD-MON-YY HH:MI P.M.'),3,2,5,0);
-insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 10:43 A.M.','DD-MON-YY HH:MI A.M.'),2,3,13,0);
-insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 14:31 P.M.','DD-MON-YY HH:MI P.M.'),7,4,17,0);
-insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 13:57 P.M.','DD-MON-YY HH:MI P.M.'),6,5,4,0);
+insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM'),1,1,5,0);
+insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 03:34 PM','DD-MON-YY HH:MI PM'),3,2,5,0);
+insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 10:42 AM','DD-MON-YY HH:MI AM'),2,3,13,0);
+insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 02:30 PM','DD-MON-YY HH:MI PM'),7,4,17,0);
+insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 01:56 PM','DD-MON-YY HH:MI AM'),6,5,4,0);
 
 -- populate the Placed_For table with samples
 insert into Placed_For(orderID,custID) values(1,5);
