@@ -18,7 +18,7 @@ create table Material
     (matID integer not null,
     matName varchar(100) not null,
     matStock integer not null,
-    matPrice varchar(40) not null,
+    matPrice integer not null,
     matUnit char(2)  null,
     primary key (matID));
 
@@ -67,7 +67,7 @@ grant select on Recipe to public;
 
 create table Product
     (stockProduct integer default 0,
-    prodPrice varchar(40), not null,
+    prodPrice integer not null,
     prodID integer not null,
     prodName varchar(40) not null,
     prodSize varchar(40) not null,
