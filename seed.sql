@@ -1,0 +1,2 @@
+-- This is the seed file to populate our database with the information provided
+-- by the owner of the actual shop whose warehouse we are modelling
