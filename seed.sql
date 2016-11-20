@@ -16,6 +16,11 @@ insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduc
 insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(10,'15ml Cannabis Healing Salve',15,'mL',20,100);
 
 -- populate the Order table with samples
+insert into Order(orderID) values (1);
+insert into Order(orderID) values (2);
+insert into Order(orderID) values (3);
+insert into Order(orderID) values (4);
+insert into Order(orderID) values (5);
 
 -- populate the Recipe table with samples
 insert into Recipe(recID, recName, procedure) values(1,'Sativa Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
