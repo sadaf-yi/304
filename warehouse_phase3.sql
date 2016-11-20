@@ -66,11 +66,12 @@ create table Recipe
 grant select on Recipe to public;
 
 create table Product
-    (stockProduct integer,
+    (stockProduct integer default 0,
     prodPrice varchar(40), not null,
     prodID integer not null,
     prodName varchar(40) not null,
     prodSize varchar(40) not null,
+    prodUnit char(2),
     primary key (prodID));
 
 grant select on Product to public;
@@ -115,7 +116,7 @@ create table Filled_For
     (dateupdated varchar(20) not null,
     prodID integer not null,
     orderID varchar(40) not null,
-    numFilled varchar(10),
+    numFilled integer,
     isShipped integer default 0,
     primary key (orderID),
     foreign key (dateupdated, prodID) references OrderProductProducesProduct,
@@ -128,7 +129,7 @@ grant select on Filled_For to public;
 -- So every order must have a customer, i.e. custID cannot be null
 
 create table Placed_For
-    (orderID varchar(40),
+    (orderID varchar(40) not null,
     custID  varchar(40) not null,
     primary key (orderID),
     foreign key (custID) references Customer);
