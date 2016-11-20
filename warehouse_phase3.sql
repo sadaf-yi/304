@@ -26,7 +26,7 @@ grant select on Material to public;
 
 create table Container
     (matID integer not null,
-    volume varchar(40) not null,
+    volume integer,
     primary key (matID));
 
 grant select on Container to public;
