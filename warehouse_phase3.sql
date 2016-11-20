@@ -15,41 +15,42 @@ drop table Placed_For cascade constraints;
 
 
 create table Material
-    (matID char(40) not null,
-    matName varchar(40) not null,
-    matStock char(40) not null,
-    matPrice char(40) not null,
-    matUnit char(40)  null,
+    (matID integer not null,
+    matName varchar(100) not null,
+    matStock integer not null,
+    matPrice varchar(40) not null,
+    matUnit char(2)  null,
     primary key (matID));
 
 grant select on Material to public;
 
 create table Container
-    (matID char(40) not null,
+    (matID integer not null,
     volume varchar(40) not null,
     primary key (matID));
 
 grant select on Container to public;
 
 create table RawMaterial
-    (matID char(40) not null,
+    (matID integer not null,
     potency varchar(40) not null,
-    active char(40) not null,
+    active varchar(40) not null,
     primary key (matID));
 
 grant select on RawMaterial to public;
 
 create table Label
-    (matID char(40) not null,
-    labelSize char(40) not null,
+    (matID integer not null,
+    labelSize varchar(40) not null,
     primary key (matID));
 
 grant select on Label to public;
 
 create table Recipe_Uses
-    (recID char(40) not null,
-    matID char(40) not null,
-    quantity char(40) not null,
+    (recID integer not null,
+    matID integer not null,
+    quantity integer not null,
+    recUnit char(2) not null,
     primary key (recID, matID),
     foreign key (matID) references Material,
     foreign key (recID) references Recipe);
@@ -57,53 +58,53 @@ create table Recipe_Uses
 grant select on Recipe_Uses to public;
 
 create table Recipe
-    (recID char(40) not null,
-    procedure varchar(1200) null,
+    (recID integer not null,
+    procedure varchar(1200) not null,
+    recName varchar (100) not null,
     primary key (recID));
 
 grant select on Recipe to public;
 
 create table Product
-    (stockProduct varchar(100),
+    (stockProduct integer,
     prodPrice varchar(40), not null,
-    prodID varchar(40) not null,
+    prodID integer not null,i
     prodName varchar(40) not null,
     prodSize varchar(40) not null,
-    prodUnit char(20) null,
     primary key (prodID));
 
 grant select on Product to public;
 
 
+create table Order
+    (orderID integer not null,
+    primary key (orderID));
+
+grant select on Order to public;
+
 -- following is the weak realationship set between Product-Produces-OrderProduct
+-- this relationship takes orderID from
 create table OrderProductProducesProduct
     (dateupdated varchar(20) not null,
-    quantityRes char(10) not null,
-    prodID varchar(40) not null,
+    quantityRes integer not null,
+    prodID integer not null,
     primary key (prodID, dateUpdated),
     foreign key (prodID) references Product);
 
 grant select on OrderProductProducesProduct to public;
 
 create table Reserves
-    (prodID varchar(40) not null,
-    orderID varchar(40) not null,
-    numProd varchar(10) not null,
+    (prodID integer not null,
+    orderID integer not null,
+    numProd integer not null,
     primary key (prodID, orderID),
     foreign key (prodID) references Product,
     foreign key (orderID) references Order);
 
 grant select on Reserves to public;
 
-
-create table Order
-    (orderID varchar(40) not null,
-    primary key (orderID));
-
-grant select on Order to public;
-
 create table Customer
-    (custID varchar(40) not null,
+    (custID integer not null,
     custName varchar (100),
     primary key (custID));
 
@@ -112,11 +113,11 @@ grant select on Customer to public;
 -- Filled_For is the relationship between Product-Produces-OrderProduct and Order
 create table Filled_For
     (dateupdated varchar(20) not null,
-    prodID varchar(40) not null,
+    prodID integer not null,
     orderID varchar(40) not null,
     numFilled varchar(10),
     isShipped integer default 0,
-    primary key (dateupdated, prodID, orderID),
+    primary key (orderID),
     foreign key (dateupdated, prodID) references OrderProductProducesProduct,
     foreign key (orderID) references Order,
     check (isShipped >= 0 AND isShipped <= 1));
@@ -133,6 +134,7 @@ create table Placed_For
     foreign key (custID) references Customer);
 
 grant select on Placed_For to public;
+
 
 
 
