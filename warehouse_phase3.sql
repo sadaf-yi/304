@@ -1,4 +1,19 @@
-drop table ...,
+drop table Material cascade constraints;
+drop table Container cascade constraints;
+drop table RawMaterial cascade constraints;
+drop table Label cascade constraints;
+drop table Recipe_Uses cascade constraints;
+drop table Recipe cascade constraints;
+drop table Product cascade constraints;
+drop table OrderProductProducesProduct cascade constraints;
+drop table Reserves cascade constraints;
+drop table Order cascade constraints;
+drop table Customer cascade constraints;
+drop table Filled_For cascade constraints;
+drop table Placed_For cascade constraints;
+drop sequence matIdSeq;
+drop sequence recIdSeq;
+
 
 create table Material
     (matID char(40) not null,
@@ -32,7 +47,7 @@ create table Label
 
 grant select on Label to public;
 
-create table recipe_uses
+create table Recipe_Uses
     (recID char(40) not null,
     matID char(40) not null,
     quantity char(40) not null,
@@ -40,7 +55,7 @@ create table recipe_uses
     foreign key (matID) references Material,
     foreign key (recID) references Recipe);
 
-grant select on recipe_uses to public;
+grant select on Recipe_Uses to public;
 
 create table Recipe
     (recID char(40) not null,
@@ -60,10 +75,67 @@ create table Product
 
 grant select on Product to public;
 
-create table OrderProduct
+
+-- following is the weak realationship set between Product-Produces-OrderProduct
+create table OrderProductProducesProduct
     (dateupdated varchar(20) not null,
     quantityRes char(10) not null,
+    prodID varchar(40) not null,
     primary key (prodID, dateUpdated),
     foreign key (prodID) references Product);
+
+grant select on OrderProductProducesProduct to public;
+
+create table Reserves
+    (prodID varchar(40) not null,
+    orderID varchar(40) not null,
+    numProd varchar(10) not null,
+    primary key (prodID, orderID),
+    foreign key (prodID) references Product,
+    foreign key (orderID) references Order);
+
+grant select on Reserves to public;
+
+
+create table Order
+    (orderID varchar(40) not null,
+    primary key (orderID));
+
+grant select on Order to public;
+
+create table Customer
+    (custID varchar(40) not null,
+    custName varchar (100),
+    primary key (custID));
+
+grant select on Customer to public;
+
+-- Filled_For is the relationship between Product-Produces-OrderProduct and Order
+create table Filled_For
+    (dateupdated varchar(20) not null,
+    prodID varchar(40) not null,
+    orderID varchar(40) not null,
+    numFilled varchar(10),
+    isShipped integer default 0,
+    primary key (dateupdated, prodID, orderID),
+    foreign key (dateupdated, prodID) references OrderProductProducesProduct,
+    foreign key (orderID) references Order,
+    check (isShipped >= 0 AND isShipped <= 1));
+
+grant select on Filled_For to public;
+
+-- Placed_For is the relationship between Order, Placed_For and Customer. It is a many-to-one relationship
+-- So every order must have a customer, i.e. custID cannot be null
+
+create table Placed_For
+    (orderID varchar(40),
+    custID  varchar(40) not null,
+    primary key (orderID),
+    foreign key (custID) references Customer);
+
+grant select on Placed_For to public;
+
+
+
 
 
