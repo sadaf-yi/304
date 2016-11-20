@@ -11,8 +11,7 @@ drop table Order cascade constraints;
 drop table Customer cascade constraints;
 drop table Filled_For cascade constraints;
 drop table Placed_For cascade constraints;
-drop sequence matIdSeq;
-drop sequence recIdSeq;
+
 
 
 create table Material
