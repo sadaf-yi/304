@@ -17,9 +17,9 @@ drop table Placed_For cascade constraints;
 create table Material
     (matID integer not null,
     matName varchar(100) not null,
-    matStock integer not null,
+    matStock float default 0.0,
     matPrice integer not null,
-    matUnit char(2)  null,
+    matUnit varchar(7)  null,
     primary key (matID));
 
 grant select on Material to public;
