@@ -70,7 +70,7 @@ create table Product
     prodPrice integer not null,
     prodID integer not null,
     prodName varchar(40) not null,
-    prodSize varchar(40) not null,
+    prodSize integer,
     prodUnit char(2),
     primary key (prodID));
 
