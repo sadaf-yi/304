@@ -49,7 +49,7 @@ grant select on Label to public;
 create table Recipe_Uses
     (recID integer not null,
     matID integer not null,
-    quantity integer not null,
+    quantity float default 0.0,
     recUnit varchar(6) not null,
     primary key (recID, matID),
     foreign key (matID) references Material,
