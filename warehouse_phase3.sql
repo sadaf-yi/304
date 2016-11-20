@@ -17,7 +17,7 @@ drop table Placed_For cascade constraints;
 create table Material
     (matID integer not null,
     matName varchar(100) not null,
-    matStock float default 0.0,
+    matStock float(6) default 0.0,
     matPrice integer not null,
     matUnit varchar(7)  null,
     primary key (matID));
@@ -26,7 +26,7 @@ grant select on Material to public;
 
 create table Container
     (matID integer not null,
-    volume integer,
+    volume varchar(40) not null,
     primary key (matID));
 
 grant select on Container to public;
@@ -49,7 +49,7 @@ grant select on Label to public;
 create table Recipe_Uses
     (recID integer not null,
     matID integer not null,
-    quantity float default 0.0,
+    quantity integer not null,
     recUnit varchar(6) not null,
     primary key (recID, matID),
     foreign key (matID) references Material,
@@ -113,7 +113,7 @@ grant select on Customer to public;
 
 -- Filled_For is the relationship between Product-Produces-OrderProduct and Order
 create table Filled_For
-    (dateupdated DATE,
+    (dateupdated varchar(20) not null,
     prodID integer not null,
     orderID varchar(40) not null,
     numFilled integer,
