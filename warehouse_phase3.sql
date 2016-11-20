@@ -68,7 +68,7 @@ grant select on Recipe to public;
 create table Product
     (stockProduct integer,
     prodPrice varchar(40), not null,
-    prodID integer not null,i
+    prodID integer not null,
     prodName varchar(40) not null,
     prodSize varchar(40) not null,
     primary key (prodID));
