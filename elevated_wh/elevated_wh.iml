@@ -18,5 +18,8 @@
     </orderEntry>
     <orderEntry type="library" name="jgoodies-forms-1.8.0-sources" level="project" />
     <orderEntry type="library" name="jgoodies-forms-1.8.0" level="project" />
+    <orderEntry type="library" name="miglayout-src" level="project" />
+    <orderEntry type="library" name="miglayout15-swing" level="project" />
+    <orderEntry type="library" name="elevated_wh" level="project" />
   </component>
 </module>
