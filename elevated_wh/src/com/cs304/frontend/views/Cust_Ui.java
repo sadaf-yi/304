@@ -53,13 +53,13 @@ public class Cust_Ui extends JFrame {
 		btnNewButton.setBounds(125, 20, 200, 25);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Remove Customer");
+		JButton btnNewButton_1 = new JButton("Search For Customer");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cus_Rem ms = new Cus_Rem();
+				Cus_Sea ms = new Cus_Sea();
 				setVisible(false);
 				dispose();
-				ms.New_Rem();
+				ms.New_Sea();
 			}
 		});
 		btnNewButton_1.setBounds(125, 70, 200, 25);
@@ -77,17 +77,7 @@ public class Cust_Ui extends JFrame {
 		btnNewButton_2.setBounds(125, 120, 200, 25);
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_4 = new JButton("Get Cust Info");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Cus_Inf cf = new Cus_Inf();
-				setVisible(false);
-				dispose();
-				cf.New_Inf();
-			}
-		});
-		btnNewButton_4.setBounds(125, 120, 200, 25);
-		contentPane.add(btnNewButton_4);
+	
 		
 		JButton btnNewButton_3 = new JButton("Back to Main");
 		btnNewButton_3.addActionListener(new ActionListener() {

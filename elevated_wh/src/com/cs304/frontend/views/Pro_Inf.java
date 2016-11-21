@@ -9,18 +9,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Use_Lis extends JFrame {
+public class Pro_Inf extends JFrame {
 
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void New_Lis() {
+	public static void New_Inf() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Use_Lis frame = new Use_Lis();
+					Pro_Inf frame = new Pro_Inf();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class Use_Lis extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Use_Lis() {
+	public Pro_Inf() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -40,17 +40,17 @@ public class Use_Lis extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_5 = new JButton("Back to Main");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JButton btnNewButton_9 = new JButton("Back to Main");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				Main_selections ms = new Main_selections();
 				setVisible(false);
 				dispose();
 				ms.New_Window();
 			}
 		});
-		btnNewButton_5.setBounds(125, 190, 200, 25);
-		contentPane.add(btnNewButton_5);
+		btnNewButton_9.setBounds(145, 170, 150,25);
+		getContentPane().add(btnNewButton_9);
 	}
 
 }
