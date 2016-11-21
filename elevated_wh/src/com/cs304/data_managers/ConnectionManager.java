@@ -1,10 +1,6 @@
 package com.cs304.data_managers;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by tyh0 on 2016-11-20.
@@ -34,6 +30,7 @@ public class ConnectionManager {
 
     public void endConnection() {
         try {
+            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,18 +39,40 @@ public class ConnectionManager {
         }
     }
 
-    public ResultSet submitQuery(String qstring) {
-        Statement s = null;
-        ResultSet results = null;
+    public String[][] submitQuery(String qstring) {
+        statement = null;
+        int numCols, numRows = 0;
+        ResultSet rset = null;
+        String[][] data = new String[1][1];
         try {
-            s = connection.createStatement();
-            results = s.executeQuery(qstring);
+            statement = connection.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rset = statement.executeQuery(qstring);
+            ResultSetMetaData rsmd = rset.getMetaData();
+            numCols = rsmd.getColumnCount();
+            if (rset.last()) {
+                numRows = rset.getRow();
+                rset.beforeFirst();
+            }
+            data = new String[numCols][numRows+1];
+
+            for (int i = 1; i <= numCols; i++) {
+                String columnName = rsmd.getColumnName(i);
+                data[i-1][0] = columnName;
+            }
+            for (int j = 1; j <= numRows; j++) {
+                rset.next();
+                for (int i = 0; i < numCols; i++) {
+                    data[i][j] = rset.getString(i+1);
+                }
+            }
+            this.endConnection();
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
         }
-        return results;
+        return data;
     }
 
     public int executeStatement(String cmd){

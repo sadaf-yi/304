@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
 
+import com.cs304.data_managers.CustOrderDM;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.views.Main_selections;
 import com.cs304.frontend.viewsUser.Main_selections_user;
@@ -34,6 +35,10 @@ public class Main_gui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					// Test Code Added
+					CustOrderDM dm = new CustOrderDM();
+					dm.getAllOrderTuples();
+
 					Main_gui frame = new Main_gui();
 					frame.setVisible(true);
 				} catch (Exception e) {

@@ -17,6 +17,9 @@ public class CustomerDM {
         cm = new ConnectionManager();
     }
 
+    public void insertCustomer(String firstName, String lastName, String phoneNumber) {
+        // TODO: finish this function as it's what josh is using in one of his panels
+    }
 
 
 

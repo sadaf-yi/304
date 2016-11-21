@@ -5,18 +5,18 @@ package com.cs304.data_objects;
  */
 public class Cust_Order {
 
-        private int orderID;
+        private String orderID;
 
 
-        public Cust_Order (int orderID) {
+        public Cust_Order (String orderID) {
             this.orderID = orderID;
         }
 
-        public int getOrderID() {
+        public String getOrderID() {
             return this.orderID;
         }
 
-        private void setOrderID(int ID) {
+        private void setOrderID(String ID) {
             this.orderID = ID;
         }
 
