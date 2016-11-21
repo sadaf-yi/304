@@ -72,6 +72,19 @@ insert into Container(matID,volume) values(19,10);
 insert into Container(matID,volume) values(20,200);
 insert into Container(matID,volume) values(21,30);
 
+-- populate the Build_Product table with samples
+insert into Build_Product(prodID, recID) values (2, 2);
+insert into Build_Product(prodID, recID) values (5, 6);
+insert into Build_Product(prodID, recID) values (3, 7);
+insert into Build_Product(prodID, recID) values (4, 9);
+insert into Build_Product(prodID, recID) values (1, 8);
+insert into Build_Product(prodID, recID) values (6, 4);
+insert into Build_Product(prodID, recID) values (7, 1);
+insert into Build_Product(prodID, recID) values (8, 3);
+insert into Build_Product(prodID, recID) values (9, 5);
+insert into Build_Product(prodID, recID) values (10, 10);
+
+
 -- populate the RawMaterial table with samples
 insert into RawMaterial(matID,potency,active) values(5,'high','cannabis sativa');
 insert into RawMaterial(matID,potency,active) values(6,'high','cannabis indica');
