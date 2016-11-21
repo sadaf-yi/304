@@ -35,6 +35,8 @@ public class Main_gui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					CustOrderDM dm = new CustOrderDM();
+					String[][] test = dm.getAllOrderTuples();
 					Main_gui frame = new Main_gui();
 					frame.setVisible(true);
 				} catch (Exception e) {

@@ -36,10 +36,10 @@ insert into Recipe(recID, recName, procedure) values(10,'15ml Cannabis Healing S
 
 -- populate the Customer table with samples
 insert into Customer(custID,custFName, custLName, pnum) values(1,'Snoop', 'Dogg', '4204327777');
-insert into Customer(custID,custFName, custLName, pnum)  values(2,'Martha', 'Stewart', '5555555555');
-insert into Customer(custID,custFName, custLName, pnum)  values(3,'Barack','Obama', '6665554444');
-insert into Customer(custID,custFName, custLName, pnum)  values(4,'Carl', 'Sagan', '9878767654');
-insert into Customer(custID,custFName, custLName, pnum)  values(5,'Joe', 'Rogan', '1000000000');
+insert into Customer(custID,custFName, custLName, pnum) values(2,'Martha', 'Stewart', '5555555555');
+insert into Customer(custID,custFName, custLName, pnum) values(3,'Barack','Obama', '6665554444');
+insert into Customer(custID,custFName, custLName, pnum) values(4,'Carl', 'Sagan', '9878767654');
+insert into Customer(custID,custFName, custLName, pnum) values(5,'Joe', 'Rogan', '1000000000');
 
 -- populate the Material table with samples
 insert into Material(matID,matName,matStock,matUnit,matPrice) values(1,'coconut oil',20,'L',5);

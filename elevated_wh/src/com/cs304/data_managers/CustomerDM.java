@@ -1,5 +1,7 @@
 package com.cs304.data_managers;
 import com.cs304.data_objects.*;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
@@ -21,13 +23,26 @@ public class CustomerDM {
         // TODO: finish this function as it's what josh is using in one of his panels
     }
 
-    public String[][] findCxByIdOrPhoneNumber(String cid, String Name, String pnum) {
-        String sqlQuery;
+    public String[][] findCxByIdOrPhoneNumber(String cid, String name, String pnum) {
+        String sqlQuery = "";
+        String[][] results = new String[1][1];
+        cm.connectToDb();
         if (!cid.equals("")) {
-            sqlQuery = "SELECT * FROM Customer c WHERE c.custID == " + cid;
+            sqlQuery = "SELECT custID,custFName, custLName, pnum FROM Customer WHERE custID=" + cid;
         } else {
-            sqlQuery = "SELECT * FROM CUSTOMER c where c."
+            String fname = name.substring(0, name.indexOf(' '));
+            String lname = name.substring(name.indexOf(' '));
+            sqlQuery = "SELECT * FROM Customer c " +
+                    "WHERE c.fname = " + fname +
+                    " AND c.lname = " + lname +
+                    " AND c.pnum = " + pnum.replaceAll("[\\s\\-()]", "");
         }
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
 
