@@ -53,13 +53,13 @@ public class Prod_Ui extends JFrame {
 		btnNewButton.setBounds(125, 10, 200, 25);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Remove Recipe");
+		JButton btnNewButton_1 = new JButton("Product Info");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Pro_Rem ms = new Pro_Rem();
+				Pro_Inf ms = new Pro_Inf();
 				setVisible(false);
 				dispose();
-				ms.New_Rem();
+				ms.New_Inf();
 			}
 		});
 		btnNewButton_1.setBounds(125, 55, 200, 25);
@@ -79,7 +79,7 @@ public class Prod_Ui extends JFrame {
 		
 		
 		
-		JButton btnNewButton_4 = new JButton("List Product");
+		JButton btnNewButton_4 = new JButton("List Products");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pro_Lis ms = new Pro_Lis();
