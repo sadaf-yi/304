@@ -15,7 +15,12 @@ public class MaterialDM {
         cm = new ConnectionManager();
     }
 
-
+    public String[][] getAllMaterialTuples() {
+        cm.connectToDb();
+        String sqlQuery = "SELECT * FROM Material";
+        String[][] results = cm.submitQuery(sqlQuery);
+        return results;
+    }
 
 
 }
