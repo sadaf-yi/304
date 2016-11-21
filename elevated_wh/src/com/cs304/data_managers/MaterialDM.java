@@ -38,7 +38,10 @@ public class MaterialDM {
     }
 
     public int updateMaterialStock(String matID, String quantity) {
-        String sqlCmd = ""
+        String sqlCmd = "UPDATE Material SET matStock = matStock + " + quantity + " WHERE matID="+matID;
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+        return result;
     }
 
 }
