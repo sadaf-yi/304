@@ -2,7 +2,7 @@
 <eclipse-userlibraries>
   <library name="jgoodies-forms-1.8.0-sources" />
   <library name="jgoodies-forms-1.8.0">
-    <archive path="$304_PATH$/jgoodies-forms-1.8.0.jar" />
+    <archive path="/Users/tyh0/code/cpsc304/project/304/elevated_wh/jgoodies-forms-1.8.0.jar" />
   </library>
 </eclipse-userlibraries>
 
