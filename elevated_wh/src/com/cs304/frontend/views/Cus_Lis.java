@@ -51,6 +51,7 @@ public class Cus_Lis extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+		
 		String[] sa = {"CID", "FNAME", "LNAME", "PHONE"};
 		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(tableModel);

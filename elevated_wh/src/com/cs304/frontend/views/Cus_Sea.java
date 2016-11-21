@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.cs304.data_managers.CustomerDM;
+
 import net.miginfocom.swing.MigLayout;
 
 public class Cus_Sea extends JFrame {
@@ -22,7 +24,9 @@ public class Cus_Sea extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField1;
 	private JTable table;
+	private String[][] results_q;
 
 	/**
 	 * Launch the application.
@@ -73,7 +77,7 @@ public class Cus_Sea extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("PHONE");
 		contentPane.add(lblNewLabel_1, "cell 0 3,alignx right,aligny center");
 		
-		JTextField textField1 = new JTextField();
+		textField1 = new JTextField();
 		contentPane.add(textField1, "cell 1 3,alignx left,aligny top");
 		textField1.setColumns(20);
 		
@@ -84,7 +88,14 @@ public class Cus_Sea extends JFrame {
 		contentPane.add(textField_1, "cell 1 4,growx,aligny top");
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("submit");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerDM cdm = new CustomerDM();
+				//results_q = cdm.findCxByIdOrPhoneNumber(textField.getText(), textField1.getText(), textField_1.getText());
+				
+			} 
+		});
 		contentPane.add(btnNewButton, "cell 1 5,alignx left,aligny top");
 		
 		JButton btnNewButton_9 = new JButton("Back to Main");
