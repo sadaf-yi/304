@@ -31,15 +31,16 @@ public class CustomerDM {
             sqlQuery = "SELECT custID,custFName, custLName, pnum FROM Customer WHERE custID=" + cid;
         } else {
             String fname = name.substring(0, name.indexOf(' '));
-            String lname = name.substring(name.indexOf(' '));
+            String lname = name.substring(name.indexOf(' ')+1);
             sqlQuery = "SELECT * FROM Customer c " +
-                    "WHERE c.fname = " + fname +
-                    " AND c.lname = " + lname +
-                    " AND c.pnum = " + pnum.replaceAll("[\\s\\-()]", "");
+                    "WHERE c.custFName = \'" + fname +
+                    "\' AND c.custLName = \'" + lname +
+                    "\' AND c.pnum = \'" + pnum.replaceAll("[\\s\\-()]", "") + "\'";
         }
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
+            cm.endConnection();
             e.printStackTrace();
         }
         return results;

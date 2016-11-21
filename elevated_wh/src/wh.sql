@@ -11,8 +11,32 @@ drop table Cust_Order CASCADE CONSTRAINTS;
 drop table Customer CASCADE CONSTRAINTS;
 drop table Filled_For CASCADE CONSTRAINTS;
 drop table Placed_For CASCADE CONSTRAINTS;
+drop sequence material_counter;
+drop sequence recipe_counter;
+drop sequence product_counter;
+drop sequence customer_counter;
+drop sequence order_counter;
 
-
+CREATE SEQUENCE material_counter
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0;
+create sequence recipe_counter
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0;
+create sequence product_counter
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0;
+create sequence customer_counter
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0;
+create sequence order_counter
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0;
 
 create table Material
 (matID integer not null,

@@ -4,67 +4,67 @@
 
 -- populate the Product table with samples
 
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(1,'Sativa Tincture',30,'mL',20,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(2,'Indica Tincture',30,'mL',19,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(3,'Extra Strength Tincture',30,'mL',50,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(4,'Headache Rollon',10,'mL',40,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(5,'Sleep Rollon',10,'mL',40,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(6,'Cannabis Spray',200,'mL',80,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(7,'30 CBD Tincture',30,'mL',40,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(8,'100ml Cannabis Healing Salve',100,'mL',80,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(9,'50ml Cannabis Healing Salve',50,'mL',45,100);
-insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(10,'15ml Cannabis Healing Salve',15,'mL',20,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'Sativa Tincture',30,'mL',20,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'Indica Tincture',30,'mL',19,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'Extra Strength Tincture',30,'mL',50,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'Headache Rollon',10,'mL',40,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'Sleep Rollon',10,'mL',40,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'Cannabis Spray',200,'mL',80,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'30 CBD Tincture',30,'mL',40,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'100ml Cannabis Healing Salve',100,'mL',80,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'50ml Cannabis Healing Salve',50,'mL',45,100);
+insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) values(product_counter.nextval,'15ml Cannabis Healing Salve',15,'mL',20,100);
 
 -- populate the Cust_Order table with samples
-insert into Cust_Order(orderID) values (1);
-insert into Cust_Order(orderID) values (2);
-insert into Cust_Order(orderID) values (3);
-insert into Cust_Order(orderID) values (4);
-insert into Cust_Order(orderID) values (5);
+insert into Cust_Order(orderID) values (order_counter.nextval);
+insert into Cust_Order(orderID) values (order_counter.nextval);
+insert into Cust_Order(orderID) values (order_counter.nextval);
+insert into Cust_Order(orderID) values (order_counter.nextval);
+insert into Cust_Order(orderID) values (order_counter.nextval);
 
 -- populate the Recipe table with samples
-insert into Recipe(recID, recName, procedure) values(1,'Sativa Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
-insert into Recipe(recID, recName, procedure) values(2,'Indica Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
-insert into Recipe(recID, recName, procedure) values(3,'Extra Strength Tincture','Add ingredients together at the same time. Mix ingredients together for 4 mins');
-insert into Recipe(recID, recName, procedure) values(4,'Headache Rollon','Add ingredients together at the same time. Mix ingredients together for 5 mins');
-insert into Recipe(recID, recName, procedure) values(5,'Sleep Rollon','Add ingredients together at the same time. Mix ingredients together for 2 mins');
-insert into Recipe(recID, recName, procedure) values(6,'Cannabis Spray','Add ingredients together at the same time. Mix ingredients together for 9 mins');
-insert into Recipe(recID, recName, procedure) values(7,'30 CBD Tincture','Add ingredients together at the same time. Mix ingredients together for 7 mins');
-insert into Recipe(recID, recName, procedure) values(8,'100ml Cannabis Healing Salve','Add ingredients together at the same time. Mix ingredients together for 9 mins');
-insert into Recipe(recID, recName, procedure) values(9,'50ml Cannabis Healing Salve','Add ingredients together at the same time. Mix ingredients together for 5 mins');
-insert into Recipe(recID, recName, procedure) values(10,'15ml Cannabis Healing Salve','Add ingredients together at the same time. Mix ingredients together for 3 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Sativa Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Indica Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Extra Strength Tincture','Add ingredients together at the same time. Mix ingredients together for 4 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Headache Rollon','Add ingredients together at the same time. Mix ingredients together for 5 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Sleep Rollon','Add ingredients together at the same time. Mix ingredients together for 2 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Cannabis Spray','Add ingredients together at the same time. Mix ingredients together for 9 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'30 CBD Tincture','Add ingredients together at the same time. Mix ingredients together for 7 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'100ml Cannabis Healing Salve','Add ingredients together at the same time. Mix ingredients together for 9 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'50ml Cannabis Healing Salve','Add ingredients together at the same time. Mix ingredients together for 5 mins');
+insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'15ml Cannabis Healing Salve','Add ingredients together at the same time. Mix ingredients together for 3 mins');
 
 -- populate the Customer table with samples
-insert into Customer(custID,custFName, custLName, pnum) values(1,'Snoop', 'Dogg', '4204327777');
-insert into Customer(custID,custFName, custLName, pnum) values(2,'Martha', 'Stewart', '5555555555');
-insert into Customer(custID,custFName, custLName, pnum) values(3,'Barack','Obama', '6665554444');
-insert into Customer(custID,custFName, custLName, pnum) values(4,'Carl', 'Sagan', '9878767654');
-insert into Customer(custID,custFName, custLName, pnum) values(5,'Joe', 'Rogan', '1000000000');
+insert into Customer(custID,custFName, custLName, pnum) values(customer_counter.nextval,'Snoop', 'Dogg', '4204327777');
+insert into Customer(custID,custFName, custLName, pnum) values(customer_counter.nextval,'Martha', 'Stewart', '5555555555');
+insert into Customer(custID,custFName, custLName, pnum) values(customer_counter.nextval,'Barack','Obama', '6665554444');
+insert into Customer(custID,custFName, custLName, pnum) values(customer_counter.nextval,'Carl', 'Sagan', '9878767654');
+insert into Customer(custID,custFName, custLName, pnum) values(customer_counter.nextval,'Joe', 'Rogan', '1000000000');
 
 -- populate the Material table with samples
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(1,'coconut oil',20,'L',5);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(2,'castor oil',20,'L',5);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(3,'calendula oil',5,'L',20);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(4,'sunflower oil',50,'L',10);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(5,'cannabis oil sativa',2,'kg',200);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(6,'cannabis oil indica',2,'kg',200);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(7,'cannabis oil pink kush',2,'kg',300);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(8,'cannabis infused coconut oil',2,'L',500);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(9,'CBD infused coconut oil',5,'L',500);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(10,'pure cbd oil',1,'L',500);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(11,'essential oil mix',2,'L',100);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(12,'essential oil premix (headache)',2,'L',100);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(13,'essential oil premix (sleep)',2,'L',100);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(14,'beeswax',1,'kg',75);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(15,'honey',10,'L',45);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(16,'distilled water',50,'L',10);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(17,'pure ethanol',20,'L',100);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(18,'amber 30ml glass bottle',50,'bottles',1);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(19,'10 ml glass roll-on bottle',60,'bottles',1);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(20,'plastic 200ml bottle spray',25,'bottles',1);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(21,'blue cobalt glass bottle',13,'bottles',3);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(22,'label large',200,'labels',2);
-insert into Material(matID,matName,matStock,matUnit,matPrice) values(23,'label small',150,'labels',2);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'coconut oil',20,'L',5);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'castor oil',20,'L',5);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'calendula oil',5,'L',20);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'sunflower oil',50,'L',10);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'cannabis oil sativa',2,'kg',200);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'cannabis oil indica',2,'kg',200);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'cannabis oil pink kush',2,'kg',300);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'cannabis infused coconut oil',2,'L',500);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'CBD infused coconut oil',5,'L',500);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'pure cbd oil',1,'L',500);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'essential oil mix',2,'L',100);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'essential oil premix (headache)',2,'L',100);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'essential oil premix (sleep)',2,'L',100);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'beeswax',1,'kg',75);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'honey',10,'L',45);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'distilled water',50,'L',10);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'pure ethanol',20,'L',100);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'amber 30ml glass bottle',50,'bottles',1);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'10 ml glass roll-on bottle',60,'bottles',1);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'plastic 200ml bottle spray',25,'bottles',1);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'blue cobalt glass bottle',13,'bottles',3);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'label large',200,'labels',2);
+insert into Material(matID,matName,matStock,matUnit,matPrice) values(material_counter.nextval,'label small',150,'labels',2);
 
 -- populate the Container table with samples
 insert into Container(matID,volume) values(18,30);
