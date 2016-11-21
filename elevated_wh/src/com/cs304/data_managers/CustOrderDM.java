@@ -30,6 +30,18 @@ public class CustOrderDM {
         return results;
     }
 
+    public String[][] getOrder(String OrderID) {
+        cm.connectToDb();
+        String sqlQuery = "SELECT * FROM Cust_Order";
+        String[][] results = new String[0][];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
 
 
 }
