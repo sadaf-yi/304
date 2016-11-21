@@ -1,3 +1,5 @@
+package com.cs304.data_objects;
+
 import java.util.ArrayList;
 
 /**
