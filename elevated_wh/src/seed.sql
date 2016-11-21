@@ -142,13 +142,6 @@ insert into Recipe_Uses(recID,matID,quantity,recUnit) values(7,10,400,'mg');
 insert into Recipe_Uses(recID,matID,quantity,recUnit) values(7,1,30,'mL');
 insert into Recipe_Uses(recID,matID,quantity,recUnit) values(7,21,1,'bottle');
 
--- populate the OrderProductProducesProduct table with samples
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM'),5,1);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 03:34 PM','DD-MON-YY HH:MI PM'),5,3);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 10:42 AM','DD-MON-YY HH:MI PM'),20,2);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 02:30 PM','DD-MON-YY HH:MI PM'),17,7);
-insert into OrderProductProducesProduct(dateupdated,quantityRes,prodID) values(TO_DATE('19-NOV-16 01:56 PM','DD-MON-YY HH:MI PM'),4,6);
-
 -- populate the Reserves table with samples
 insert into Reserves(prodID,orderID,numProd) values(1,1,5);
 insert into Reserves(prodID,orderID,numProd) values(3,2,5);
