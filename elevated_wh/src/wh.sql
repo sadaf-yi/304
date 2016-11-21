@@ -1,16 +1,16 @@
-drop table Material CASCADE CONSTRAINTS;
-drop table Container CASCADE CONSTRAINTS;
-drop table RawMaterial CASCADE CONSTRAINTS;
-drop table Label CASCADE CONSTRAINTS;
-drop table Recipe_Uses CASCADE CONSTRAINTS;
-drop table Recipe CASCADE CONSTRAINTS;
-drop table Product CASCADE CONSTRAINTS;
-drop table Build_Product CASCADE CONSTRAINTS;
-drop table Reserves CASCADE CONSTRAINTS;
-drop table Cust_Order CASCADE CONSTRAINTS;
-drop table Customer CASCADE CONSTRAINTS;
-drop table Filled_For CASCADE CONSTRAINTS;
-drop table Placed_For CASCADE CONSTRAINTS;
+drop table Material cascade constraints;
+drop table Container;
+drop table RawMaterial;
+drop table Label;
+drop table Recipe_Uses;
+drop table Recipe cascade constraints;
+drop table Product cascade constraints;
+drop table Build_Product;
+drop table Reserves cascade constraints;
+drop table Cust_Order cascade constraints;
+drop table Customer cascade constraints;
+drop table Filled_For;
+drop table Placed_For;
 drop sequence material_counter;
 drop sequence recipe_counter;
 drop sequence product_counter;
@@ -84,8 +84,10 @@ matID integer not null,
 quantity integer not null,
 recUnit varchar2(10) not null,
 primary key (recID, matID),
-foreign key (matID) references Material,
-foreign key (recID) references Recipe);
+foreign key (matID) references Material (matID)
+ not deferrable,
+foreign key (recID) references Recipe (recID)
+ not deferrable);
 
 grant select on Recipe_Uses to public;
 
@@ -104,8 +106,10 @@ create table Build_Product
 (prodID integer not null,
 recID integer not null,
 primary key (prodID),
-foreign key (prodID) references Product,
-foreign key (recID) references Recipe);
+foreign key (prodID) references Product (prodID)
+not deferrable,
+foreign key (recID) references Recipe (recID)
+ not deferrable);
 
 grant select on Build_Product to public;
 
@@ -120,8 +124,10 @@ create table Reserves
 orderID integer not null,
 numProd integer not null,
 primary key (prodID, orderID),
-foreign key (prodID) references Product,
-foreign key (orderID) references Cust_Order);
+foreign key (prodID) references Product (prodID)
+ not deferrable,
+foreign key (orderID) references Cust_Order (orderID)
+ not deferrable);
 
 grant select on Reserves to public;
 
@@ -142,8 +148,10 @@ orderID integer not null,
 numFilled integer,
 isShipped integer default 0,
 primary key (orderID, prodID, dateUpdated),
-foreign key (prodID) references Product,
-foreign key (orderID) references Cust_Order,
+foreign key (prodID) references Product (prodID)
+ not deferrable,
+foreign key (orderID) references Cust_Order (orderID)
+ not deferrable,
 check (isShipped >= 0 AND isShipped <= 1));
 
 grant select on Filled_For to public;
@@ -155,6 +163,8 @@ create table Placed_For
 (orderID integer not null,
 custID  integer not null,
 primary key (orderID),
-foreign key (custID) references Customer);
+foreign key (custID)
+references Customer(custID)
+not deferrable);
 
 grant select on Placed_For to public;
