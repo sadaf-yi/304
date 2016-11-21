@@ -31,6 +31,11 @@ public class Pro_Add extends JFrame {
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	
+	/**
+	 * @wbp.nonvisual location=462,17
+	 */
+	private JPanel popup_panel;
+	
 
 	/**
 	 * Launch the application.
@@ -52,8 +57,12 @@ public class Pro_Add extends JFrame {
 	 * Create the frame.
 	 */
 	public Pro_Add() {
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		popup_panel = new JPanel();
+		popup_panel.setLayout(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

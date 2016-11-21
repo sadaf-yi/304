@@ -7,15 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
-import com.cs304.data_managers.CustomerDM;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -91,7 +88,7 @@ public class Cus_Sea extends JFrame {
 		JButton btnNewButton = new JButton("submit");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerDM cdm = new CustomerDM();
+				//CustomerDM cdm = new CustomerDM();
 				//results_q = cdm.findCxByIdOrPhoneNumber(textField.getText(), textField1.getText(), textField_1.getText());
 				
 			} 
@@ -112,15 +109,7 @@ public class Cus_Sea extends JFrame {
 		Object[] data = {"position", "name", "points", "wins"};
 
 		tableModel.addRow(data);
-table.addMouseListener(new java.awt.event.MouseAdapter()
-  {
-public void mouseClicked(java.awt.event.MouseEvent e)
-{
-int row=table.rowAtPoint(e.getPoint());
-int col= table.columnAtPoint(e.getPoint());
-JOptionPane.showMessageDialog(null, table.getValueAt(row,col).toString());
-}
-});
+
 
 
 	}
