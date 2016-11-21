@@ -21,6 +21,15 @@ public class CustomerDM {
         // TODO: finish this function as it's what josh is using in one of his panels
     }
 
+    public String[][] findCxByIdOrPhoneNumber(String cid, String Name, String pnum) {
+        String sqlQuery;
+        if (!cid.equals("")) {
+            sqlQuery = "SELECT * FROM Customer c WHERE c.custID == " + cid;
+        } else {
+            sqlQuery = "SELECT * FROM CUSTOMER c where c."
+        }
+    }
+
 
 
 }

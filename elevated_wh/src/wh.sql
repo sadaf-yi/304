@@ -103,7 +103,9 @@ grant select on Reserves to public;
 
 create table Customer
 (custID integer not null,
-custName varchar2(100),
+custFName varchar2(30),
+custLName varchar2(30),
+pnum varchar2(10),
 primary key (custID));
 
 grant select on Customer to public;

@@ -18,5 +18,15 @@
     </orderEntry>
     <orderEntry type="library" name="jgoodies-forms-1.8.0-sources" level="project" />
     <orderEntry type="library" name="jgoodies-forms-1.8.0" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/miglayout15-swing.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="miglayout-src" level="project" />
   </component>
 </module>
