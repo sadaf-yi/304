@@ -26,17 +26,22 @@ public class CustOrderDM {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
         return results;
     }
 
     public String[][] getOrder(String OrderID) {
         cm.connectToDb();
-        String sqlQuery = "SELECT * FROM Cust_Order";
-        String[][] results = new String[0][];
+        String sqlQuery = "";
+        String[][] results = new String[1][1];
+        if (!OrderID.equals("")) {
+            sqlQuery = "SELECT orderID FROM Cust_Order WHERE orderID" + OrderID;
+        }
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
+            cm.endConnection();
             e.printStackTrace();
         }
         return results;

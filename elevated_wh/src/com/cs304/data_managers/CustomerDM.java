@@ -40,7 +40,7 @@ public class CustomerDM {
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
-            cm.endConnection();
+
             e.printStackTrace();
         }
         return results;
