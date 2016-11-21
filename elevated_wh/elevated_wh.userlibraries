@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eclipse-userlibraries />
+<eclipse-userlibraries>
+  <library name="jgoodies-forms-1.8.0-sources" />
+  <library name="jgoodies-forms-1.8.0">
+    <archive path="/Users/tyh0/code/cpsc304/project/304/elevated_wh/jgoodies-forms-1.8.0.jar" />
+  </library>
+</eclipse-userlibraries>
 
