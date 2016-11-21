@@ -5,6 +5,7 @@ drop table Label CASCADE CONSTRAINTS;
 drop table Recipe_Uses CASCADE CONSTRAINTS;
 drop table Recipe CASCADE CONSTRAINTS;
 drop table Product CASCADE CONSTRAINTS;
+drop table Build_Product CASCADE CONSTRAINTS;
 drop table OrderProductProducesProduct CASCADE CONSTRAINTS;
 drop table Reserves CASCADE CONSTRAINTS;
 drop table Cust_Order CASCADE CONSTRAINTS;
@@ -76,6 +77,14 @@ primary key (prodID));
 
 grant select on Product to public;
 
+create table Build_Product
+(prodID integer not null,
+recID integer not null,
+primary key (prodID),
+foreign key (prodID) references Product,
+foreign key (recID) references Recipe);
+
+grant select on Build_Product to public;
 
 create table Cust_Order
 (orderID integer not null,
