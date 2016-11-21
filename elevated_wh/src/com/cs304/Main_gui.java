@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
-
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.views.Main_selections;
 import com.cs304.frontend.viewsUser.Main_selections_user;
@@ -21,6 +20,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
+import com.cs304.data_managers.*;
 
 public class Main_gui extends JFrame {
 	private int typenum = 0;

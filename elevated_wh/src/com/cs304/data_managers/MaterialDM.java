@@ -1,5 +1,7 @@
 package com.cs304.data_managers;
 import com.cs304.data_objects.*;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
@@ -15,7 +17,17 @@ public class MaterialDM {
         cm = new ConnectionManager();
     }
 
-
+    public String[][] getAllMaterialTuples() {
+        cm.connectToDb();
+        String sqlQuery = "SELECT * FROM Material";
+        String[][] results = new String[0][];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 
 
 }
