@@ -29,5 +29,16 @@ public class MaterialDM {
         return results;
     }
 
+    public int insertNewMaterial(String prodName, String stock, String unit, String price) {
+        String sqlCmd = "insert into Material(matID,matName,matStock,matUnit,matPrice) "+
+                "values(material_counter.nextval,\'"+ prodName+ "\'," + stock+ ",\'" + unit + "\',\'"+price+")";
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
+    public int updateMaterialStock(String matID, String quantity) {
+        String sqlCmd = ""
+    }
 
 }

@@ -20,7 +20,11 @@ public class CustomerDM {
     }
 
     public void insertCustomer(String firstName, String lastName, String phoneNumber) {
-        // TODO: finish this function as it's what josh is using in one of his panels
+        String sqlCmd =
+                "insert into Customer(custID,custFName, custLName, pnum) "+"values(customer_counter.nextval,\'"+firstName+"\',\'"+ lastName +
+                "\',\'"+phoneNumber+"\')";
+        cm.connectToDb();
+        int rowCount = cm.executeStatement(sqlCmd);
     }
 
     public String[][] findCxByIdOrPhoneNumber(String cid, String name, String pnum) {
@@ -40,12 +44,8 @@ public class CustomerDM {
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return results;
     }
-
-
-
 }
