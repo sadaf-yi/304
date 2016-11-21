@@ -3,4 +3,8 @@
 	<output-test url="file://$MODULE_DIR$/out/test/elevated_wh"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="jgoodies-forms-1.8.0" value="project"/>
+		<level name="jgoodies-forms-1.8.0-sources" value="project"/>
+	</levels>
 </component>
