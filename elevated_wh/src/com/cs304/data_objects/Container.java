@@ -1,9 +1,5 @@
 package com.cs304.data_objects;
 
-import com.cs304.data_objects.Material;
-
-import java.util.ArrayList;
-
 /**
  * Created by SadafiYadegari on 2016-11-19.
  */

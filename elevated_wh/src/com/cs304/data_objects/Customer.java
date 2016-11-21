@@ -1,8 +1,5 @@
 package com.cs304.data_objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by SadafiYadegari on 2016-11-19.
  */

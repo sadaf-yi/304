@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.cs304.data_managers.CustomerDM;
+
 public class Cus_Lis extends JFrame {
 
 	private JPanel contentPane;
@@ -51,6 +53,7 @@ public class Cus_Lis extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+		
 		String[] sa = {"CID", "FNAME", "LNAME", "PHONE"};
 		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(tableModel);
@@ -76,6 +79,11 @@ public class Cus_Lis extends JFrame {
 				ms.New_Window();
 			}
 		});
+		
+		CustomerDM cdm = new CustomerDM();
+		//String[][] results_s = cdm.GetAllCustomer();
+		
+		
 		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
 		gbc_btnNewButton_9.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_9.anchor = GridBagConstraints.NORTH;
