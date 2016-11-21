@@ -1,4 +1,7 @@
 package com.cs304.data_managers;
+import com.cs304.data_objects.*;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.cs304.data_objects.Material;
@@ -18,7 +21,12 @@ public class MaterialDM {
     public String[][] getAllMaterialTuples() {
         cm.connectToDb();
         String sqlQuery = "SELECT * FROM Material";
-        String[][] results = cm.submitQuery(sqlQuery);
+        String[][] results = new String[0][];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return results;
     }
 

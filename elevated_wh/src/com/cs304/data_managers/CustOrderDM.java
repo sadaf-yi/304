@@ -23,7 +23,12 @@ public class CustOrderDM {
     public String[][] getAllOrderTuples() {
         cm.connectToDb();
         String sqlQuery = "SELECT * FROM Cust_Order";
-        String[][] results = cm.submitQuery(sqlQuery);
+        String[][] results = new String[0][];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return results;
     }
 

@@ -7,7 +7,8 @@
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/classes12.zip!/"/>
 	</lib>
 	<levels>
-		<level name="jgoodies-forms-1.8.0" value="project"/>
 		<level name="jgoodies-forms-1.8.0-sources" value="project"/>
+		<level name="jgoodies-forms-1.8.0" value="project"/>
+		<level name="miglayout-src" value="project"/>
 	</levels>
 </component>
