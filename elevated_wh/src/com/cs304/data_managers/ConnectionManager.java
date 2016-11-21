@@ -87,6 +87,7 @@ public class ConnectionManager {
         try {
             s = connection.createStatement();
             rowCount = s.executeUpdate(cmd);
+            s.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
