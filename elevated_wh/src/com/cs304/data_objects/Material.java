@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package com.cs304.data_objects;
 
 /**
  * Created by SadafiYadegari on 2016-11-19.
@@ -11,8 +11,7 @@ public class Material {
     private int matPrice;
     private String matUnit;
 
-    private ArrayList<Material> materials;
-    private int materialSize;
+
 
     public Material (int matID, String matName, float matStock, int matPrice, String matUnit) {
         this.matID = matID;
@@ -63,20 +62,12 @@ public class Material {
         this.matUnit = unit;
     }
 
-    public ArrayList<Material> getMaterials(){
-        return this.materials;
+    protected void addMaterial(int quantity) {
+        this.matStock += quantity;
     }
 
-    protected void addMaterial(Material m) {
-        materials.add(m);
-    }
-
-    protected void removeMaterial(Material m){
-        materials.remove(m);
-    }
-
-    public int getMaterialSize() {
-        return materials.size();
+    protected void removeMaterial(int quantity){
+        this.matStock -= quantity;
     }
 
 

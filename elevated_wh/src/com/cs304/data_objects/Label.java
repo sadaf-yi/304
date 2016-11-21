@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+package com.cs304.data_objects;
 
 /**
  * Created by SadafiYadegari on 2016-11-19.
  */
-public class Label extends Material {
+public class Label extends com.cs304.data_objects.Material {
 
     private String labelSize;
-    private ArrayList<Label> labels;
+
 
     public Label(String labelSize, int matID, String matName, float matStock, int matPrice, String matUnit) {
         super(matID, matName, matStock, matPrice, matUnit);
@@ -21,14 +21,12 @@ public class Label extends Material {
         this.labelSize = labelSize;
     }
 
-    private void removeLabel(Label l) {
-        labels.remove(l);
-        super.removeMaterial(l);
+    private void removeLabel(int quantity) {
+        super.removeMaterial(quantity);
     }
 
-    private void addLabel(Label l) {
-        labels.add(l);
-        super.addMaterial(l);
+    private void addLabel(int quantity) {
+        super.addMaterial(quantity);
     }
 
 }

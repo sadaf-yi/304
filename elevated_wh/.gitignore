@@ -39,6 +39,9 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
+<<<<<<< HEAD
+fabric.properties
+=======
 fabric.properties
 
 # Eclipse-Specific gitignore section
@@ -93,3 +96,4 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+>>>>>>> c478d7f94739236e02d652b9c5e4b4b5ed2c2f9f

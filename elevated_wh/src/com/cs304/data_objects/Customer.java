@@ -1,3 +1,5 @@
+package com.cs304.data_objects;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,6 @@ public class Customer {
 
     private int custID;
     private String custName;
-    private ArrayList<Customer> customers;
 
     public Customer(int custID , String custName) {
         this.custID = custID;
@@ -28,22 +29,10 @@ public class Customer {
         this.custID = ID;
     }
 
-
     private void setCustName(String name) {
         this.custName = name;
     }
 
-    public List<Customer> getCustomers(){
-        return this.customers;
-    }
-
-    private void addCustomer(Customer c) {
-        customers.add(c);
-    }
-
-    private void removeCustomer(Customer c) {
-        customers.remove(c);
-    }
 
 }
 

@@ -1,12 +1,16 @@
+package com.cs304.data_objects;
+
+import com.sun.javafx.sg.prism.NGPhongMaterial;
+import javafx.scene.paint.Material;
+
 import java.util.ArrayList;
 
 /**
  * Created by SadafiYadegari on 2016-11-19.
  */
-public class Container extends Material {
+public class Container extends com.cs304.data_objects.Material {
 
     private int volume;
-    private ArrayList<Container> containers;
 
 
     public Container(int volume, int matID, String matName, float matStock, int matPrice, String matUnit) {
@@ -22,18 +26,12 @@ public class Container extends Material {
         this.volume = v;
     }
 
-    public ArrayList<Container> getContainers(){
-        return this.containers;
+    private void addContainer(int quantity) {
+        super.addMaterial(quantity);
     }
 
-    private void addContainer(Container c) {
-        this.containers.add(c);
-        super.addMaterial(c);
-    }
-
-    private void removeContainer(Container c) {
-        containers.remove(c);
-        super.removeMaterial(c);
+    private void removeContainer(int quantity) {
+        super.removeMaterial(quantity);
     }
 
 }

@@ -1,3 +1,5 @@
+package com.cs304.data_objects;
+
 import java.util.ArrayList;
 
 /**
@@ -11,9 +13,6 @@ public class Product {
     private String prodName;
     private int prodSize;
     private String prodUnit;
-
-    private ArrayList<Product> products;
-
 
     public Product(){
 
@@ -76,9 +75,7 @@ public class Product {
         this.prodUnit = unit;
     }
 
-    public ArrayList<Product> getProducts() {
-        return this.products;
-    }
+
 
 
 }
