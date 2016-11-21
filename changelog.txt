@@ -1,0 +1,33 @@
+Had to change the Order table to Cust_Order as Order is a reserved word in SQL
+
+We decided that the clerk does not need to have the ability to Reserve Material because
+
+We decided such that the clerk ‘should’ have the ability to ‘Remove’ Material, Customer, Order and Products
+
+Clarification: Managers will be able to see the price of the material as well. 
+
+*** to create an order: we need to update customer in DDL and also insertion seed table to provide additional information including first name, last name, telephone #
+
+Following were Phase2 functionalities: 
+
+Clerks will be able to create:
+1. New customers, 
+2. New orders, 
+3. New reservations 
+4. Query all information except material costs on any entity or relation based on their primary keys. They will not be able to add any new entities other than those mentioned above query
+
+5. They will be unable to remove anything at all.
+
+6. They are also able to update stock amounts in the DB to account for incoming material shipments and products being created. 
+
+7. Employees will also be able to create daily product reports which detail all products made and all products used to fill orders in the run of a day. 
+
+
+Managers will be able to
+1. Perform all functionality of Clerks, plus: 
+
+2. Have the power to view, create, remove or change any entity or relation within the system. 
+
+3. They will also have the ability to create daily warehouse report that details a list of all reservations made and all changes in warehouse material and product stock in a given day.
+
+
