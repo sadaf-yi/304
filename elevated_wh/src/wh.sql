@@ -6,7 +6,7 @@ drop table Recipe_Uses CASCADE CONSTRAINTS;
 drop table Recipe CASCADE CONSTRAINTS;
 drop table Product CASCADE CONSTRAINTS;
 drop table Build_Product CASCADE CONSTRAINTS;
-drop table OrderProductProducesProduct CASCADE CONSTRAINTS;
+-- drop table OrderProductProducesProduct CASCADE CONSTRAINTS;
 drop table Reserves CASCADE CONSTRAINTS;
 drop table Cust_Order CASCADE CONSTRAINTS;
 drop table Customer CASCADE CONSTRAINTS;
@@ -94,14 +94,14 @@ grant select on Cust_Order to public;
 
 -- following is the weak realationship set between Product-Produces-OrderProduct
 -- this relationship takes orderID from
-create table OrderProductProducesProduct
-(dateupdated DATE not null,
-quantityRes integer not null,
-prodID integer not null,
-primary key (prodID, dateUpdated),
-foreign key (prodID) references Product);
+-- create table OrderProductProducesProduct
+-- (dateupdated DATE not null,
+-- quantityRes integer not null,
+-- prodID integer not null,
+-- primary key (prodID, dateUpdated),
+-- foreign key (prodID) references Product);
 
-grant select on OrderProductProducesProduct to public;
+-- grant select on OrderProductProducesProduct to public;
 
 create table Reserves
 (prodID integer not null,
@@ -127,8 +127,8 @@ prodID integer not null,
 orderID integer not null,
 numFilled integer,
 isShipped integer default 0,
-primary key (orderID, prodID),
-foreign key (prodID, dateupdated) references OrderProductProducesProduct(prodID, dateupdated),
+primary key (orderID, prodID, dateUpdated),
+foreign key (prodID) references Product,
 foreign key (orderID) references Cust_Order,
 check (isShipped >= 0 AND isShipped <= 1));
 
