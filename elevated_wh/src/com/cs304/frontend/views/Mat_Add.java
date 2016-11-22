@@ -47,10 +47,7 @@ public class Mat_Add extends JFrame {
 	 * Create the frame.
 	 */
 	public Mat_Add() {
-		String Mname;
-		String Stock;
-		String Price;
-		String Unit;
+
 		int pnum;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -111,8 +108,14 @@ public class Mat_Add extends JFrame {
 			}	
 			else
 			{
-				List<List<String>> dict = new ArrayList<>();
-			// MaterialDM.InsertCustomer(textField.getText(),textField_1.getText(),textField_2.getText());
+				final String Mname = textField.getText().toString();
+				final String Stock = textField_1.getText().toString();
+				final String Unit = textField_2.getText().toString();
+				final String Price = textField_3.getText().toString();
+
+				int pnum;
+				MaterialDM mdm = new MaterialDM();
+				mdm.insertNewMaterial(Mname , Stock, Unit , Price);
 				Success_Pop sp = new Success_Pop();
 				sp.New_Pop();
 			}

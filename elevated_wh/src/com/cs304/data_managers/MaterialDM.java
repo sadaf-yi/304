@@ -1,10 +1,9 @@
 package com.cs304.data_managers;
-<<<<<<< HEAD
-=======
+
 import com.cs304.data_objects.*;
 
 import java.sql.SQLException;
->>>>>>> tyler
+
 import java.util.ArrayList;
 
 import com.cs304.data_objects.Material;
@@ -34,8 +33,8 @@ public class MaterialDM {
     }
 
     public int insertNewMaterial(String prodName, String stock, String unit, String price) {
-        String sqlCmd = "insert into Material(matID,matName,matStock,matUnit,matPrice) "+
-                "values(material_counter.nextval,\'"+ prodName+ "\'," + stock+ ",\'" + unit + "\',\'"+price+")";
+        String sqlCmd = "INSERT INTO Material(matID,matName,matStock,matUnit,matPrice) "+
+                "VALUES(material_counter.nextval,\'"+ prodName+ "\'," + stock+ ",\'" + unit + "\',\'"+price+"\')";
         cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;

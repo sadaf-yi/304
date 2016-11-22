@@ -1,8 +1,6 @@
 package com.cs304.data_managers;
-<<<<<<< HEAD
-=======
 import java.sql.SQLException;
->>>>>>> tyler
+
 import java.util.ArrayList;
 
 import com.cs304.data_objects.Build_Product;
