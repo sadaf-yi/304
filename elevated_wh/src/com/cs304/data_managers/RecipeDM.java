@@ -15,5 +15,12 @@ public class RecipeDM {
         cm = new ConnectionManager();
     }
 
+    public addNewRecipe(String recName, String procedure) {
+        String sqlCmd = "insert into Recipe(recID, recName, procedure) " +
+                "values(recipe_counter.nextval,\'" + recName + "\',\'" + procedure;
+        cm.connectToDb();
+        cm.executeStatement(sqlCmd);
+    }
+
 
 }
