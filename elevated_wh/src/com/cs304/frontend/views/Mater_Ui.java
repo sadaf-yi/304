@@ -46,7 +46,7 @@ public class Mater_Ui extends JFrame {
 		btnNewButton.setBounds(145, 20, 150, 25);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Rem Material");
+		JButton btnNewButton_1 = new JButton("Stock Material");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Mat_Rem mr = new Mat_Rem();

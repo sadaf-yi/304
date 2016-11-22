@@ -20,7 +20,6 @@ public class ConnectionManager {
             connection = DriverManager.getConnection(
                     "jdbc:oracle:thin:@localhost:1522:ug", USERNAME, PASSWORD
             );
-            // connection.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
@@ -32,6 +31,8 @@ public class ConnectionManager {
         try {
             statement.close();
             connection.close();
+            statement = null;
+            connection = null;
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
@@ -39,7 +40,7 @@ public class ConnectionManager {
         }
     }
 
-    public String[][] submitQuery(String qstring) {
+    public String[][] submitQuery(String qstring) throws SQLException {
         statement = null;
         int numCols, numRows = 0;
         ResultSet rset = null;
@@ -50,6 +51,9 @@ public class ConnectionManager {
             rset = statement.executeQuery(qstring);
             ResultSetMetaData rsmd = rset.getMetaData();
             numCols = rsmd.getColumnCount();
+            if (!rset.isBeforeFirst()) {
+                System.out.println("No Data Collected");
+            }
             if (rset.last()) {
                 numRows = rset.getRow();
                 rset.beforeFirst();
@@ -66,11 +70,13 @@ public class ConnectionManager {
                     data[i][j] = rset.getString(i+1);
                 }
             }
-            this.endConnection();
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
+        } finally {
+            rset.close();
+            this.endConnection();
         }
         return data;
     }
@@ -81,9 +87,12 @@ public class ConnectionManager {
         try {
             s = connection.createStatement();
             rowCount = s.executeUpdate(cmd);
+            s.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
+        } finally {
+            this.endConnection();
         }
         return rowCount;
     }

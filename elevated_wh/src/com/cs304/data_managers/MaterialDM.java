@@ -1,4 +1,10 @@
 package com.cs304.data_managers;
+<<<<<<< HEAD
+=======
+import com.cs304.data_objects.*;
+
+import java.sql.SQLException;
+>>>>>>> tyler
 import java.util.ArrayList;
 
 import com.cs304.data_objects.Material;
@@ -18,9 +24,28 @@ public class MaterialDM {
     public String[][] getAllMaterialTuples() {
         cm.connectToDb();
         String sqlQuery = "SELECT * FROM Material";
-        String[][] results = cm.submitQuery(sqlQuery);
+        String[][] results = new String[0][];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return results;
     }
 
+    public int insertNewMaterial(String prodName, String stock, String unit, String price) {
+        String sqlCmd = "insert into Material(matID,matName,matStock,matUnit,matPrice) "+
+                "values(material_counter.nextval,\'"+ prodName+ "\'," + stock+ ",\'" + unit + "\',\'"+price+")";
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
+    public int updateMaterialStock(String matID, String quantity) {
+        String sqlCmd = "UPDATE Material SET matStock = matStock + " + quantity + " WHERE matID="+matID;
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
 
 }
