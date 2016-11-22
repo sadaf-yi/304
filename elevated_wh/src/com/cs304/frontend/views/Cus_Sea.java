@@ -3,7 +3,7 @@ package com.cs304.frontend.views;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import com.cs304.data_managers.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,12 +55,7 @@ public class Cus_Sea extends JFrame {
 	
 		contentPane.setLayout(new MigLayout("", "[124px][140px][grow]", "[19px][grow][][19px][19px][25px,grow][][25px]"));
 		
-		String[] sa = {"CID", "FNAME", "LNAME", "PHONE"};
-		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(tableModel);
-		JScrollPane scrollPane = new JScrollPane(table);
-		table.setFillsViewportHeight(true);
-		contentPane.add(scrollPane, "cell 2 0 1 8,grow");
+
 		
 		JLabel lblNewLabel = new JLabel("CID");
 		contentPane.add(lblNewLabel, "cell 0 2,alignx right,aligny center");
@@ -84,16 +79,24 @@ public class Cus_Sea extends JFrame {
 		textField_1 = new JTextField();
 		contentPane.add(textField_1, "cell 1 4,growx,aligny top");
 		textField_1.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("submit");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//CustomerDM cdm = new CustomerDM();
-				//results_q = cdm.findCxByIdOrPhoneNumber(textField.getText(), textField1.getText(), textField_1.getText());
-				
+				CustomerDM cdm = new CustomerDM();
+				final Object [] [] results_q = cdm.findCxByIdOrPhoneNumber(textField.getText(), textField1.getText(), textField_1.getText());
+
 			} 
 		});
 		contentPane.add(btnNewButton, "cell 1 5,alignx left,aligny top");
+
+		String[] sa = {"CID", "FNAME", "LNAME", "PHONE"};
+		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane(table);
+		table.setFillsViewportHeight(true);
+		contentPane.add(scrollPane, "cell 2 0 1 8,grow");
+
+
 		
 		JButton btnNewButton_9 = new JButton("Back to Main");
 		btnNewButton_9.addActionListener(new ActionListener() {
@@ -108,7 +111,7 @@ public class Cus_Sea extends JFrame {
 		
 		Object[] data = {"position", "name", "points", "wins"};
 
-		tableModel.addRow(data);
+
 
 
 

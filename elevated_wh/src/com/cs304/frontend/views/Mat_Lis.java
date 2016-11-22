@@ -21,7 +21,7 @@ public class Mat_Lis extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	/**
+	/**s
 	 * Launch the application.
 	 */
 	public static void New_Lis() {
@@ -52,12 +52,20 @@ public class Mat_Lis extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-
-		String[] sa = {"ID", "Name", "Stock", "Unit", "Price"};
-		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(tableModel);
+        MaterialDM cdm = new MaterialDM();
+        Object[][] results_s = cdm.getAllMaterialTuples();
+        Object[][] result_flip = flip(results_s);
+		Object[] sa = {"ID", "Name", "Stock", "Unit", "Price"};
+		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
+		table = new JTable(result_flip,sa);
+        //table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
+
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 3;
 		gbc_scrollPane.gridheight = 3;
@@ -65,9 +73,9 @@ public class Mat_Lis extends JFrame {
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
+        contentPane.add(scrollPane, gbc_scrollPane);
 
 
-		contentPane.add(scrollPane, gbc_scrollPane);
 
 		JButton btnNewButton_9 = new JButton("Back to Main");
 		btnNewButton_9.addActionListener(new ActionListener() {
@@ -79,9 +87,8 @@ public class Mat_Lis extends JFrame {
 			}
 		});
 
-		MaterialDM cdm = new MaterialDM();
-		String[][] results_s = cdm.getAllMaterialTuples();
 
+/*
 		boolean firstflag = true;
 
 		for (int i = 0; i<results_s.length; i++){
@@ -96,8 +103,8 @@ public class Mat_Lis extends JFrame {
 				tableModel.addRow(to_table);
 			}}
 		//System.out.println("Number of cols = " + cols);
-
-
+*/
+        //stable = new JTable(tableModel);
 
 
 
@@ -118,6 +125,25 @@ public class Mat_Lis extends JFrame {
 		gbc_btnNewButton_9.gridx = 1;
 		gbc_btnNewButton_9.gridy = 3;
 		getContentPane().add(btnNewButton_9, gbc_btnNewButton_9);
+
+
 	}
+
+	public Object[][] flip(Object[][] obj)
+     {
+
+
+        // This code assumes all rows have same number of columns
+        Object[][] pivot = new Object[obj[0].length][];
+        for (int row = 0; row < obj[0].length; row++)
+            pivot[row] = new Object[obj.length];
+
+        for (int row = 0; row < obj.length; row++)
+            for (int col = 0; col < obj[row].length; col++)
+                pivot[col][row] = obj[row][col];
+
+        return pivot;
+
+    }
 
 }

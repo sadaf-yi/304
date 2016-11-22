@@ -51,4 +51,19 @@ public class CustomerDM {
         }
         return results;
     }
+
+    public String[][] listAllCustomers() {
+        String sqlQuery = "";
+        String[][] results = new String[1][1];
+        cm.connectToDb();
+
+        sqlQuery = "SELECT * FROM Customer";
+
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 }

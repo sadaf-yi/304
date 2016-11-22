@@ -7,8 +7,8 @@ import java.sql.*;
  */
 public class ConnectionManager {
 
-    private String USERNAME = "ora_c1h0b";
-    private String PASSWORD = "a46452158";
+    private String USERNAME = "ora_v1d0b";
+    private String PASSWORD = "a55982145";
     private Connection connection;
     private Statement statement;
 

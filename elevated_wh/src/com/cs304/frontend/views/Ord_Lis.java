@@ -1,5 +1,6 @@
 package com.cs304.frontend.views;
 
+import com.cs304.data_managers.CustOrderDM;
 import com.cs304.data_managers.CustomerDM;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -53,12 +54,20 @@ public class Ord_Lis extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-
-		String[] sa = {"OID", "CUSTNAME"};
-		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(tableModel);
+		CustOrderDM cdm = new CustOrderDM();
+		Object[][] results_s = cdm.getAllOrderTuples();
+		Object[][] result_flip = flip(results_s);
+		Object[] sa = {"OID"};
+		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
+		table = new JTable(result_flip, sa);
+		//table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
+
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 3;
 		gbc_scrollPane.gridheight = 3;
@@ -66,9 +75,8 @@ public class Ord_Lis extends JFrame {
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
-
-
 		contentPane.add(scrollPane, gbc_scrollPane);
+
 
 		JButton btnNewButton_9 = new JButton("Back to Main");
 		btnNewButton_9.addActionListener(new ActionListener() {
@@ -80,8 +88,28 @@ public class Ord_Lis extends JFrame {
 			}
 		});
 
-		CustomerDM cdm = new CustomerDM();
-		//String[][] results_s = cdm.GetAllCustomer();
+
+/*
+		boolean firstflag = true;
+
+		for (int i = 0; i<results_s.length; i++){
+			int temp = results_s.length;
+			Object [] to_table = new Object[temp];
+			for (int j = 0; j<results_s[i].length; j++){
+				to_table [j] = results_s[i][j];
+			}
+			if (firstflag == true);
+				else {
+				firstflag = false;
+				tableModel.addRow(to_table);
+			}}
+		//System.out.println("Number of cols = " + cols);
+*/
+		//stable = new JTable(tableModel);
+
+
+		//System.out.println("Number of rows = " + matrix.length);
+		//System.out.println("Number of columns = " + matrix[0].length);
 
 
 		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
@@ -91,6 +119,24 @@ public class Ord_Lis extends JFrame {
 		gbc_btnNewButton_9.gridx = 1;
 		gbc_btnNewButton_9.gridy = 3;
 		getContentPane().add(btnNewButton_9, gbc_btnNewButton_9);
+
+
+	}
+
+	public Object[][] flip(Object[][] obj) {
+
+
+		// This code assumes all rows have same number of columns
+		Object[][] pivot = new Object[obj[0].length][];
+		for (int row = 0; row < obj[0].length; row++)
+			pivot[row] = new Object[obj.length];
+
+		for (int row = 0; row < obj.length; row++)
+			for (int col = 0; col < obj[row].length; col++)
+				pivot[col][row] = obj[row][col];
+
+		return pivot;
+
 	}
 
 }

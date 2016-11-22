@@ -1,6 +1,7 @@
 package com.cs304.frontend.views;
 
 import com.cs304.data_managers.CustomerDM;
+import com.cs304.data_objects.Material;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.Success_Pop;
 import net.miginfocom.swing.MigLayout;
@@ -10,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.cs304.data_managers.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -28,7 +29,7 @@ public class Mat_Rem extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void New_Rem() {
+	public void New_Rem() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -84,11 +85,11 @@ public class Mat_Rem extends JFrame {
 
 
 
-		JButton btnNewButton_8 = new JButton("Add Customer");
+		JButton btnNewButton_8 = new JButton("Stock Mat");
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CustomerDM cdm = new CustomerDM();
-				if (textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals(""))
+				MaterialDM cdm = new MaterialDM();
+				if (textField.getText().equals("") || textField_1.getText().equals(""))
 				{
 					Error_Pop ep = new Error_Pop();
 					ep.New_Pop();
@@ -97,7 +98,7 @@ public class Mat_Rem extends JFrame {
 				else
 				{
 					List<List<String>> dict = new ArrayList<>();
-					// CustomerDM.InsertCustomer(textField.getText(),textField_1.getText(),textField_2.getText());
+					cdm.updateMaterialStock(textField.getText(),textField_1.getText());
 					Success_Pop sp = new Success_Pop();
 					sp.New_Pop();
 				}
