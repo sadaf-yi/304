@@ -27,6 +27,7 @@ public class Recipe {
         return this.procedure;
     }
 
+
     private void setProcedure(String p) {
         this.procedure = p;
     }

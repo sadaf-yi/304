@@ -13,4 +13,6 @@ public class RecipeUsesDM {
         ru = null;
         cm = new ConnectionManager();
     }
+
+
 }

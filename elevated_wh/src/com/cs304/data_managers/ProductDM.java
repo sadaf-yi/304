@@ -1,14 +1,20 @@
 package com.cs304.data_managers;
 import com.cs304.data_objects.*;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.ResultSet;
 
 /**
  * Created by tyh0 on 2016-11-20.
  */
-public class ProductDM {
+
+
+    public class ProductDM {
     ArrayList<Product> prods;
     ConnectionManager cm;
+
+    private FilledForDM filledForDM;
+
     public ProductDM() {
         prods = null;
         cm = new ConnectionManager();
@@ -29,7 +35,49 @@ public class ProductDM {
         return result;
     }
 
-    
+    public String[][] listProducts() {
+        String sqlQuery = "SELECT * FROM Product";
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return results;
+    }
+
+    public String[][] getRecInfo4Pord(String prodID) {
+        String sqlQuery = "SELECT redID FROM Build_Product";
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return results;
+    }
+
+    public  String[][] listProdRecProc(String prodID) {
+
+        String[][] recipeResult = new String[0][0];
+
+        recipeResult = filledForDM.getFilledForByProductID(prodID);
+
+        String sqlQuery = "SELECT prodecure FROM Product";
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return results;
+    }
 
 
 

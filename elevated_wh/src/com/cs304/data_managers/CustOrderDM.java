@@ -40,19 +40,50 @@ public class CustOrderDM {
         return results;
     }
 
-    public String[][] getOrder(String OrderID) {
+    public String[][] listAllOrders() {
         cm.connectToDb();
         String sqlQuery = "";
         String[][] results = new String[1][1];
-        if (!OrderID.equals("")) {
-            sqlQuery = "SELECT orderID FROM Cust_Order WHERE orderID" + OrderID;
-        }
+
+
+        sqlQuery = "SELECT Placed_For.orderID, Customer.custFName, Customer.custLName \n" +
+                    "    FROM Customer, Placed_For\n" +
+                    "    WHERE Placed_For.custID IN (SELECT c2.custID\n" +
+                    "                                FROM Customer c2)";
+
+
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
-            cm.endConnection();
+
             e.printStackTrace();
         }
         return results;
     }
+
+    public String[][] listOrderContent(String orderID) {
+        cm.connectToDb();
+        String sqlQuery = "";
+        String[][] results = new String[1][1];
+
+
+        //TODO: write the query for this
+        //SELECT p.prodName, f.prodID, SUM(f.numFilled)
+//        FROM product p, Filled_For f, Reserves r
+//        WHERE p.ProdID = f.ProdID AND r.orderID = f.orderID
+//        GROUP BY f.orderID
+//        HAVING SUM(f.numFilled) >0;
+
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+
+
+
 }
