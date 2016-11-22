@@ -36,7 +36,6 @@ import java.util.ArrayList;
     }
 
 
-
     /**
      * give the recipe information for a particular prodID
      * @param prodID
@@ -59,14 +58,42 @@ import java.util.ArrayList;
     }
 
     /**
+     * HELPER:  decrease stock product
+     * @param prodID
+     * @param quantity
+     * @return
+     */
+    public void decreaseProductStock(String prodID, String quantity) {
+        String sqlCmd = "UPDATE Product SET stockProduct = stockProduct - " + quantity + "WHERE prodID=" + prodID;
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+    }
+
+
+    /**
+     * HELPER:  increases products to filled for relationship
+     * @param prodID
+     * @param quantity
+     * @return
+     */
+    public void increaseProdsOfFilled_For(String prodID, String quantity) {
+        String sqlCmd = "UPDATE Filled_For SET stockProduct = stockProduct - " + quantity + "WHERE prodID=" + prodID;
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+    }
+
+    /**
+     * Reserve product
+     */
+    /**
      * gives recipe information and product information for a particular ProdID
      * @param prodID
      * @return
      */
 
-    public  String[][] getRecInfor4Prod(String prodID) {
-
-        String sqlQuery = "SELECT * FROM Recipe4Product WHERE prodID =" + prodID;
+    public String[][] getRecInfor4Prod(String prodID, String quantity) {
+        decreaseProductStock( prodID,  quantity);
+        String sqlQuery = "SELECT * FROM Filled_For WHERE prodID =" + prodID + ;
 
         String[][] results = new String[0][0];
         try {
@@ -78,6 +105,23 @@ import java.util.ArrayList;
     }
 
 
+    /**
+     * gives the list of all products
+     * @param
+     * @return
+     */
+    public String[][] listAllProducts() {
+
+        String sqlQuery = "SELECT * FROM Product";
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 
 
 }

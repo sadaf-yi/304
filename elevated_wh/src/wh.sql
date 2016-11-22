@@ -168,3 +168,22 @@ references Customer(custID)
 not deferrable);
 
 grant select on Placed_For to public;
+
+
+
+create view Recipe4Product AS
+SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, r.recID, r.recName, r.procedure
+FROM Product p, Recipe r, Build_Product bp
+WHERE r.recID = bp.recID AND p.prodID = bp.prodID;
+
+grant select on Recipe4Product to public;
+
+
+
+
+create view ProductXFilled_ForXOrder AS
+SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, f.dateupdated, f.numFilled, f.isShipped
+FROM Product p, Order o, Filled_For f
+WHERE o.orderID = f.orderID AND p.prodID = f.prodID;
+
+grant select on ProductXFilled_ForXOrder to public;
