@@ -177,6 +177,14 @@ FROM Product p, Recipe r, Build_Product bp
 WHERE r.recID = bp.recID AND p.prodID = bp.prodID;
 
 grant select on Recipe4Product to public;
+
+
+create view ProductXFilled_ForXOrder AS
+SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, f.dateupdated, f.numFilled, f.isShipped
+FROM Product p, Cust_Order o, Filled_For f
+WHERE o.orderID = f.orderID AND p.prodID = f.prodID;
+
+grant select on ProductXFilled_ForXOrder to public;
 -- This is the seed file to populate our database with the information provided
 -- by the owner of the actual shop whose warehouse we are modelling
 -- in cases where data wasn't provided, we made up data (ie customers and orders)

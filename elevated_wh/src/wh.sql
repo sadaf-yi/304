@@ -17,6 +17,10 @@ drop sequence product_counter;
 drop sequence customer_counter;
 drop sequence order_counter;
 
+drop view Recipe4Product;
+drop view ProductXFilled_ForXOrder;
+
+
 CREATE SEQUENCE material_counter
 START WITH 0
 INCREMENT BY 1
@@ -179,11 +183,9 @@ WHERE r.recID = bp.recID AND p.prodID = bp.prodID;
 grant select on Recipe4Product to public;
 
 
-
-
 create view ProductXFilled_ForXOrder AS
 SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, f.dateupdated, f.numFilled, f.isShipped
-FROM Product p, Order o, Filled_For f
+FROM Product p, Cust_Order o, Filled_For f
 WHERE o.orderID = f.orderID AND p.prodID = f.prodID;
 
 grant select on ProductXFilled_ForXOrder to public;

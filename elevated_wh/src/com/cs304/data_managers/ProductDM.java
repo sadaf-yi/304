@@ -71,13 +71,13 @@ import java.util.ArrayList;
 
 
     /**
-     * HELPER:  increases products to filled for relationship
+     * HELPER:  increases products in filled for relationship
      * @param prodID
      * @param quantity
      * @return
      */
     public void increaseProdsOfFilled_For(String prodID, String quantity) {
-        String sqlCmd = "UPDATE Filled_For SET stockProduct = stockProduct - " + quantity + "WHERE prodID=" + prodID;
+        String sqlCmd = "UPDATE Filled_For SET numFilled = numFilled + " + quantity + "WHERE prodID=" + prodID;
         cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
     }
@@ -91,9 +91,11 @@ import java.util.ArrayList;
      * @return
      */
 
-    public String[][] getRecInfor4Prod(String prodID, String quantity) {
+    public String[][] getRecInfor4Prod(String prodID,String orderID,  String quantity) {
         decreaseProductStock( prodID,  quantity);
-        String sqlQuery = "SELECT * FROM Filled_For WHERE prodID =" + prodID + ;
+        increaseProdsOfFilled_For( prodID, quantity);
+        filledForDM.insertNewFilledFor(prodID, orderID, quantity, "0");
+        String sqlQuery = "SELECT * FROM Filled_For WHERE prodID =" + prodID +  ;
 
         String[][] results = new String[0][0];
         try {
