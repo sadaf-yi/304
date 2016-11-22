@@ -1,4 +1,5 @@
 package com.cs304.data_managers;
+
 import com.cs304.data_objects.*;
 
 import java.sql.SQLException;
@@ -45,7 +46,6 @@ public class CustomerDM {
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
-            cm.endConnection();
             e.printStackTrace();
         }
         return results;

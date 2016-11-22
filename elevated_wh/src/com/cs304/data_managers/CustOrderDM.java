@@ -20,18 +20,39 @@ public class CustOrderDM {
         cm = new ConnectionManager();
     }
 
+    public int insertNewCustOrderTuple() {
+        cm.connectToDb();
+        String sqlCmd = "insert into Cust_Order(orderID) values (order_counter.nextval)";
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
     public String[][] getAllOrderTuples() {
         cm.connectToDb();
         String sqlQuery = "SELECT * FROM Cust_Order";
-        String[][] results = new String[0][];
+        String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
         return results;
     }
 
-
-
+    public String[][] getOrder(String OrderID) {
+        cm.connectToDb();
+        String sqlQuery = "";
+        String[][] results = new String[1][1];
+        if (!OrderID.equals("")) {
+            sqlQuery = "SELECT orderID FROM Cust_Order WHERE orderID" + OrderID;
+        }
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            cm.endConnection();
+            e.printStackTrace();
+        }
+        return results;
+    }
 }

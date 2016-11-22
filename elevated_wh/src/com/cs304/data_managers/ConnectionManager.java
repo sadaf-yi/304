@@ -7,8 +7,8 @@ import java.sql.*;
  */
 public class ConnectionManager {
 
-    private String USERNAME = "ora_v1d0b";
-    private String PASSWORD = "a55982145";
+    private String USERNAME = "ora_c1h0b";
+    private String PASSWORD = "a46452158";
     private Connection connection;
     private Statement statement;
 
@@ -87,6 +87,7 @@ public class ConnectionManager {
         try {
             s = connection.createStatement();
             rowCount = s.executeUpdate(cmd);
+            s.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());

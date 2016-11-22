@@ -16,6 +16,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.cs304.data_managers.CustomerDM;
+import com.cs304.data_managers.MaterialDM;
+
+import static oracle.net.aso.C09.i;
 
 public class Cus_Lis extends JFrame {
 
@@ -81,8 +84,18 @@ public class Cus_Lis extends JFrame {
 		});
 		
 		CustomerDM cdm = new CustomerDM();
-		//String[][] results_s = cdm.GetAllCustomer();
-		
+		//String[][] results_s =
+
+		//MaterialDM cdm = new MaterialDM();
+		//String[][] results_s = cdm.getAllMaterialTuples();
+		String string = new String();
+		//for (int i = 0; i<results_s.length; i++){
+		//	for (int j = 0; j<results_s[i].length; j++){
+		//		string += results_s[i][j];
+		//		System.out.println(string);
+		//	} System.out.println(string);
+
+	//	}
 		
 		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
 		gbc_btnNewButton_9.insets = new Insets(0, 0, 0, 5);

@@ -1,5 +1,0 @@
-Had to change the Order table to Cust_Order as Order is a reserved word in SQL
-
-**** Need to update customer in DDL and also insertion seed table to provide additional information including first name, last name, telephone #
-
-

@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+//Stocking Material
 
 public class Mat_Rem extends JFrame {
 
@@ -51,6 +52,18 @@ public class Mat_Rem extends JFrame {
 		});
 		btnNewButton_9.setBounds(145, 170, 150,25);
 		getContentPane().add(btnNewButton_9);
+
+		JButton btnNewButton_10 = new JButton("Back to Main");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main_selections ms = new Main_selections();
+				setVisible(false);
+				dispose();
+				ms.New_Window();
+			}
+		});
+		btnNewButton_10.setBounds(145, 120, 150,25);
+		getContentPane().add(btnNewButton_10);
 	}
 
 }
