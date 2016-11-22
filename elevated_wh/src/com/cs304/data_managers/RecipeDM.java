@@ -3,11 +3,9 @@ import com.cs304.data_objects.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.ResultSet;
 
-/**
- * Created by tyh0 on 2016-11-20.
- */
+import com.cs304.data_objects.Recipe;
+
 public class RecipeDM {
     ArrayList<Recipe> recipes;
     ConnectionManager cm;
@@ -16,7 +14,6 @@ public class RecipeDM {
         recipes = null;
         cm = new ConnectionManager();
     }
-
     public int addNewRecipe(String recName, String procedure) {
         String sqlCmd = "insert into Recipe(recID, recName, procedure) " +
                 "values(recipe_counter.nextval,\'" + recName + "\',\'" + procedure;

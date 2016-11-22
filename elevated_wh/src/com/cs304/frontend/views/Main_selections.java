@@ -90,16 +90,6 @@ public class Main_selections extends JFrame{
 		btnNewButton_3.setBounds(145, 145, 150, 25);
 		contentPane.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("USERS");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				User_Ui matss = new User_Ui();
-				setVisible(false);
-				dispose();
-				matss.New_Use();
-			}
-		});
-		btnNewButton_4.setBounds(145, 190, 150, 25);
-		contentPane.add(btnNewButton_4);
+	
 	}
 }

@@ -1,10 +1,5 @@
 package com.cs304.data_objects;
 
-import com.sun.javafx.sg.prism.NGPhongMaterial;
-import javafx.scene.paint.Material;
-
-import java.util.ArrayList;
-
 /**
  * Created by SadafiYadegari on 2016-11-19.
  */

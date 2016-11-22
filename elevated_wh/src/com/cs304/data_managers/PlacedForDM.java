@@ -1,9 +1,11 @@
 package com.cs304.data_managers;
+
 import com.cs304.data_objects.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.ResultSet;
+
+import com.cs304.data_objects.Placed_For;
 
 /**
  * Created by tyh0 on 2016-11-21.

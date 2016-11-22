@@ -1,13 +1,13 @@
 package com.cs304.data_managers;
+
 import com.cs304.data_objects.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.sql.ResultSet;
 
-/**
- * Created by tyh0 on 2016-11-20.
- */
+import java.util.ArrayList;
+
+import com.cs304.data_objects.Customer;
+
 public class CustomerDM {
 
     // may need more arraylists to hold data related to customer actions
@@ -53,8 +53,7 @@ public class CustomerDM {
         String sqlQuery = "";
         String[][] results = new String[1][1];
         cm.connectToDb();
-
-            sqlQuery = "SELECT * FROM Customer";
+        sqlQuery = "SELECT * FROM Customer";
 
         try {
             results = cm.submitQuery(sqlQuery);
@@ -63,6 +62,9 @@ public class CustomerDM {
         }
         return results;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> josh2
 }
