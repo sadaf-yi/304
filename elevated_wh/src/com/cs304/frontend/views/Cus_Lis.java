@@ -88,7 +88,7 @@ public class Cus_Lis extends JFrame {
 
 		//MaterialDM cdm = new MaterialDM();
 		//String[][] results_s = cdm.getAllMaterialTuples();
-		String string = new String();
+		//String string = new String();
 		//for (int i = 0; i<results_s.length; i++){
 		//	for (int j = 0; j<results_s[i].length; j++){
 		//		string += results_s[i][j];

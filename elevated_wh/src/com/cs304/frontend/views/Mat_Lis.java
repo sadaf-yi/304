@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import static oracle.net.aso.C09.i;
 import static oracle.net.aso.C09.m;
+import static oracle.net.aso.C09.r;
 
 public class Mat_Lis extends JFrame {
 
@@ -52,7 +53,7 @@ public class Mat_Lis extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 
-		String[] sa = {};
+		String[] sa = {"ID", "Name", "Stock", "Unit", "Price"};
 		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(tableModel);
 		table.setFillsViewportHeight(true);
@@ -80,16 +81,20 @@ public class Mat_Lis extends JFrame {
 
 		MaterialDM cdm = new MaterialDM();
 		String[][] results_s = cdm.getAllMaterialTuples();
-		String string = new String();
+
+		boolean firstflag = true;
+
 		for (int i = 0; i<results_s.length; i++){
+			int temp = results_s.length;
+			Object [] to_table = new Object[temp];
 			for (int j = 0; j<results_s[i].length; j++){
-				string += results_s[i][j];
-				System.out.println(string);
-			} System.out.println(string);
-
-		}
-
-		//System.out.println("Number of rows = " + rows);
+				to_table [j] = results_s[i][j];
+			}
+			if (firstflag == true);
+				else {
+				firstflag = false;
+				tableModel.addRow(to_table);
+			}}
 		//System.out.println("Number of cols = " + cols);
 
 
