@@ -40,6 +40,20 @@ public class CustOrderDM {
         return results;
     }
 
+
+    /**
+     * Ship the item: change the flag on FilledFor (isShipped to 1)
+     * @return
+     */
+
+    public int shipOrder(String orderID) {
+        String sqlCmd = "UPDATE Filled_For SET isShipped = 1 WHERE orderID=" + orderID;
+        cm.connectToDb();
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
+
 //    public String[][] listAllOrders() {
 //        cm.connectToDb();
 //        String sqlQuery = "";

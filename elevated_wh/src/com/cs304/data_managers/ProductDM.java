@@ -35,27 +35,18 @@ import java.util.ArrayList;
         return result;
     }
 
-    public String[][] listProducts() {
-        String sqlQuery = "SELECT * FROM Product";
-
-        String[][] results = new String[0][0];
-        try {
-            results = cm.submitQuery(sqlQuery);
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return results;
-    }
 
 
+    /**
+     * give the recipe information for a particular prodID
+     * @param prodID
+     * @return
+     */
     public  String[][] listProdRecProc(String prodID) {
 
         String[][] recipeResult = new String[0][0];
 
-        recipeResult = filledForDM.getFilledForByProductID(prodID);
-
-        String sqlQuery = "SELECT prodecure FROM Product";
+        String sqlQuery = "SELECT recID, recName, prodecure FROM Recipe4Product";
 
         String[][] results = new String[0][0];
         try {
@@ -66,6 +57,12 @@ import java.util.ArrayList;
         }
         return results;
     }
+
+    /**
+     * gives recipe information and product information for a particular ProdID
+     * @param prodID
+     * @return
+     */
 
     public  String[][] getRecInfor4Prod(String prodID) {
 
@@ -79,6 +76,8 @@ import java.util.ArrayList;
         }
         return results;
     }
+
+
 
 
 }
