@@ -4,9 +4,6 @@ import com.cs304.data_objects.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by tyh0 on 2016-11-20.
- */
 
 
     public class ProductDM {
@@ -84,18 +81,18 @@ import java.util.ArrayList;
 
     /**
      * Reserve product
-     */
-    /**
-     * gives recipe information and product information for a particular ProdID
      * @param prodID
+     * @param orderID
+     * @param quantity
      * @return
      */
 
-    public String[][] getRecInfor4Prod(String prodID,String orderID,  String quantity) {
+
+    public String[][] reserveProducts(String prodID,String orderID,  String quantity) {
         decreaseProductStock( prodID,  quantity);
         increaseProdsOfFilled_For( prodID, quantity);
         filledForDM.insertNewFilledFor(prodID, orderID, quantity, "0");
-        String sqlQuery = "SELECT * FROM Filled_For WHERE prodID =" + prodID +  ;
+        String sqlQuery = "SELECT * FROM Filled_For ";
 
         String[][] results = new String[0][0];
         try {
@@ -107,6 +104,22 @@ import java.util.ArrayList;
     }
 
 
+
+     public String[][] getStockProduct(String prodID) {
+         String[][] recipeResult = new String[0][0];
+
+         String sqlQuery = "SELECT stockProduct FROM Product WHERE prodID = " + prodID;
+
+         String[][] results = new String[0][1];
+         try {
+             results = cm.submitQuery(sqlQuery);
+         } catch (SQLException e) {
+             e.printStackTrace();
+
+         }
+         System.out.println(results);
+         return results;
+     }
     /**
      * gives the list of all products
      * @param

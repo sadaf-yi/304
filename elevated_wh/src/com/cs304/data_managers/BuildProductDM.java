@@ -3,9 +3,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.cs304.data_objects.Build_Product;
-/**
- * Created by tyh0 on 2016-11-21.
- */
+
 public class BuildProductDM {
 
 
