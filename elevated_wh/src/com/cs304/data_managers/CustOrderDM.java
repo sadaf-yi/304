@@ -40,26 +40,26 @@ public class CustOrderDM {
         return results;
     }
 
-    public String[][] listAllOrders() {
-        cm.connectToDb();
-        String sqlQuery = "";
-        String[][] results = new String[1][1];
-
-
-        sqlQuery = "SELECT Placed_For.orderID, Customer.custFName, Customer.custLName \n" +
-                    "    FROM Customer, Placed_For\n" +
-                    "    WHERE Placed_For.custID IN (SELECT c2.custID\n" +
-                    "                                FROM Customer c2)";
-
-
-        try {
-            results = cm.submitQuery(sqlQuery);
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-        return results;
-    }
+//    public String[][] listAllOrders() {
+//        cm.connectToDb();
+//        String sqlQuery = "";
+//        String[][] results = new String[1][1];
+//
+//
+//        sqlQuery = "SELECT Placed_For.orderID, Customer.custFName, Customer.custLName \n" +
+//                    "    FROM Customer, Placed_For\n" +
+//                    "    WHERE Placed_For.custID IN (SELECT c2.custID\n" +
+//                    "                                FROM Customer c2)";
+//
+//
+//        try {
+//            results = cm.submitQuery(sqlQuery);
+//        } catch (SQLException e) {
+//
+//            e.printStackTrace();
+//        }
+//        return results;
+//    }
 
     public String[][] listOrderContent(String orderID) {
         cm.connectToDb();

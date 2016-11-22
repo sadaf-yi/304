@@ -12,7 +12,7 @@ import java.util.ArrayList;
     public class ProductDM {
     ArrayList<Product> prods;
     ConnectionManager cm;
-
+    private BuildProductDM build_product;
     private FilledForDM filledForDM;
 
     public ProductDM() {
@@ -48,18 +48,6 @@ import java.util.ArrayList;
         return results;
     }
 
-    public String[][] getRecInfo4Pord(String prodID) {
-        String sqlQuery = "SELECT redID FROM Build_Product";
-
-        String[][] results = new String[0][0];
-        try {
-            results = cm.submitQuery(sqlQuery);
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return results;
-    }
 
     public  String[][] listProdRecProc(String prodID) {
 
@@ -79,6 +67,18 @@ import java.util.ArrayList;
         return results;
     }
 
+    public  String[][] getRecInfor4Prod(String prodID) {
+
+        String sqlQuery = "SELECT * FROM Recipe4Product WHERE prodID =" + prodID;
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 
 
 }

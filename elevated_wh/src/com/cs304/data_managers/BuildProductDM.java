@@ -36,25 +36,20 @@ public class BuildProductDM {
         return results;
     }
 
-//    public String[][] getBuildProducts(String prodID, String recID) {
-//        cm.connectToDb();
-//        String sqlQuery = "";
-//        if (!prodID.equals("") && !recID.equals("")) {
-//            sqlQuery = "SELECT * FROM Build_Product where prodID="+prodID+
-//                    " AND recID=" + recID;
-//        } else if (prodID.equals("")) {
-//            sqlQuery = "SELECT * FROM Build_Product where recID=" + recID;
-//        } else {
-//            sqlQuery = "SELECT * FROM Build_Product where prodID="+prodID;
-//        }
-//        String[][] results = new String[0][];
-//        try {
-//            results = cm.submitQuery(sqlQuery);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return results;
-//    }
+    public String[][] getAllInfo4ProdRec() {
+        cm.connectToDb();
+        String sqlQuery = "";
+
+        sqlQuery = "SELECT * FROM Recipe4Product";
+
+        String[][] results = new String[0][];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 
 
 }
