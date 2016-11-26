@@ -47,10 +47,10 @@ public class Pro_Inf extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		ProductDM pdm = new ProductDM();
 		Object[][] results_s = pdm.listProdRecProc("1");
-		Object[][] result_flip = flip(results_s);
+		//Object[][] result_flip = flip(results_s);
 		Object[] sa = {"RECID", "Recipe_name", "Procedure"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(result_flip, sa);
+		table = new JTable(results_s, sa);
 		//table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -114,20 +114,5 @@ public class Pro_Inf extends JFrame {
 
 	}
 
-	public Object[][] flip(Object[][] obj) {
-
-
-		// This code assumes all rows have same number of columns
-		Object[][] pivot = new Object[obj[0].length][];
-		for (int row = 0; row < obj[0].length; row++)
-			pivot[row] = new Object[obj.length];
-
-		for (int row = 0; row < obj.length; row++)
-			for (int col = 0; col < obj[row].length; col++)
-				pivot[col][row] = obj[row][col];
-
-		return pivot;
-
-	}
 
 }

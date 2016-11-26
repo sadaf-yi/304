@@ -55,21 +55,20 @@ public class Pro_Lis extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		ProductDM pdm = new ProductDM();
 		Object[][] results_s = pdm.listAllProducts();
-		Object[][] result_flip = flip(results_s);
-		Object finalres[][] = new Object[result_flip.length - 1][result_flip[0].length];
+		Object finalres[][] = new Object[results_s.length - 1][results_s[0].length];
 		int p = 0;
-		for( int i = 0; i < result_flip.length - 1; ++i)
+		for( int i = 0; i < results_s.length; ++i)
 		{
 			if ( i == 0)
 				continue;
 
 
 			int q = 0;
-			for( int j = 0; j < result_flip[0].length; ++j)
+			for( int j = 0; j < results_s[0].length; ++j)
 			{
 
 
-				finalres [p][q] = result_flip[i][j];
+				finalres [p][q] = results_s[i][j];
 				++q;
 			}
 
@@ -150,21 +149,6 @@ public class Pro_Lis extends JFrame {
 
 	}
 
-	public Object[][] flip(Object[][] obj)
-	{
 
-
-		// This code assumes all rows have same number of columns
-		Object[][] pivot = new Object[obj[0].length][];
-		for (int row = 0; row < obj[0].length; row++)
-			pivot[row] = new Object[obj.length];
-
-		for (int row = 0; row < obj.length; row++)
-			for (int col = 0; col < obj[row].length; col++)
-				pivot[col][row] = obj[row][col];
-
-		return pivot;
-
-	}
 
 }

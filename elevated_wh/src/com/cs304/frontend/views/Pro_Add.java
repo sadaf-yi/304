@@ -60,7 +60,7 @@ public class Pro_Add extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 300);
 		popup_panel = new JPanel();
 		popup_panel.setLayout(null);
 		contentPane = new JPanel();
@@ -80,16 +80,16 @@ public class Pro_Add extends JFrame {
 		
 		JTextField textField13 = new JTextField();
 		textField13.setColumns(10);
-		contentPane.add(textField13, "cell 4 1 3 1,alignx left,aligny center");
+		contentPane.add(textField13, "cell 3 1 3 1,alignx left,aligny center");
 		
 		JTextField textField14 = new JTextField();
 		textField14.setColumns(10);
-		contentPane.add(textField14, "cell 4 3 3 1,alignx left,aligny center");
+		contentPane.add(textField14, "cell 3 3 3 1,alignx left,aligny center");
 		
 		
 		JTextField textField15 = new JTextField();
 		textField15.setColumns(10);
-		contentPane.add(textField15, "cell 4 5 3 1,alignx left,aligny center");
+		contentPane.add(textField15, "cell 3 5 3 1,alignx left,aligny center");
 		
 		JLabel lblNewLabel_3 = new JLabel("Procedure");
 		contentPane.add(lblNewLabel_3, "cell 0 3,alignx center,aligny center");
@@ -120,7 +120,7 @@ public class Pro_Add extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		contentPane.add(btnNewButton_3, "cell 4 6,alignx left,growy");
+		contentPane.add(btnNewButton_3, "cell 3 6,alignx left,growy");
 		
 		JButton btnNewButton_2 = new JButton("Add Material");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -130,9 +130,20 @@ public class Pro_Add extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Submit Product");
-	
+		JButton btnNewButton_9 = new JButton("Back to Main");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main_selections ms = new Main_selections();
+				setVisible(false);
+				dispose();
+				ms.New_Window();
+			}
+		});
+
+
 		contentPane.add(btnNewButton_1, "cell 1 7,alignx left");
-		contentPane.add(btnNewButton_2, "cell 4 7,alignx left,growy");
+		contentPane.add(btnNewButton_2, "cell 3 7,alignx left,growy");
+		contentPane.add(btnNewButton_9, "cell 2 7,alignx left,growy");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -144,17 +155,17 @@ public class Pro_Add extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		contentPane.add(scrollPane, "cell 0 9 5 9,grow");
-		
+		tableModel.addRow(new Object[] {"blah","blah","blah","blah","blah","blah"});
 		
 		JLabel lblNewLabel_5_1 = new JLabel("Quantity");
-		contentPane.add(lblNewLabel_5_1, "cell 3 3");
+		contentPane.add(lblNewLabel_5_1, "cell 2 3");
 		
 		lblNewLabel_4 = new JLabel("MatID");
-		contentPane.add(lblNewLabel_4, "cell 3 1");
+		contentPane.add(lblNewLabel_4, "cell 2 1");
 		
 		
 		JLabel lblNewLabel_11 = new JLabel("Unit");
-		contentPane.add(lblNewLabel_11, "cell 3 5");
+		contentPane.add(lblNewLabel_11, "cell 2 5");
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

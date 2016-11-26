@@ -59,9 +59,28 @@ public class Cus_Lis extends JFrame {
 		CustomerDM cdm = new CustomerDM();
 		Object[][] results_s = cdm.listAllCustomers();
 		Object[][] result_flip = flip(results_s);
+		Object finalres[][] = new Object[result_flip.length - 1][result_flip[0].length];
+		int p = 0;
+		for( int i = 0; i < result_flip.length; ++i)
+		{
+			if ( i == 0)
+				continue;
+
+
+			int q = 0;
+			for( int j = 0; j < result_flip[0].length; ++j)
+			{
+
+
+				finalres [p][q] = result_flip[i][j];
+				++q;
+			}
+
+			++p;
+		}
 		Object[] sa = {"CID", "First Name", "Last Name", "Phone Num"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(result_flip, sa);
+		table = new JTable(finalres, sa);
 		//table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
 		JScrollPane scrollPane = new JScrollPane(table);

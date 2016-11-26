@@ -60,7 +60,7 @@ public class Ord_Lis extends JFrame {
 		Object[][] result_flip = flip(results_s);
 		Object finalres[][] = new Object[result_flip.length - 1][result_flip[0].length];
 		int p = 0;
-		for( int i = 0; i < result_flip.length - 1; ++i)
+		for( int i = 0; i < result_flip.length; ++i)
 		{
 			if ( i == 0)
 				continue;

@@ -56,10 +56,10 @@ public class Order_Ui extends JFrame {
 		JButton btnNewButton_1 = new JButton("Order Contents");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ord_Del ms = new Ord_Del();
+				Ord_Con ms = new Ord_Con();
 				setVisible(false);
 				dispose();
-				ms.New_Del();
+				ms.New_Con();
 			}
 		});
 		btnNewButton_1.setBounds(125, 50, 200, 25);
@@ -113,13 +113,13 @@ public class Order_Ui extends JFrame {
 		btnNewButton_5.setBounds(125, 170, 200, 25);
 		contentPane.add(btnNewButton_5);
 
-		JButton btnNewButton_6 = new JButton("Order Contents");
+		JButton btnNewButton_6 = new JButton("Update Order");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ord_Lis ms = new Ord_Lis();
+			Ord_Del od = new Ord_Del();
 				setVisible(false);
 				dispose();
-				ms.New_Lis();
+				od.New_Del();
 			}
 		});
 		btnNewButton_6.setBounds(125, 210, 200, 25);
