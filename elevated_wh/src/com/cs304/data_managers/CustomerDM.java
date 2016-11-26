@@ -3,7 +3,6 @@ package com.cs304.data_managers;
 import com.cs304.data_objects.*;
 
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 
 import com.cs304.data_objects.Customer;
