@@ -2,9 +2,6 @@ package com.cs304.data_managers;
 
 import java.sql.*;
 
-/**
- * Created by tyh0 on 2016-11-20.
- */
 public class ConnectionManager {
 
     private String USERNAME = "ora_v1d0b";
@@ -78,7 +75,8 @@ public class ConnectionManager {
             rset.close();
             this.endConnection();
         }
-        return data;
+        String[][] result = flip(data);
+        return result;
     }
 
     public int executeStatement(String cmd){
@@ -95,6 +93,23 @@ public class ConnectionManager {
             this.endConnection();
         }
         return rowCount;
+    }
+
+    public String[][] flip(String[][] s)
+    {
+
+
+        // This code assumes all rows have same number of columns
+        String[][] pivot = new String[s[0].length][];
+        for (int row = 0; row < s[0].length; row++)
+            pivot[row] = new String[s.length];
+
+        for (int row = 0; row < s.length; row++)
+            for (int col = 0; col < s[row].length; col++)
+                pivot[col][row] = s[row][col];
+
+        return pivot;
+
     }
 
 }

@@ -1,14 +1,10 @@
 package com.cs304.data_managers;
 
-import java.sql.SQLException;
-
-import java.util.ArrayList;
-
 import com.cs304.data_objects.Filled_For;
 
-/**
- * Created by tyh0 on 2016-11-21.
- */
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class FilledForDM {
 
     ArrayList<Filled_For> ff;
@@ -52,6 +48,26 @@ public class FilledForDM {
         return result;
     }
 
+    /**
+     * for a given order number, give the product IDs on that order and the total amount of that product
+     * @param orderID
+     * @return
+     */
+
+    public String[][] getNumProdPlusProdID4Order(String orderID) {
+        String sqlQuery = "SELECT ff.prodID, SUM(ff.numFilled) FROM Filled_For ff\n" +
+                "WHERE ff.orderID ="+orderID+" GROUP BY ff.orderID, ff.prodID;";
+        String[][] result = new String[1][1];
+        try {
+            result = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
     public String[][] getFilledForByOrderID(String orderID) {
         String sqlQuery = "SELECT * FROM Filled_For WHERE orderID=\'"+orderID+"\'";
         String[][] result = new String[1][1];
@@ -64,5 +80,18 @@ public class FilledForDM {
     }
 
 
+    // TODO: call the view that checks the amount of the filled for and for the prod, (get SUM) groub by prodID, orderID
+    // so that you
+    /**
+     * HELPER:  increases products in filled for relationship
+     * @param prodID
+     * @param quantity
+     * @return
+     */
+    public int increaseProdsOfFilled_For(String prodID, String quantity) {
+        String sqlCmd = "UPDATE Filled_For SET numFilled = numFilled + " + quantity + "WHERE prodID=" + prodID;
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
 
 }

@@ -1,11 +1,9 @@
 package com.cs304.data_managers;
 
-import com.cs304.data_objects.*;
+import com.cs304.data_objects.Customer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.cs304.data_objects.Customer;
 
 public class CustomerDM {
 
@@ -38,6 +36,29 @@ public class CustomerDM {
                     "\' AND c.custLName = \'" + lname +
                     "\' AND c.pnum = \'" + pnum.replaceAll("[\\s\\-()]", "") + "\'";
         }
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    /**
+     * delete customer by ID
+     * @param custID
+     * @return
+     */
+    public int deleteCustomerID(String custID) {
+        String sqlCmd = "DELETE FROM Customer WHERE custID=" + custID;
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
+    public String[][] cxOrderedAllProducts() {
+        String sqlQuery = "";
+        String[][] results = new String[0][0];
+        sqlQuery = "SELECT c.custID, c.custFName, c.custLName FROM Customer c WHERE NOT EXISTS(SELECT * FROM Product p WHERE NOT EXISTS (SELECT r.prodID FROM Reserves r, Placed_For f WHERE p.prodID = r.prodID AND f.orderID  = r.orderID AND c.custID = f.custID))";
         try {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {

@@ -19,6 +19,7 @@ drop sequence order_counter;
 
 drop view Recipe4Product;
 drop view ProductXFilled_ForXOrder;
+drop view cx_orders_product;
 
 
 CREATE SEQUENCE material_counter
@@ -55,7 +56,8 @@ grant select on Material to public;
 create table Container
 (matID integer not null,
 volume integer not null,
-primary key (matID));
+foreign key (matID) references Material(matID)
+on delete cascade);
 
 grant select on Container to public;
 
@@ -63,14 +65,16 @@ create table RawMaterial
 (matID integer not null,
 potency varchar2(40) not null,
 active varchar2(40) not null,
-primary key (matID));
+foreign key (matID) references Material(matID)
+on delete cascade);
 
 grant select on RawMaterial to public;
 
 create table Label
 (matID integer not null,
 labelSize varchar2(40) not null,
-primary key (matID));
+foreign key (matID) references Material(matID)
+on delete cascade);
 
 grant select on Label to public;
 
@@ -88,10 +92,8 @@ matID integer not null,
 quantity integer not null,
 recUnit varchar2(10) not null,
 primary key (recID, matID),
-foreign key (matID) references Material (matID)
- not deferrable,
-foreign key (recID) references Recipe (recID)
- not deferrable);
+foreign key (matID) references Material (matID),
+foreign key (recID) references Recipe (recID));
 
 grant select on Recipe_Uses to public;
 
@@ -110,10 +112,8 @@ create table Build_Product
 (prodID integer not null,
 recID integer not null,
 primary key (prodID),
-foreign key (prodID) references Product (prodID)
-not deferrable,
-foreign key (recID) references Recipe (recID)
- not deferrable);
+foreign key (prodID) references Product (prodID),
+foreign key (recID) references Recipe (recID));
 
 grant select on Build_Product to public;
 
@@ -128,10 +128,8 @@ create table Reserves
 orderID integer not null,
 numProd integer not null,
 primary key (prodID, orderID),
-foreign key (prodID) references Product (prodID)
- not deferrable,
-foreign key (orderID) references Cust_Order (orderID)
- not deferrable);
+foreign key (prodID) references Product (prodID),
+foreign key (orderID) references Cust_Order (orderID));
 
 grant select on Reserves to public;
 
@@ -152,10 +150,8 @@ orderID integer not null,
 numFilled integer,
 isShipped integer default 0,
 primary key (orderID, prodID, dateUpdated),
-foreign key (prodID) references Product (prodID)
- not deferrable,
-foreign key (orderID) references Cust_Order (orderID)
- not deferrable,
+foreign key (prodID) references Product (prodID),
+foreign key (orderID) references Cust_Order (orderID),
 check (isShipped >= 0 AND isShipped <= 1));
 
 grant select on Filled_For to public;
@@ -168,8 +164,7 @@ create table Placed_For
 custID  integer not null,
 primary key (orderID),
 foreign key (custID)
-references Customer(custID)
-not deferrable);
+references Customer(custID));
 
 grant select on Placed_For to public;
 
@@ -189,3 +184,11 @@ FROM Product p, Cust_Order o, Filled_For f
 WHERE o.orderID = f.orderID AND p.prodID = f.prodID;
 
 grant select on ProductXFilled_ForXOrder to public;
+
+
+create view cx_orders_product AS
+SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, c.custID, c.custFName, c.custLName, c.pnum, r.numProd
+FROM Product p, Cust_Order o, Placed_For f, Customer c, Reserves r
+WHERE c.custID = f.custID AND f.orderID = o.orderID AND o.orderID = r.orderID AND r.prodID = p.prodID;
+
+grant select on cx_orders_product to public;

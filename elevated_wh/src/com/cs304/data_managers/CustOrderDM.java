@@ -1,12 +1,8 @@
 package com.cs304.data_managers;
-import com.cs304.data_objects.*;
-
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-
-import java.util.ArrayList;
-
 import com.cs304.data_objects.Cust_Order;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CustOrderDM {
 
@@ -18,9 +14,18 @@ public class CustOrderDM {
     }
 
     public int insertNewCustOrderTuple() {
-        String sqlCmd = "insert into Cust_Order(orderID) values (order_counter.nextval)";
+        String cmd1 = "SELECT order_counter.NEXTVAL FROM dual";
+        String[][] result1 = new String[0][];
+        try {
+            result1 = cm.submitQuery(cmd1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int newOrderID = Integer.parseInt(result1[1][0]);
+        // result 1 should contain the next sequence number, aka the order number to use
+        String sqlCmd = "insert into Cust_Order(orderID) values (" + newOrderID + ")";
         int result = cm.executeStatement(sqlCmd);
-        return result;
+        return newOrderID;
     }
 
     public String[][] getAllOrderTuples() {
@@ -67,6 +72,7 @@ public class CustOrderDM {
 //        }
 //        return results;
 //    }
+    //TODO pass me
 
     public String[][] listOrderContent(String orderID) {
         String sqlQuery = "";

@@ -22,6 +22,9 @@ insert into Cust_Order(orderID) values (order_counter.nextval);
 insert into Cust_Order(orderID) values (order_counter.nextval);
 insert into Cust_Order(orderID) values (order_counter.nextval);
 
+-- order 5 has all the products in it
+insert into Cust_Order(orderID) values (order_counter.nextval);
+
 -- populate the Recipe table with samples
 insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Sativa Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
 insert into Recipe(recID, recName, procedure) values(recipe_counter.nextval,'Indica Tincture','Add ingredients together at the same time. Mix ingredients together for 2 mins');
@@ -149,6 +152,18 @@ insert into Reserves(prodID,orderID,numProd) values(2,3,20);
 insert into Reserves(prodID,orderID,numProd) values(7,4,17);
 insert into Reserves(prodID,orderID,numProd) values(6,5,4);
 
+-- orderID 5 has all the procucts in it
+insert into Reserves(prodID,orderID,numProd) values(1,5,4);
+insert into Reserves(prodID,orderID,numProd) values(2,5,4);
+insert into Reserves(prodID,orderID,numProd) values(3,5,4);
+insert into Reserves(prodID,orderID,numProd) values(4,5,4);
+insert into Reserves(prodID,orderID,numProd) values(5,5,4);
+insert into Reserves(prodID,orderID,numProd) values(7,5,4);
+insert into Reserves(prodID,orderID,numProd) values(8,5,4);
+insert into Reserves(prodID,orderID,numProd) values(9,5,4);
+insert into Reserves(prodID,orderID,numProd) values(10,5,4);
+
+
 -- populate the Filled_For table with samples
 insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM'),1,1,5,0);
 insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 03:34 PM','DD-MON-YY HH:MI PM'),3,2,5,0);
@@ -157,6 +172,7 @@ insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO
 insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) values(TO_DATE('19-NOV-16 01:56 PM','DD-MON-YY HH:MI AM'),6,5,4,0);
 
 -- populate the Placed_For table with samples
+-- customer 1 orders all the products
 insert into Placed_For(orderID,custID) values(1,5);
 insert into Placed_For(orderID,custID) values(2,3);
 insert into Placed_For(orderID,custID) values(3,4);
