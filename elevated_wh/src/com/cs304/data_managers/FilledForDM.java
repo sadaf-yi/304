@@ -55,8 +55,7 @@ public class FilledForDM {
      */
 
     public String[][] getNumProdPlusProdID4Order(String orderID) {
-        String sqlQuery = "SELECT ff.prodID, SUM(ff.numFilled) FROM Filled_For ff\n" +
-                "WHERE ff.orderID ="+orderID+" GROUP BY ff.orderID, ff.prodID;";
+        String sqlQuery = "SELECT ff.prodID, SUM(ff.numFilled) FROM Filled_For ff WHERE ff.orderID ="+orderID+" GROUP BY ff.orderID, ff.prodID;";
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);
@@ -66,7 +65,11 @@ public class FilledForDM {
         return result;
     }
 
-
+    /**
+     * Get the total cost of an order
+     * @param orderID
+     * @return
+     */
 
     public String[][] getFilledForByOrderID(String orderID) {
         String sqlQuery = "SELECT * FROM Filled_For WHERE orderID=\'"+orderID+"\'";
@@ -79,9 +82,6 @@ public class FilledForDM {
         return result;
     }
 
-
-    // TODO: call the view that checks the amount of the filled for and for the prod, (get SUM) groub by prodID, orderID
-    // so that you
     /**
      * HELPER:  increases products in filled for relationship
      * @param prodID

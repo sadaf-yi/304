@@ -1,12 +1,9 @@
 package com.cs304.data_managers;
 
-import com.cs304.data_objects.*;
+import com.cs304.data_objects.Material;
 
 import java.sql.SQLException;
-
 import java.util.ArrayList;
-
-import com.cs304.data_objects.Material;
 
 /**
  * Created by tyh0 on 2016-11-20.
@@ -42,6 +39,71 @@ public class MaterialDM {
         String sqlCmd = "UPDATE Material SET matStock = matStock + " + quantity + " WHERE matID="+matID;
         int result = cm.executeStatement(sqlCmd);
         return result;
+    }
+
+    /**
+     * Nested Query
+     * Gives material ID, Name and price for cheapest materials
+     */
+    public String[][] getCheapestMats() {
+
+        String sqlQuery = "SELECT m1.matID, m1.matName, m1.matPrice FROM Material m1 WHERE m1.matPrice = (SELECT MIN(m2.matPrice) FROM Material m2)";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    /**
+     * Nested Query
+     * Gives material ID, Name and price for most expensive materials
+     */
+    public String[][] getMostExpensiceMats() {
+
+        String sqlQuery = "SELECT m1.matID, m1.matName, m1.matPrice FROM Material m1 WHERE m1.matPrice = (SELECT MAX(m2.matPrice) FROM Material m2)";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+
+    /**
+     * Nested Query
+     * Gives material ID, Name and price for materials whose price is lower than average price
+     */
+    public String[][] getMatssCheaperAVG() {
+
+        String sqlQuery = "SELECT m1.matID, m1.matName, m1.matPrice FROM Material m1 WHERE m1.matPrice < (SELECT AVG(m2.matPrice) FROM Material m2)";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    /**
+     * Nested Query
+     * Gives material ID, Name and price for materials whose price is higher than average price
+     */
+    public String[][] getMatsExpensiverAVG() {
+
+        String sqlQuery = "SELECT m1.matID, m1.matName, m1.matPrice FROM Material m1 WHERE m1.matPrice > (SELECT AVG(m2.matPrice) FROM Material m2)";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
 }

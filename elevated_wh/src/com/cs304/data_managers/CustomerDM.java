@@ -55,6 +55,12 @@ public class CustomerDM {
         return result;
     }
 
+
+    /**
+     * Division Query
+     * Find customer(s) that has ordered all products
+     * @return
+     */
     public String[][] cxOrderedAllProducts() {
         String sqlQuery = "";
         String[][] results = new String[0][0];

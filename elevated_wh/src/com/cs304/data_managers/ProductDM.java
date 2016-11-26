@@ -21,8 +21,8 @@ public class ProductDM {
     }
 
     public int addNewProductToWarehouse(String name, String size, String unit, String price) {
-        String sqlCmd = "insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) "+
-                "values(product_counter.nextval,\'" + name + "\'," + size + ",\'" + unit + "\'," +price+", 0)";
+        String sqlCmd = "insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) " +
+                "values(product_counter.nextval,\'" + name + "\'," + size + ",\'" + unit + "\'," + price + ", 0)";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
@@ -35,6 +35,7 @@ public class ProductDM {
 
     /**
      * deletes products by prodID
+     *
      * @param prodID
      * @return
      */
@@ -47,6 +48,7 @@ public class ProductDM {
 
     /**
      * find the cheapest item
+     *
      * @param
      * @return
      */
@@ -64,6 +66,7 @@ public class ProductDM {
 
     /**
      * find the most expensive item
+     *
      * @param
      * @return
      */
@@ -81,6 +84,7 @@ public class ProductDM {
 
     /**
      * find the cheapest product and their recipe ID
+     *
      * @param
      * @return
      */
@@ -98,6 +102,7 @@ public class ProductDM {
 
     /**
      * find the most expensive product and their recipe ID
+     *
      * @param
      * @return
      */
@@ -114,13 +119,13 @@ public class ProductDM {
     }
 
 
-
     /**
      * give the recipe information for a particular prodID
+     *
      * @param prodID
      * @return
      */
-    public  String[][] listProdRecProc(String prodID) {
+    public String[][] listProdRecProc(String prodID) {
 
         String[][] recipeResult = new String[0][0];
 
@@ -138,6 +143,7 @@ public class ProductDM {
 
     /**
      * HELPER:  decrease stock product
+     *
      * @param prodID
      * @param quantity
      * @return
@@ -148,21 +154,19 @@ public class ProductDM {
         return result;
     }
 
-
-
-
     /**
      * Reserve product
      */
     /**
      * gives recipe information and product information for a particular ProdID
+     *
      * @param prodID
      * @return
      */
 
-    public String[][] getRecInfor4Prod(String prodID,String orderID,  String quantity) {
-        decreaseProductStock( prodID,  quantity);
-        filledForDM.increaseProdsOfFilled_For( prodID, quantity);
+    public String[][] getRecInfor4Prod(String prodID, String orderID, String quantity) {
+        decreaseProductStock(prodID, quantity);
+        filledForDM.increaseProdsOfFilled_For(prodID, quantity);
         filledForDM.insertNewFilledFor(prodID, orderID, quantity, "0");
         String sqlQuery = "SELECT * FROM Filled_For WHERE prodID =" + prodID;
 
@@ -178,6 +182,7 @@ public class ProductDM {
 
     /**
      * gives the list of all products
+     *
      * @param
      * @return
      */
@@ -194,5 +199,38 @@ public class ProductDM {
         return results;
     }
 
+    /**
+     * Nested Query
+     * Gives product ID, Name recipe and price for products whose price is lower than average price
+     */
+    public String[][] getProdsCheaperAVG() {
 
+        String sqlQuery = "SELECT rp1.prodID, rp1.prodName,rp1.recID, rp1.prodPrice FROM Recipe4Product rp1 WHERE rp1.prodPrice < (SELECT AVG(rp2.prodPrice) FROM Recipe4Product rp2)";
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    /**
+     * Nested Query
+     * Gives product ID, Name recipe and price for products whose price is higher than average price
+     */
+    public String[][] getProdsExpensiverAVG() {
+
+        String sqlQuery = "SELECT rp1.prodID, rp1.prodName,rp1.recID, rp1.prodPrice FROM Recipe4Product rp1 WHERE rp1.prodPrice > (SELECT AVG(rp2.prodPrice) FROM Recipe4Product rp2)";
+
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 }
+

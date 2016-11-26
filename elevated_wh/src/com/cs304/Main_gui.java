@@ -1,24 +1,15 @@
 package com.cs304;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
-
-import javax.swing.border.EmptyBorder;
-
+import com.cs304.data_managers.CustomerDM;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.views.Main_selections;
 import com.cs304.frontend.viewsUser.Main_selections_user;
 
-import com.cs304.data_managers.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main_gui extends JFrame {
 	private int typenum = 0;
@@ -29,6 +20,12 @@ public class Main_gui extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+        CustomerDM dm = new CustomerDM();
+        //dm.insertCustomer(oghiaehge);
+
+
+
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,6 +42,8 @@ public class Main_gui extends JFrame {
 	 * Create the frame.
 	 */
 	public Main_gui() {
+        CustomerDM customerDM;
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

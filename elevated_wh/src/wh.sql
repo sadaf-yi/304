@@ -19,7 +19,8 @@ drop sequence order_counter;
 
 drop view Recipe4Product;
 drop view ProductXFilled_ForXOrder;
-drop view cx_orders_product;
+drop view cx_ordered_allproduct_res;
+drop view cx_ordered_allproduct_fill;
 
 
 CREATE SEQUENCE material_counter
@@ -186,9 +187,17 @@ WHERE o.orderID = f.orderID AND p.prodID = f.prodID;
 grant select on ProductXFilled_ForXOrder to public;
 
 
-create view cx_orders_product AS
+create view cx_ordered_allproduct_res AS
 SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, c.custID, c.custFName, c.custLName, c.pnum, r.numProd
 FROM Product p, Cust_Order o, Placed_For f, Customer c, Reserves r
 WHERE c.custID = f.custID AND f.orderID = o.orderID AND o.orderID = r.orderID AND r.prodID = p.prodID;
 
-grant select on cx_orders_product to public;
+grant select on cx_ordered_allproduct_res to public;
+
+
+create view cx_ordered_allproduct_fill AS
+SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, c.custID, c.custFName, c.custLName, c.pnum, r.numProd
+FROM Product p, Cust_Order o, Placed_For pf, Customer c, Reserves r, Filled_For ff
+WHERE c.custID = pf.custID AND pf.orderID = o.orderID AND ff.prodID = p.prodID;
+
+grant select on cx_ordered_allproduct_fill to public;
