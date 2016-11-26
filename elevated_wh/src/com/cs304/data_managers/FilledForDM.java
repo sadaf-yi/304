@@ -26,14 +26,12 @@ public class FilledForDM {
                 orderID+","+
                 numfilled+","+
                 isShipped+")";
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
 
     public String[][] getAllFilledFor() {
         String sqlQuery = "SELECT * FROM Filled_For";
-        cm.connectToDb();
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);
@@ -45,7 +43,6 @@ public class FilledForDM {
 
     public String[][] getFilledForByProductID(String prodID) {
         String sqlQuery = "SELECT * FROM Filled_For WHERE productID=\'"+prodID+"\'";
-        cm.connectToDb();
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);
@@ -57,7 +54,6 @@ public class FilledForDM {
 
     public String[][] getFilledForByOrderID(String orderID) {
         String sqlQuery = "SELECT * FROM Filled_For WHERE orderID=\'"+orderID+"\'";
-        cm.connectToDb();
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);

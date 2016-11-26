@@ -21,14 +21,12 @@ public class PlacedForDM {
 
     public int insertPlacedFor(String orderID, String custID) {
         String sqlCmd = "INSERT INTO Placed_For(orderID,custID) VALUES(" + orderID + "," + custID +")";
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
 
     public String[][] getAllPlacedFor() {
         String sqlQuery = "SELECT * FROM Placed_For";
-        cm.connectToDb();
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);
@@ -40,7 +38,6 @@ public class PlacedForDM {
 
     public String[][] getPlacedForByOrderID(String orderID) {
         String sqlQuery = "SELECT * FROM Placed_For WHERE orderID="+orderID;
-        cm.connectToDb();;
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);

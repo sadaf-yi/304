@@ -41,7 +41,7 @@ public class ConnectionManager {
     }
 
     public String[][] submitQuery(String qstring) throws SQLException {
-        statement = null;
+        this.connectToDb();
         int numCols, numRows = 0;
         ResultSet rset = null;
         String[][] data = new String[1][1];
@@ -82,12 +82,12 @@ public class ConnectionManager {
     }
 
     public int executeStatement(String cmd){
-        Statement s = null;
+        this.connectToDb();
+        statement = null;
         int rowCount = -1;
         try {
-            s = connection.createStatement();
-            rowCount = s.executeUpdate(cmd);
-            s.close();
+            statement = connection.createStatement();
+            rowCount = statement.executeUpdate(cmd);
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());

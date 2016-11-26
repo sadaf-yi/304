@@ -20,12 +20,10 @@ public class BuildProductDM {
     public void insertNewBuildProductTuple(String prodID, String recipeID) {
         String sqlCmd = "insert into Build_Product(prodID, recID) values ("
                 + prodID + "," + recipeID + ")";
-        cm.connectToDb();
         int rowCount = cm.executeStatement(sqlCmd);
     }
 
     public String[][] getAllBuildProducts() {
-        cm.connectToDb();
         String sqlQuery = "SELECT * FROM Build_Product";
         String[][] results = new String[0][];
         try {
@@ -37,7 +35,6 @@ public class BuildProductDM {
     }
 
     public String[][] getAllInfo4ProdRec() {
-        cm.connectToDb();
         String sqlQuery = "";
 
         sqlQuery = "SELECT * FROM Recipe4Product";

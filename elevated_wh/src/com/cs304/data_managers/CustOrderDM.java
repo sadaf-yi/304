@@ -18,14 +18,12 @@ public class CustOrderDM {
     }
 
     public int insertNewCustOrderTuple() {
-        cm.connectToDb();
         String sqlCmd = "insert into Cust_Order(orderID) values (order_counter.nextval)";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
 
     public String[][] getAllOrderTuples() {
-        cm.connectToDb();
         String sqlQuery = "SELECT * FROM Cust_Order";
         String[][] results = new String[0][0];
         try {
@@ -45,14 +43,12 @@ public class CustOrderDM {
 
     public int shipOrder(String orderID) {
         String sqlCmd = "UPDATE Filled_For SET isShipped = 1 WHERE orderID=" + orderID;
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
 
 
 //    public String[][] listAllOrders() {
-//        cm.connectToDb();
 //        String sqlQuery = "";
 //        String[][] results = new String[1][1];
 //
@@ -73,7 +69,6 @@ public class CustOrderDM {
 //    }
 
     public String[][] listOrderContent(String orderID) {
-        cm.connectToDb();
         String sqlQuery = "";
         String[][] results = new String[1][1];
 
