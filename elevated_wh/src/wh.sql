@@ -19,6 +19,7 @@ drop sequence order_counter;
 
 drop view Recipe4Product;
 drop view ProductXFilled_ForXOrder;
+drop view cx_orders_product;
 
 
 CREATE SEQUENCE material_counter
@@ -189,3 +190,11 @@ FROM Product p, Cust_Order o, Filled_For f
 WHERE o.orderID = f.orderID AND p.prodID = f.prodID;
 
 grant select on ProductXFilled_ForXOrder to public;
+
+
+create view cx_orders_product AS
+SELECT p.prodID, p.prodName, p.prodSize, p.prodUnit, p.prodPrice, p.stockProduct, o.orderID, c.custID, c.custFName, c.custLName, c.pnum, r.numProd
+FROM Product p, Cust_Order o, Placed_For f, Customer c, Reserves r
+WHERE c.custID = f.custID AND f.orderID = o.orderID AND o.orderID = r.orderID AND r.prodID = p.prodID;
+
+grant select on cx_orders_product to public;
