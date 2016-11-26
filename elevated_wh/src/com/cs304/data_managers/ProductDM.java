@@ -124,7 +124,7 @@ public class ProductDM {
 
         String[][] recipeResult = new String[0][0];
 
-        String sqlQuery = "SELECT recID, recName, prodecure FROM Recipe4Product WHERE prodID =" + prodID;
+        String sqlQuery = "SELECT prodID, recID, recName, procedure FROM Recipe4Product WHERE prodID =" + prodID;
 
         String[][] results = new String[0][0];
         try {
