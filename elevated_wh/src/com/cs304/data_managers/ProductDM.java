@@ -142,22 +142,14 @@ public class ProductDM {
      * @param quantity
      * @return
      */
-    public void decreaseProductStock(String prodID, String quantity) {
+    public int decreaseProductStock(String prodID, String quantity) {
         String sqlCmd = "UPDATE Product SET stockProduct = stockProduct - " + quantity + "WHERE prodID=" + prodID;
         int result = cm.executeStatement(sqlCmd);
+        return result;
     }
 
 
-    /**
-     * HELPER:  increases products in filled for relationship
-     * @param prodID
-     * @param quantity
-     * @return
-     */
-    public void increaseProdsOfFilled_For(String prodID, String quantity) {
-        String sqlCmd = "UPDATE Filled_For SET numFilled = numFilled + " + quantity + "WHERE prodID=" + prodID;
-        int result = cm.executeStatement(sqlCmd);
-    }
+
 
     /**
      * Reserve product
@@ -170,7 +162,7 @@ public class ProductDM {
 
     public String[][] getRecInfor4Prod(String prodID,String orderID,  String quantity) {
         decreaseProductStock( prodID,  quantity);
-        increaseProdsOfFilled_For( prodID, quantity);
+        filledForDM.increaseProdsOfFilled_For( prodID, quantity);
         filledForDM.insertNewFilledFor(prodID, orderID, quantity, "0");
         String sqlQuery = "SELECT * FROM Filled_For WHERE prodID =" + prodID;
 

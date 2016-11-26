@@ -5,9 +5,6 @@ import com.cs304.data_objects.Filled_For;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by tyh0 on 2016-11-21.
- */
 public class FilledForDM {
 
     ArrayList<Filled_For> ff;
@@ -82,7 +79,19 @@ public class FilledForDM {
         return result;
     }
 
+
     // TODO: call the view that checks the amount of the filled for and for the prod, (get SUM) groub by prodID, orderID
     // so that you
+    /**
+     * HELPER:  increases products in filled for relationship
+     * @param prodID
+     * @param quantity
+     * @return
+     */
+    public int increaseProdsOfFilled_For(String prodID, String quantity) {
+        String sqlCmd = "UPDATE Filled_For SET numFilled = numFilled + " + quantity + "WHERE prodID=" + prodID;
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
 
 }

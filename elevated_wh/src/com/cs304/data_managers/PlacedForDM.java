@@ -17,7 +17,9 @@ public class PlacedForDM {
         cm = new ConnectionManager();
     }
 
-    public int insertPlacedFor(String orderID, String custID) {
+    public int insertPlacedFor(String custID) {
+        CustOrderDM codm = new CustOrderDM();
+        int orderID = codm.insertNewCustOrderTuple();
         String sqlCmd = "INSERT INTO Placed_For(orderID,custID) VALUES(" + orderID + "," + custID +")";
         int result = cm.executeStatement(sqlCmd);
         return result;
