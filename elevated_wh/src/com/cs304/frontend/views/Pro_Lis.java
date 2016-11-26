@@ -1,6 +1,7 @@
 package com.cs304.frontend.views;
 
 import com.cs304.data_managers.CustOrderDM;
+import com.cs304.data_managers.MaterialDM;
 import com.cs304.data_managers.ProductDM;
 
 import java.awt.*;
@@ -9,11 +10,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import static javafx.scene.input.KeyCode.O;
+import static oracle.net.aso.C09.p;
+import static oracle.net.aso.C09.r;
 
 public class Pro_Lis extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	static DefaultTableModel defaultTableModel = new DefaultTableModel();
 
 	/**
 	 * Launch the application.
@@ -49,13 +56,33 @@ public class Pro_Lis extends JFrame {
 		ProductDM pdm = new ProductDM();
 		Object[][] results_s = pdm.listAllProducts();
 		Object[][] result_flip = flip(results_s);
-		Object[] sa = {"OID"};
+		Object finalres[][] = new Object[result_flip.length - 1][result_flip[0].length];
+		int p = 0;
+		for( int i = 0; i < result_flip.length - 1; ++i)
+		{
+			if ( i == 0)
+				continue;
+
+
+			int q = 0;
+			for( int j = 0; j < result_flip[0].length; ++j)
+			{
+
+
+				finalres [p][q] = result_flip[i][j];
+				++q;
+			}
+
+			++p;
+		}
+		Object[] sa = {"Stock", "Price", "Product ID", "Name", "Size", "Unit"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(result_flip, sa);
+		table = new JTable(finalres,sa);
 		//table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane = new JScrollPane(table);
 
+
+		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -68,6 +95,7 @@ public class Pro_Lis extends JFrame {
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
 		contentPane.add(scrollPane, gbc_scrollPane);
+
 
 
 		JButton btnNewButton_9 = new JButton("Back to Main");
@@ -100,8 +128,15 @@ public class Pro_Lis extends JFrame {
 		//stable = new JTable(tableModel);
 
 
+
 		//System.out.println("Number of rows = " + matrix.length);
 		//System.out.println("Number of columns = " + matrix[0].length);
+
+
+
+
+
+
 
 
 		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
@@ -115,7 +150,8 @@ public class Pro_Lis extends JFrame {
 
 	}
 
-	public Object[][] flip(Object[][] obj) {
+	public Object[][] flip(Object[][] obj)
+	{
 
 
 		// This code assumes all rows have same number of columns
