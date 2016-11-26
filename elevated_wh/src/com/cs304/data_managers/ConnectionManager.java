@@ -83,12 +83,11 @@ public class ConnectionManager {
 
     public int executeStatement(String cmd){
         this.connectToDb();
-        Statement s = null;
+        statement = null;
         int rowCount = -1;
         try {
-            s = connection.createStatement();
-            rowCount = s.executeUpdate(cmd);
-            s.close();
+            statement = connection.createStatement();
+            rowCount = statement.executeUpdate(cmd);
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Message: " + e.getMessage());
