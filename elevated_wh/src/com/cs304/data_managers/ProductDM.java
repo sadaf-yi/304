@@ -22,7 +22,7 @@ public class ProductDM {
 
     public int addNewProductToWarehouse(String name, String size, String unit, String price) {
         String sqlCmd = "insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) "+
-                "values(product_counter.nextval,\'" + name + "\'," + size + ",\'" + unit + "\'," + price+")";
+                "values(product_counter.nextval,\'" + name + "\'," + size + ",\'" + unit + "\'," + "0,"+price+")";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
