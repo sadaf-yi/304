@@ -44,6 +44,17 @@ public class CustomerDM {
         return results;
     }
 
+    /**
+     * delete customer by ID
+     * @param custID
+     * @return
+     */
+    public int deleteCustomerID(String custID) {
+        String sqlCmd = "DELETE FROM Customer WHERE custID=" + custID;
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
     public String[][] cxOrderedAllProducts() {
         String sqlQuery = "";
         String[][] results = new String[0][0];

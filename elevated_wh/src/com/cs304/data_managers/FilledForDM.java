@@ -1,10 +1,9 @@
 package com.cs304.data_managers;
 
-import java.sql.SQLException;
-
-import java.util.ArrayList;
-
 import com.cs304.data_objects.Filled_For;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by tyh0 on 2016-11-21.
@@ -52,6 +51,26 @@ public class FilledForDM {
         return result;
     }
 
+    /**
+     * for a given order number, give the product IDs on that order and the total amount of that product
+     * @param orderID
+     * @return
+     */
+
+    public String[][] getNumProdPlusProdID4Order(String orderID) {
+        String sqlQuery = "SELECT ff.prodID, SUM(ff.numFilled) FROM Filled_For ff\n" +
+                "WHERE ff.orderID ="+orderID+" GROUP BY ff.orderID, ff.prodID;";
+        String[][] result = new String[1][1];
+        try {
+            result = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
     public String[][] getFilledForByOrderID(String orderID) {
         String sqlQuery = "SELECT * FROM Filled_For WHERE orderID=\'"+orderID+"\'";
         String[][] result = new String[1][1];
@@ -63,6 +82,7 @@ public class FilledForDM {
         return result;
     }
 
-
+    // TODO: call the view that checks the amount of the filled for and for the prod, (get SUM) groub by prodID, orderID
+    // so that you
 
 }
