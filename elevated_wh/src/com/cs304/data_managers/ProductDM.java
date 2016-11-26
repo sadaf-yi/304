@@ -23,14 +23,12 @@ public class ProductDM {
     public int addNewProductToWarehouse(String name, String size, String unit, String price) {
         String sqlCmd = "insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) "+
                 "values(product_counter.nextval,\'" + name + "\'," + size + ",\'" + unit + "\'," + price+")";
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
 
     public int addProductStock(String prodID, String quantity) {
         String sqlCmd = "UPDATE Product SET stockProduct = stockProduct + " + quantity + "WHERE prodID=" + prodID;
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
@@ -43,7 +41,6 @@ public class ProductDM {
 
     public int deleteProductbyID(String prodID) {
         String sqlCmd = "DELETE FROM Product WHERE prodID=" + prodID;
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
@@ -56,7 +53,6 @@ public class ProductDM {
 
     public String[][] cheapestProd() {
         String sqlQuery = "SELECT a.prodID, a.prodName, a.prodPrice FROM Product a, Product b GROUP BY a.prodID, a.prodName, a.prodPrice HAVING a.prodPrice = MIN(b.prodPrice)";
-
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
@@ -74,7 +70,6 @@ public class ProductDM {
 
     public String[][] mostExpensiveProd() {
         String sqlQuery = "SELECT a.prodID, a.prodName, a.prodPrice FROM Product a, Product b GROUP BY a.prodID, a.prodName, a.prodPrice HAVING a.prodPrice = MAX(b.prodPrice)";
-
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
@@ -92,7 +87,6 @@ public class ProductDM {
 
     public String[][] CheapestProdplusRecID() {
         String sqlQuery = "SELECT a.prodID, a.prodName, a.recID, a.prodPrice FROM Recipe4Product a, Recipe4Product b GROUP BY a.prodID, a.prodPrice, a.prodName, a.recID HAVING a.prodPrice = MIN(b.prodPrice)";
-
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
@@ -110,7 +104,6 @@ public class ProductDM {
 
     public String[][] mostExpensiveProdplusRecID() {
         String sqlQuery = "SELECT a.prodID, a.prodName, a.recID, a.prodPrice FROM Recipe4Product a, Recipe4Product b GROUP BY a.prodID, a.prodPrice, a.prodName, a.recID HAVING a.prodPrice = MAX(b.prodPrice)";
-
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
@@ -151,7 +144,6 @@ public class ProductDM {
      */
     public void decreaseProductStock(String prodID, String quantity) {
         String sqlCmd = "UPDATE Product SET stockProduct = stockProduct - " + quantity + "WHERE prodID=" + prodID;
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
     }
 
@@ -164,7 +156,6 @@ public class ProductDM {
      */
     public void increaseProdsOfFilled_For(String prodID, String quantity) {
         String sqlCmd = "UPDATE Filled_For SET numFilled = numFilled + " + quantity + "WHERE prodID=" + prodID;
-        cm.connectToDb();
         int result = cm.executeStatement(sqlCmd);
     }
 

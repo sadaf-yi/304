@@ -22,14 +22,12 @@ public class CustomerDM {
         String sqlCmd =
                 "insert into Customer(custID,custFName, custLName, pnum) "+"values(customer_counter.nextval,\'"+firstName+"\',\'"+ lastName +
                 "\',\'"+phoneNumber+"\')";
-        cm.connectToDb();
         int rowCount = cm.executeStatement(sqlCmd);
     }
 
     public String[][] findCxByIdOrPhoneNumber(String cid, String name, String pnum) {
         String sqlQuery = "";
         String[][] results = new String[1][1];
-        cm.connectToDb();
         if (!cid.equals("")) {
             sqlQuery = "SELECT custID,custFName, custLName, pnum FROM Customer WHERE custID=" + cid;
         } else {
@@ -51,7 +49,6 @@ public class CustomerDM {
     public String[][] listAllCustomers() {
         String sqlQuery = "";
         String[][] results = new String[1][1];
-        cm.connectToDb();
         sqlQuery = "SELECT * FROM Customer";
 
         try {
