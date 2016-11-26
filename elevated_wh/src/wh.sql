@@ -55,7 +55,8 @@ grant select on Material to public;
 create table Container
 (matID integer not null,
 volume integer not null,
-primary key (matID));
+foreign key (matID) references Material(matID)
+on delete cascade);
 
 grant select on Container to public;
 
@@ -63,14 +64,16 @@ create table RawMaterial
 (matID integer not null,
 potency varchar2(40) not null,
 active varchar2(40) not null,
-primary key (matID));
+foreign key (matID) references Material(matID)
+on delete cascade);
 
 grant select on RawMaterial to public;
 
 create table Label
 (matID integer not null,
 labelSize varchar2(40) not null,
-primary key (matID));
+foreign key (matID) references Material(matID)
+on delete cascade);
 
 grant select on Label to public;
 
@@ -88,10 +91,8 @@ matID integer not null,
 quantity integer not null,
 recUnit varchar2(10) not null,
 primary key (recID, matID),
-foreign key (matID) references Material (matID)
- not deferrable,
-foreign key (recID) references Recipe (recID)
- not deferrable);
+foreign key (matID) references Material (matID),
+foreign key (recID) references Recipe (recID));
 
 grant select on Recipe_Uses to public;
 
@@ -110,10 +111,8 @@ create table Build_Product
 (prodID integer not null,
 recID integer not null,
 primary key (prodID),
-foreign key (prodID) references Product (prodID)
-not deferrable,
-foreign key (recID) references Recipe (recID)
- not deferrable);
+foreign key (prodID) references Product (prodID),
+foreign key (recID) references Recipe (recID));
 
 grant select on Build_Product to public;
 
@@ -128,10 +127,8 @@ create table Reserves
 orderID integer not null,
 numProd integer not null,
 primary key (prodID, orderID),
-foreign key (prodID) references Product (prodID)
- not deferrable,
-foreign key (orderID) references Cust_Order (orderID)
- not deferrable);
+foreign key (prodID) references Product (prodID),
+foreign key (orderID) references Cust_Order (orderID));
 
 grant select on Reserves to public;
 
@@ -152,10 +149,8 @@ orderID integer not null,
 numFilled integer,
 isShipped integer default 0,
 primary key (orderID, prodID, dateUpdated),
-foreign key (prodID) references Product (prodID)
- not deferrable,
-foreign key (orderID) references Cust_Order (orderID)
- not deferrable,
+foreign key (prodID) references Product (prodID),
+foreign key (orderID) references Cust_Order (orderID),
 check (isShipped >= 0 AND isShipped <= 1));
 
 grant select on Filled_For to public;
@@ -168,8 +163,7 @@ create table Placed_For
 custID  integer not null,
 primary key (orderID),
 foreign key (custID)
-references Customer(custID)
-not deferrable);
+references Customer(custID));
 
 grant select on Placed_For to public;
 
