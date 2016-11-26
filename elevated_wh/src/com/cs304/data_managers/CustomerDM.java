@@ -62,9 +62,4 @@ public class CustomerDM {
         }
         return results;
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> josh2
 }
