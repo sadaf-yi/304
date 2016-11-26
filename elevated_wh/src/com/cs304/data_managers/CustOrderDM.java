@@ -18,9 +18,18 @@ public class CustOrderDM {
     }
 
     public int insertNewCustOrderTuple() {
-        String sqlCmd = "insert into Cust_Order(orderID) values (order_counter.nextval)";
+        String cmd1 = "SELECT order_counter.NEXTVAL FROM dual";
+        String[][] result1 = new String[0][];
+        try {
+            result1 = cm.submitQuery(cmd1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int newOrderID = Integer.parseInt(result1[1][0]);
+        // result 1 should contain the next sequence number, aka the order number to use
+        String sqlCmd = "insert into Cust_Order(orderID) values (" + newOrderID + ")";
         int result = cm.executeStatement(sqlCmd);
-        return result;
+        return newOrderID;
     }
 
     public String[][] getAllOrderTuples() {

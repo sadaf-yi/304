@@ -63,6 +63,18 @@ public class FilledForDM {
         return result;
     }
 
+    /**
+     * HELPER:  increases products in filled for relationship
+     * @param prodID
+     * @param quantity
+     * @return
+     */
+    public int increaseProdsOfFilled_For(String prodID, String quantity) {
+        String sqlCmd = "UPDATE Filled_For SET numFilled = numFilled + " + quantity + "WHERE prodID=" + prodID;
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
 
 
 }
