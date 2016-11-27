@@ -1,7 +1,7 @@
 package com.cs304.data_managers;
-import java.util.ArrayList;
-
 import com.cs304.data_objects.Recipe_Uses;
+
+import java.util.ArrayList;
 /**
  * Created by tyh0 on 2016-11-21.
  */
@@ -13,6 +13,5 @@ public class RecipeUsesDM {
         ru = null;
         cm = new ConnectionManager();
     }
-
 
 }
