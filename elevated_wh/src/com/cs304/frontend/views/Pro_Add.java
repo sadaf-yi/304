@@ -23,7 +23,9 @@ import com.cs304.data_objects.Recipe;
 import com.cs304.frontend.Error_Pop;
 import net.miginfocom.swing.MigLayout;
 
+import static javafx.scene.input.KeyCode.R;
 import static oracle.net.aso.C09.i;
+import static oracle.net.aso.C09.t;
 
 public class Pro_Add extends JFrame {
 
@@ -36,6 +38,7 @@ public class Pro_Add extends JFrame {
 	private JLabel lblRecipe;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
+
 
 	/**
 	 * @wbp.nonvisual location=462,17
@@ -76,7 +79,7 @@ public class Pro_Add extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[70px][114px][][138px][][][][]", "[][19px][][19px][19px][19px][][][][164px][][][][][][][][]"));
 
 		lblRecipe = new JLabel("RECIPE");
-		contentPane.add(lblRecipe, "cell 0 0,alignx center,aligny bottom");
+		contentPane.add(lblRecipe, "cell 0 0,alignx left,aligny bottom");
 
 		JLabel lblNewLabel = new JLabel("Name");
 		contentPane.add(lblNewLabel, "cell 0 1,alignx right,aligny center");
@@ -84,6 +87,13 @@ public class Pro_Add extends JFrame {
 		textField = new JTextField();
 		contentPane.add(textField, "flowx,cell 1 1 3 1,alignx left,aligny center");
 		textField.setColumns(10);
+
+		JLabel pricelbl = new JLabel("Name");
+		contentPane.add(pricelbl, "cell 1 0,alignx right,aligny center");
+
+		JTextField pricetxt = new JTextField();
+		contentPane.add(pricetxt, "flowx,cell 2 0 3 1,alignx left,aligny center");
+		pricetxt.setColumns(10);
 
 		JTextField textField13 = new JTextField();
 		textField13.setColumns(10);
@@ -115,8 +125,8 @@ public class Pro_Add extends JFrame {
 		contentPane.add(textField_1, "flowx,cell 1 5 3 1,alignx left,aligny center");
 		textField_1.setColumns(10);
 
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		contentPane.add(lblNewLabel_2, "cell 0 6,alignx center,aligny center");
+		JLabel lblNewLabel_2 = new JLabel("Unit");
+		contentPane.add(lblNewLabel_2, "cell 0 6,alignx right,aligny center");
 
 		textField_3 = new JTextField();
 		contentPane.add(textField_3, "cell 1 6 3 1,alignx left,aligny center");
@@ -147,6 +157,7 @@ public class Pro_Add extends JFrame {
 					// code to add material to list
 					final String nameres = results_s[1][0];
 					tableModel.addRow(new Object[] {a1,nameres,a2,a3});
+
 				}
 			}
 		});
@@ -195,11 +206,10 @@ public class Pro_Add extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int rows = table.getRowCount();
 				int cols = table.getColumnCount();
-				RecipeDM rdm = new RecipeDM();
-				rdm.addNewRecipe(textField_1.getText(), textField_2.getText());
 				ProductDM pdm = new ProductDM();
 
-					pdm.addNewProductToWarehouse(textField.getText(),textField_1.getText(), textField_2.getText(),textField_3.getText());
+					//pdm.addNewProductToWarehouse(textField.getText(),textField_1.getText(), textField_2.getText(),textField_3.getText());
+				String [][] results = new String[cols][rows];
 				/*} catch (InvalidFormEntryExeption e) {
 					// Totally hypothetical query
 					//TODO: actually implement this
@@ -209,12 +219,14 @@ public class Pro_Add extends JFrame {
 				// need product - recipe join querry here
 				for (int i=0; i < tableModel.getRowCount();i++)
 				{
-					String a1 = tableModel.getValueAt(i,0).toString();
-					String a2 = tableModel.getValueAt(i,1).toString();
-					String a3 = tableModel.getValueAt(i,2).toString();
-					String a4 = tableModel.getValueAt(i,3).toString();
+					results[i][0] = tableModel.getValueAt(i,0).toString();
+					results[i][0] = tableModel.getValueAt(i,1).toString();
+					results[i][0] = tableModel.getValueAt(i,2).toString();
+					results[i][0] = tableModel.getValueAt(i,3).toString();
 					// add to recipe uses here
 				}
+
+				pdm.addNewProductToWarehouse(textField.getText(), textField_1.getText(), textField_3.getText(), pricetxt.getText(), textField.getText() , textField_2.getText(),results);
 				}
 		});
 	}
