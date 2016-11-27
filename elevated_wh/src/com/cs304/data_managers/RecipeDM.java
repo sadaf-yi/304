@@ -20,7 +20,7 @@ public class RecipeDM {
     }
 
     public int addNewRecipeUses(String recID, String matID, String quantity) {
-        String sqlCmd = "insert into recipe_uses(recID, matID, quantity, recUnit) values("+
+        String sqlCmd = "insert into recipe_uses(recID, matID, quantity) values("+
                 recID+","+matID+","+quantity+")";
         int result = cm.executeStatement(sqlCmd);
         return result;

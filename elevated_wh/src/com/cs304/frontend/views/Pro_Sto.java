@@ -91,7 +91,7 @@ public class Pro_Sto extends JFrame {
 				else
 				{
 
-					//pdm.addProductStock(textField.getText(),textField_1.getText());
+					pdm.addProductStock(textField.getText(),textField_1.getText());
 					Success_Pop sp = new Success_Pop();
 					sp.New_Pop();
 				}

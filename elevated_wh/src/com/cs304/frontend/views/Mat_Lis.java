@@ -74,7 +74,7 @@ public class Mat_Lis extends JFrame {
 
 			++p;
 		}
-		Object[] sa = {"ID", "Name", "Stock", "Unit", "Price"};
+		Object[] sa = {"ID", "Name", "Stock", "Price", "Unit"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(finalres,sa);
         //table.setModel(DefaultTableModel);

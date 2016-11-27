@@ -63,7 +63,7 @@ public class ProductDM {
         ArrayList<Material> mats = new ArrayList<Material>();
         ArrayList<Recipe_Uses> rus = new ArrayList<Recipe_Uses>();
         int numTuples = res.length;
-        for (int i = 0; i < numTuples; i++) {
+        for (int i = 1; i < numTuples; i++) {
             String[] tuple = res[i];
             Recipe_Uses ru = new Recipe_Uses(
                     Integer.parseInt(tuple[0]),
@@ -83,7 +83,7 @@ public class ProductDM {
         for (int j = 0; j < mats.size(); j++) {
             float matStock = mats.get(j).getMatStock();
             float recMatRequired = rus.get(j).getQuantity();
-            if (recMatRequired < matStock) {
+            if (recMatRequired <= matStock) {
                 mats.get(j).setMatStock(matStock-recMatRequired);
             } else {
                 canProduce = false;
@@ -93,7 +93,7 @@ public class ProductDM {
         if (canProduce) {
             String sqlCmd = "";
             for (int k = 0; k < mats.size(); k++) {
-                sqlCmd = "update material set material = " + mats.get(k).getMatStock() + " where matID=" + mats.get(k).getMatID();
+                sqlCmd = "update material set matStock = " + mats.get(k).getMatStock() + " where matID=" + mats.get(k).getMatID();
                 cm.executeStatement(sqlCmd);
             }
             sqlCmd = "UPDATE Product SET stockProduct = stockProduct + " + quantity + " WHERE prodID=" + prodID;
