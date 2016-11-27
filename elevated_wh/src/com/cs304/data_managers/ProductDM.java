@@ -1,10 +1,8 @@
 package com.cs304.data_managers;
-import com.cs304.data_objects.*;
+import com.cs304.data_objects.Product;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import static oracle.net.aso.C09.n;
 
 
 public class ProductDM {

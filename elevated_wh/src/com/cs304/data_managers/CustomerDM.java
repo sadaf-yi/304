@@ -6,8 +6,6 @@ import com.cs304.frontend.Error_Pop;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static oracle.net.aso.C09.p;
-
 public class CustomerDM {
 
     // may need more arraylists to hold data related to customer actions

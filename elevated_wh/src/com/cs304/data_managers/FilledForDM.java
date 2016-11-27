@@ -15,15 +15,76 @@ public class FilledForDM {
         cm = new ConnectionManager();
     }
 
+    /**
+     * for a given prodID, return Stock product
+     * @param prodID
+     * @return Stockproduct
+     */
+
+    public int getStockProd4ProdID(String prodID) {
+        String getStockProdQuery = "SELECT * FROM Product WHERE prodID = " + prodID;
+
+        String[][] getProdStock = new String[0][];
+
+        try {
+            getProdStock = cm.submitQuery(getStockProdQuery);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int stockProd = Integer.parseInt(getProdStock[1][5]);
+        return stockProd;
+    }
+
     public int insertNewFilledFor(String prodID, String orderID, String numfilled, String isShipped) {
-        String sqlCmd = "insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) "+
-                "values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM'),"+
-                prodID+","+
-                orderID+","+
-                numfilled+","+
-                isShipped+")";
-        int result = cm.executeStatement(sqlCmd);
-        return result;
+        String getNumProdQuery = "SELECT numProd FROM Reserves WHERE orderID = "+ orderID;
+        String getPreviouslyNumProdQuery ="SELECT r.prodID, p.prodName, r.numProd, SUM(f.numFilled) FROM Product p, Reserves r LEFT JOIN Filled_For f ON r.prodID = f.prodID WHERE r.orderID = "
+                + orderID+
+                " AND f.orderID =" + orderID+
+                " AND r.prodID = p.PRODID AND p.prodID =" +prodID+
+                " GROUP BY r.prodID, r.numProd, p.prodName ORDER BY r.prodID";
+        String[][] getPreviouslyNumProd =new String[0][];
+
+        try {
+            getPreviouslyNumProd = cm.submitQuery(getPreviouslyNumProdQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String previouslyNumProd = getPreviouslyNumProd[1][2];
+
+        String[][] numProdArray = new String[0][];
+
+        int result;
+        try {
+            numProdArray = cm.submitQuery(getNumProdQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String numProdStr = numProdArray[1][2];
+        int numProdInt = Integer.parseInt(numProdStr);
+        int numfilledInt = Integer.parseInt(numfilled);
+
+        int stockProd = this.getStockProd4ProdID(prodID);
+        int numProdPreviously = Integer.parseInt(previouslyNumProd);
+
+        if (numProdInt >= numfilledInt && stockProd >= (numProdInt + numProdPreviously)){
+            String sqlCmd = "insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) " +
+                    "values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM')," +
+                    prodID + "," +
+                    orderID + "," +
+                    numfilled + "," +
+                    isShipped + ")";
+            result = cm.executeStatement(sqlCmd);
+            return result;
+        }
+
+        else {
+            // TODO: implement the exception that triggers an error popup in the UI
+            int error = -1;
+            return error;
+        }
+
     }
 
     public String[][] getAllFilledFor() {

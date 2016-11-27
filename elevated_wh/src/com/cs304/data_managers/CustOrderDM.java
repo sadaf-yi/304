@@ -8,12 +8,15 @@ public class CustOrderDM {
 
     ArrayList<Cust_Order> orders;
     ConnectionManager cm;
+    private ReservesDM reservesDM;
+    private PlacedForDM placedForDM;
+
     public CustOrderDM() {
         orders = new ArrayList<Cust_Order>();
         cm = new ConnectionManager();
     }
 
-    public int insertNewCustOrderTuple() {
+    public int insertNewCustOrderTuple(String prodID, String numProd, String custID) {
         String cmd1 = "SELECT order_counter.NEXTVAL FROM dual";
         String[][] result1 = new String[0][];
         try {
@@ -21,7 +24,16 @@ public class CustOrderDM {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int newOrderID = Integer.parseInt(result1[1][0]);
+
+        int newOrderID = Integer.parseInt(result1[0][0]);
+        try {
+            placedForDM.insertPlacedFor(custID, cmd1);
+            reservesDM.insertNewReserves(prodID,result1[0][0], numProd);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // result 1 should contain the next sequence number, aka the order number to use
         String sqlCmd = "insert into Cust_Order(orderID) values (" + newOrderID + ")";
         int result = cm.executeStatement(sqlCmd);
@@ -35,7 +47,6 @@ public class CustOrderDM {
             results = cm.submitQuery(sqlQuery);
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
         return results;
     }
@@ -98,12 +109,15 @@ public class CustOrderDM {
     //TODO pass me
 
     /**
-     * List order by content returns prodID numReserved and SUM(numFilled)
+     * List order by content returns prodID, prodName, numReserved and SUM(numFilled)
      * @param orderID
      * @return
      */
     public String[][] listOrderContent(String orderID) {
-        String sqlQuery = "SELECT r.prodID, r.numProd, SUM(f.numFilled) FROM Reserves r LEFT JOIN Filled_For f ON r.prodID = f.prodID WHERE r.orderID = "+ orderID +" AND f.orderID = "+ orderID +" GROUP BY r.prodID, r.numProd ORDER BY r.prodID";
+        String sqlQuery = "SELECT r.prodID, p.prodName, r.numProd, SUM(f.numFilled) FROM Product p, Reserves r LEFT JOIN Filled_For f ON r.prodID = f.prodID WHERE r.orderID = "
+                +orderID+" AND f.orderID = "
+                +orderID+" AND p.prodID=r.prodID GROUP BY r.prodID, r.numProd, p.prodName ORDER BY r.prodID";
+
         String[][] results = new String[1][1];
 
         try {
