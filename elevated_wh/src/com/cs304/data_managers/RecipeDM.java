@@ -12,9 +12,16 @@ public class RecipeDM {
         recipes = null;
         cm = new ConnectionManager();
     }
-    public int addNewRecipe(String recName, String procedure) {
+    public int addNewRecipe(String recName, String recID, String procedure) {
         String sqlCmd = "insert into Recipe(recID, recName, procedure) " +
-                "values(recipe_counter.nextval,\'" + recName + "\',\'" + procedure;
+                "values(" + recID + ",\'" + recName + "\',\'" + procedure + "\')";
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
+    public int addNewRecipeUses(String recID, String matID, String quantity) {
+        String sqlCmd = "insert into recipe_uses(recID, matID, quantity) values("+
+                recID+","+matID+","+quantity+")";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
@@ -40,7 +47,7 @@ public class RecipeDM {
 
         String sqlQuery = "select r.recID, r.recName, r.procedure " +
                 "from recipe r, build_product bp " +
-                "where bp.prodID=\'" + prodID + "\' AND ru.recID=bp.recID";
+                "where bp.prodID=" + prodID + " AND r.recID=bp.recID";
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);

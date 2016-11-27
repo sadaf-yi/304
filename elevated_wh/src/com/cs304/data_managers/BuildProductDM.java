@@ -17,10 +17,11 @@ public class BuildProductDM {
         cm = new ConnectionManager();
     }
 
-    public void insertNewBuildProductTuple(String prodID, String recipeID) {
+    public int insertNewBuildProductTuple(String prodID, String recipeID) {
         String sqlCmd = "insert into Build_Product(prodID, recID) values ("
                 + prodID + "," + recipeID + ")";
-        int rowCount = cm.executeStatement(sqlCmd);
+        int result = cm.executeStatement(sqlCmd);
+        return result;
     }
 
     public String[][] getAllBuildProducts() {

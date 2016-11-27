@@ -11,11 +11,10 @@ public class Recipe_Uses {
     private String recUnit;
 
 
-    public Recipe_Uses(int recID, int matID, int quantity, String recUnit) {
+    public Recipe_Uses(int recID, int matID, int quantity) {
         this.recID = recID;
         this.matID = matID;
         this.quantity = quantity;
-        this.recUnit = recUnit;
     }
 
     public int getRecID() {
@@ -30,10 +29,6 @@ public class Recipe_Uses {
         return this.quantity;
     }
 
-    public String getRecUnit() {
-        return this.recUnit;
-    }
-
     private void setRecID(int rid) {
         this.recID = rid;
     }
@@ -44,9 +39,5 @@ public class Recipe_Uses {
 
     private void setQuantity(int q) {
         this.quantity = q;
-    }
-
-    private void setRecUnit(String ru) {
-        this.recUnit = ru;
     }
 }

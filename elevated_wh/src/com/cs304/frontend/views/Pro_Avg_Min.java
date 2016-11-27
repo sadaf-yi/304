@@ -1,34 +1,29 @@
 package com.cs304.frontend.views;
 
-import com.cs304.data_managers.CustomerDM;
-import com.cs304.data_managers.MaterialDM;
-import java.util.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import com.cs304.data_managers.ProductDM;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import static oracle.net.aso.C09.i;
-import static oracle.net.aso.C09.m;
-import static oracle.net.aso.C09.r;
-
-public class Mat_Lis extends JFrame {
+public class Pro_Avg_Min extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	static DefaultTableModel defaultTableModel = new DefaultTableModel();
 
-	/**s
+	/**
 	 * Launch the application.
 	 */
 	public static void New_Lis() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mat_Lis frame = new Mat_Lis();
+					Pro_Avg_Min frame = new Pro_Avg_Min();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +35,7 @@ public class Mat_Lis extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Mat_Lis() {
+	public Pro_Avg_Min() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -52,9 +47,8 @@ public class Mat_Lis extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-        MaterialDM cdm = new MaterialDM();
-        Object[][] results_s = cdm.getAllMaterialTuples();
-       
+		ProductDM pdm = new ProductDM();
+		Object[][] results_s = pdm.cheapestProd();
 		Object finalres[][] = new Object[results_s.length - 1][results_s[0].length];
 		int p = 0;
 		for( int i = 0; i < results_s.length; ++i)
@@ -74,15 +68,24 @@ public class Mat_Lis extends JFrame {
 
 			++p;
 		}
-		Object[] sa = {"ID", "Name", "Stock", "Price", "Unit"};
+		Object[] sa = {"ProID", "Name", "Price"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(finalres,sa);
-        //table.setModel(DefaultTableModel);
+		//table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane = new JScrollPane(table);
+		TableColumn column = null;
+		for (int i = 0; i < finalres[0].length; i++) {
+			column = table.getColumnModel().getColumn(i);
 
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			if (i == 3) column.setPreferredWidth(150); //sport column is bigger
+			else {
+				column.setPreferredWidth(40);
+			}
+		}
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -92,7 +95,7 @@ public class Mat_Lis extends JFrame {
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 0;
-        contentPane.add(scrollPane, gbc_scrollPane);
+		contentPane.add(scrollPane, gbc_scrollPane);
 
 
 
@@ -123,12 +126,12 @@ public class Mat_Lis extends JFrame {
 			}}
 		//System.out.println("Number of cols = " + cols);
 */
-        //stable = new JTable(tableModel);
+		//stable = new JTable(tableModel);
 
 
 
-				//System.out.println("Number of rows = " + matrix.length);
-				//System.out.println("Number of columns = " + matrix[0].length);
+		//System.out.println("Number of rows = " + matrix.length);
+		//System.out.println("Number of columns = " + matrix[0].length);
 
 
 
@@ -148,21 +151,6 @@ public class Mat_Lis extends JFrame {
 
 	}
 
-	public Object[][] flip(Object[][] obj)
-     {
 
-
-        // This code assumes all rows have same number of columns
-        Object[][] pivot = new Object[obj[0].length][];
-        for (int row = 0; row < obj[0].length; row++)
-            pivot[row] = new Object[obj.length];
-
-        for (int row = 0; row < obj.length; row++)
-            for (int col = 0; col < obj[row].length; col++)
-                pivot[col][row] = obj[row][col];
-
-        return pivot;
-
-    }
 
 }

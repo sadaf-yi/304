@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import static oracle.net.aso.C05.e;
+
 public class Prod_Ui extends JFrame {
 
 	private JPanel contentPane;
@@ -90,6 +92,19 @@ public class Prod_Ui extends JFrame {
 		});
 		btnNewButton_4.setBounds(125, 145, 200, 25);
 		contentPane.add(btnNewButton_4);
+
+		JButton btnNewButton_avg = new JButton("Product AVGS");
+		btnNewButton_avg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pro_Avg_ui ms = new Pro_Avg_ui();
+				setVisible(false);
+				dispose();
+				ms.New_AVG();
+			}
+		});
+		btnNewButton_avg.setBounds(125, 190, 200, 25);
+		contentPane.add(btnNewButton_avg);
+
 		
 		JButton btnNewButton_5 = new JButton("Back to Main");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -100,7 +115,7 @@ public class Prod_Ui extends JFrame {
 				ms.New_Window();
 			}
 		});
-		btnNewButton_5.setBounds(125, 190, 200, 25);
+		btnNewButton_5.setBounds(125, 235, 200, 25);
 		contentPane.add(btnNewButton_5);
 	}
 
