@@ -89,8 +89,8 @@ public class Cus_Add extends JFrame {
 			}	
 			else
 			{
-				List<List<String>> dict = new ArrayList<>();
-			// CustomerDM.InsertCustomer(textField.getText(),textField_1.getText(),textField_2.getText());
+
+				cdm.insertCustomer(textField.getText(),textField_1.getText(),textField_2.getText());
 				Success_Pop sp = new Success_Pop();
 				sp.New_Pop();
 			}

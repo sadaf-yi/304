@@ -1,18 +1,27 @@
 package com.cs304.frontend.views;
 
-import com.cs304.data_managers.ProductDM;
+import com.cs304.data_managers.CustomerDM;
+import com.cs304.frontend.Error_Pop;
+import com.cs304.frontend.Success_Pop;
+import net.miginfocom.swing.MigLayout;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import static javafx.scene.input.KeyCode.J;
+import static oracle.net.aso.C09.l;
+import static oracle.net.aso.C09.t;
+import static oracle.net.aso.C09.w;
 
 public class Pro_Inf extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTextField textField;
+	private JTextArea textArea_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -34,85 +43,47 @@ public class Pro_Inf extends JFrame {
 	 * Create the frame.
 	 */
 	public Pro_Inf() {
+		setTitle("Main Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{145, 0, 150, 0};
-		gbl_contentPane.rowHeights = new int[]{170, 25, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
-		ProductDM pdm = new ProductDM();
-		Object[][] results_s = pdm.listProdRecProc("1");
-		//Object[][] result_flip = flip(results_s);
-		Object[] sa = {"RECID", "Recipe_name", "Procedure"};
-		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
-		table = new JTable(results_s, sa);
-		//table.setModel(DefaultTableModel);
-		table.setFillsViewportHeight(true);
-		JScrollPane scrollPane = new JScrollPane(table);
+		contentPane.setLayout(null);
 
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 3;
-		gbc_scrollPane.gridheight = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 0;
-		contentPane.add(scrollPane, gbc_scrollPane);
-
-
-		JButton btnNewButton_9 = new JButton("Back to Main");
-		btnNewButton_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Main_selections ms = new Main_selections();
+		JButton btnNewButton = new JButton("Prod ID");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Mater_Ui matss = new Mater_Ui();
 				setVisible(false);
 				dispose();
-				ms.New_Window();
+				matss.New_Mat();
 			}
 		});
+		btnNewButton.setBounds(50, 10, 150, 25);
+		contentPane.add(btnNewButton);
+
+		JTextField textField_input = new JTextField();
+		textField_input.setBounds(250, 10, 100 , 25);
+		contentPane.add(textField_input);
+
+		JLabel lblNewLabel_2 = new JLabel("Name");
+		lblNewLabel_2.setBounds (50,50, 100, 25);
+		contentPane.add(lblNewLabel_2);
+
+		JTextArea nameArea = new JTextArea();
+		nameArea.setBounds(200,50, 150, 25);
+		nameArea.setColumns(10);
+		nameArea.setRows(1);
+		contentPane.add(nameArea);
 
 
-/*
-		boolean firstflag = true;
-
-		for (int i = 0; i<results_s.length; i++){
-			int temp = results_s.length;
-			Object [] to_table = new Object[temp];
-			for (int j = 0; j<results_s[i].length; j++){
-				to_table [j] = results_s[i][j];
-			}
-			if (firstflag == true);
-				else {
-				firstflag = false;
-				tableModel.addRow(to_table);
-			}}
-		//System.out.println("Number of cols = " + cols);
-*/
-		//stable = new JTable(tableModel);
 
 
-		//System.out.println("Number of rows = " + matrix.length);
-		//System.out.println("Number of columns = " + matrix[0].length);
 
-
-		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
-		gbc_btnNewButton_9.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_9.anchor = GridBagConstraints.NORTH;
-		gbc_btnNewButton_9.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_9.gridx = 1;
-		gbc_btnNewButton_9.gridy = 3;
-		getContentPane().add(btnNewButton_9, gbc_btnNewButton_9);
 
 
 	}
-
-
 }
+
+

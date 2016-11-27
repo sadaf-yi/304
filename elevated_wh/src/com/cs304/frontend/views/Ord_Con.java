@@ -1,6 +1,5 @@
 package com.cs304.frontend.views;
-
-import com.cs304.data_managers.MaterialDM;
+import com.cs304.data_managers.*;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.Success_Pop;
 import net.miginfocom.swing.MigLayout;
@@ -12,9 +11,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import static javafx.scene.input.KeyCode.M;
+import static javafx.scene.input.KeyCode.O;
+
 public class Ord_Con extends JFrame {
 
-
+    public Ord_Con this_frame = this;
     private JPanel contentPane;
     private JTextField textField;
     private JTextField textField_1;
@@ -28,7 +30,7 @@ public class Ord_Con extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Ord_New frame = new Ord_New();
+                    Ord_Con frame = new Ord_Con();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -50,7 +52,7 @@ public class Ord_Con extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new MigLayout("", "[50px][][][][][grow]", "[25px][25px][][][][][][][][]"));
 
-        JLabel lblNewLabel_3 = new JLabel("Customer ID");
+        JLabel lblNewLabel_3 = new JLabel("Order ID");
         contentPane.add(lblNewLabel_3, "cell 0 0,alignx left");
 
         textField = new JTextField();
@@ -58,14 +60,63 @@ public class Ord_Con extends JFrame {
         textField.setColumns(10);
 
 
-        JButton ord_sell_btn = new JButton("Find ordID");
+        JButton ord_sell_btn = new JButton("Find Order ID");
         ord_sell_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+                /*
+                CustOrderDM cdm = new CustOrderDM();
+                Object[][] results_s = cdm.getAllPlacedFor();
 
-                Main_selections ms = new Main_selections();
-                setVisible(false);
-                dispose();
-                ms.New_Window();
+                Object finalres[][] = new Object[results_s.length - 1][results_s[0].length];
+                int p = 0;
+                for( int i = 0; i < results_s.length; ++i)
+                {
+                    if ( i == 0)
+                        continue;
+
+
+                    int q = 0;
+                    for( int j = 0; j < results_s[0].length; ++j)
+                    {
+
+
+                        finalres [p][q] = results_s[i][j];
+                        ++q;
+                    }
+
+                    ++p;
+                }
+                Object[] sa = {"ORDER ID", "CUSTOMER ID"}; */
+               Pop_o_c po = new Pop_o_c();
+                po.New_Pop();
+                /*CustOrderDM cdm = new CustOrderDM();
+                String[][] results_s = cdm.getAllPlacedFor();
+
+                String finalres[][] = new String[results_s.length - 1][results_s[0].length];
+                int p = 0;
+                for( int i = 0; i < results_s.length; ++i)
+                {
+                    if ( i == 0)
+                        continue;
+
+
+                    int q = 0;
+                    for( int j = 0; j < results_s[0].length; ++j)
+                    {
+
+
+                        finalres [p][q] = results_s[i][j];
+                        ++q;
+                    }
+
+                    ++p;
+                }
+                String[] sa = {"OID","CID"};
+                po.New_Pop(this_frame);
+                */
+
+
+
             }
         });
         getContentPane().add(ord_sell_btn, "cell 1 1,alignx left,aligny top");
@@ -97,10 +148,8 @@ public class Ord_Con extends JFrame {
                     final String ORID = textField.getText().toString();
 
 
-                    ;
 
-                    int pnum;
-                    MaterialDM mdm = new MaterialDM();
+
 
                     Success_Pop sp = new Success_Pop();
                     sp.New_Pop();
@@ -112,5 +161,8 @@ public class Ord_Con extends JFrame {
 
 
     }
+
+
+
 
 }

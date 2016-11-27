@@ -62,10 +62,8 @@ public class Ord_New extends JFrame {
 		ord_sell_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Main_selections ms = new Main_selections();
-				setVisible(false);
-				dispose();
-				ms.New_Window();
+				Pop_Cus pc = new Pop_Cus();
+				pc.New_Pop();
 			}
 		});
 		getContentPane().add(ord_sell_btn, "cell 1 1,alignx left,aligny top");
@@ -97,10 +95,8 @@ public class Ord_New extends JFrame {
 					final String ORID = textField.getText().toString();
 
 
-				;
 
-					int pnum;
-					MaterialDM mdm = new MaterialDM();
+					// ADD CODE HERE THAT ACTUALY ENTERS ORDERS INTO ORDER AND CUSTOMER***
 
 					Success_Pop sp = new Success_Pop();
 					sp.New_Pop();

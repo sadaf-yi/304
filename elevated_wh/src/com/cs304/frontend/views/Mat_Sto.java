@@ -1,9 +1,8 @@
 package com.cs304.frontend.views;
 
-import com.cs304.data_managers.CustomerDM;
-import com.cs304.data_objects.Material;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.Success_Pop;
+import com.cs304.frontend.viewsUser.Mat_Rem;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.EventQueue;
@@ -15,11 +14,11 @@ import com.cs304.data_managers.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import static javafx.scene.input.KeyCode.M;
-import static oracle.net.aso.C09.m;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import static javafx.scene.input.KeyCode.L;
 //Stocking Material
 
-public class Mat_Rem extends JFrame {
+public class Mat_Sto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -29,11 +28,11 @@ public class Mat_Rem extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public void New_Rem() {
+	public void New_Sto() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mat_Rem frame = new Mat_Rem();
+					Mat_Sto frame = new Mat_Sto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +44,7 @@ public class Mat_Rem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Mat_Rem() {
+	public Mat_Sto() {
 		String Fname;
 		String Lname;
 		int pnum;
@@ -74,10 +73,8 @@ public class Mat_Rem extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Mat_Pop mp = new Mat_Pop();
-				setVisible(false);
-
-				mp.New_Lis();
+			Pop_Mat pm = new Pop_Mat();
+				pm.New_Pop();
 			}
 		});
 		getContentPane().add(btnNewButton_3, "cell 1 7,growx,aligny top");
@@ -97,8 +94,8 @@ public class Mat_Rem extends JFrame {
 				}
 				else
 				{
-					List<List<String>> dict = new ArrayList<>();
 					cdm.updateMaterialStock(textField.getText(),textField_1.getText());
+
 					Success_Pop sp = new Success_Pop();
 					sp.New_Pop();
 				}

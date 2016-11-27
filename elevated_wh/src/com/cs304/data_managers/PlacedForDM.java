@@ -43,7 +43,7 @@ public class PlacedForDM {
      */
 
     public String[][] getCustInfoByOrderID(String orderID) {
-        String sqlQuery = "SELECT c.custID, c.custFName, c.custLName FROM Placed_For pf, Customer c WHERE c.custID ="+orderID;
+        String sqlQuery = "SELECT c.custID, c.custFName, c.custLName FROM Placed_For pf, Customer c WHERE c.custID ="+ orderID;
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);

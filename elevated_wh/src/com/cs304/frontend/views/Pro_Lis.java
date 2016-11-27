@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import static javafx.scene.input.KeyCode.O;
 import static oracle.net.aso.C09.p;
@@ -74,12 +75,20 @@ public class Pro_Lis extends JFrame {
 
 			++p;
 		}
-		Object[] sa = {"Stock", "Price", "Product ID", "Name", "Size", "Unit"};
+		Object[] sa = {"Stock", "Price", "ProID", "Name", "Size", "Unit"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(finalres,sa);
 		//table.setModel(DefaultTableModel);
 		table.setFillsViewportHeight(true);
+		TableColumn column = null;
+		for (int i = 0; i < finalres[0].length; i++) {
+			column = table.getColumnModel().getColumn(i);
 
+			if (i == 3) column.setPreferredWidth(150); //sport column is bigger
+			else {
+				column.setPreferredWidth(40);
+			}
+		}
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

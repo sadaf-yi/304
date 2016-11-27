@@ -4,6 +4,8 @@ import com.cs304.data_objects.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static oracle.net.aso.C09.n;
+
 /**
  * Created by tyh0 on 2016-11-20.
  */
@@ -21,6 +23,7 @@ public class ProductDM {
     }
 
     public int addNewProductToWarehouse(String name, String size, String unit, String price) {
+        //if (// name can't be parsed as a proper string || Integer.parse(size) is not a proper int || unit is a number || price is not a number)) { throw new InvalidFormEntryException("please make name a word dammit taylor, size has to stricly be numbers, unit cannot be a number, and  e
         String sqlCmd = "insert into Product(prodID, prodName, prodSize, prodUnit, prodPrice, stockProduct) "+
                 "values(product_counter.nextval,\'" + name + "\'," + size + ",\'" + unit + "\'," +price+", 0)";
         int result = cm.executeStatement(sqlCmd);
