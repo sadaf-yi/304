@@ -28,6 +28,8 @@ public class ProductDM {
     }
 
     public int addProductStock(String prodID, String quantity) {
+
+        // TODO: Make logic changes
         String sqlCmd = "UPDATE Product SET stockProduct = stockProduct + " + quantity + " WHERE prodID=" + prodID;
         int result = cm.executeStatement(sqlCmd);
         return result;
@@ -185,6 +187,17 @@ public class ProductDM {
 
         String sqlQuery = "SELECT * FROM Product";
 
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String[][] getProductByID(String prodID) {
+        String sqlQuery = "select * from Product where prodID=" + prodID;
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
