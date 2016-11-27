@@ -1,5 +1,6 @@
 package com.cs304.data_managers;
-import com.cs304.data_objects.Product;
+import com.cs304.data_objects.*;
+import com.cs304.data_objects.Recipe_Uses;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -56,7 +56,7 @@ public class Ord_Lis extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		CustOrderDM cdm = new CustOrderDM();
-		Object[][] results_s = cdm.getAllOrderTuples();
+		Object[][] results_s = cdm.getAllPlacedFor();
 		
 		Object finalres[][] = new Object[results_s.length - 1][results_s[0].length];
 		int p = 0;
@@ -77,7 +77,7 @@ public class Ord_Lis extends JFrame {
 
 			++p;
 		}
-		Object[] sa = {"OID"};
+		Object[] sa = {"ORDER ID", "CUSTOMER ID", "First Name", "Last Name"};
 		//DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 		table = new JTable(finalres, sa);
 		//table.setModel(DefaultTableModel);

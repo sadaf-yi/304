@@ -115,7 +115,7 @@ public class Mat_Add extends JFrame {
 
 				int pnum;
 				MaterialDM mdm = new MaterialDM();
-				mdm.insertNewMaterial(Mname , Stock, Unit , Price);
+				mdm.insertNewMaterial(Mname , Stock, Price , Unit);
 				Success_Pop sp = new Success_Pop();
 				sp.New_Pop();
 			}

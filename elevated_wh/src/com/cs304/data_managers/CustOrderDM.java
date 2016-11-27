@@ -1,5 +1,6 @@
 package com.cs304.data_managers;
 import com.cs304.data_objects.Cust_Order;
+import com.cs304.data_objects.Placed_For;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,7 +42,9 @@ public class CustOrderDM {
     }
 
     public String[][] getAllPlacedFor() {
-        String sqlQuery = "SELECT * FROM Placed_For";
+        String sqlQuery = "SELECT pf.orderID, c.custID, c.custFName, c.custLName " +
+                "FROM Placed_For pf, customer c " +
+                "where pf.custID=c.custID";
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);

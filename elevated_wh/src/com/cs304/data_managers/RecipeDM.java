@@ -58,7 +58,7 @@ public class RecipeDM {
     }
 
     public String[][] getRecipeUsesDetailsByProdID(String prodID) {
-        String sqlQuery = "select ru.matID, ru.quantity, ru.recUnit " +
+        String sqlQuery = "select ru.matID, ru.quantity " +
                 "from build_product bp, recipe_uses ru " +
                 "where bp.prodID=\'" + prodID + "\' AND ru.recID=bp.recID";
         String[][] results = new String[0][0];

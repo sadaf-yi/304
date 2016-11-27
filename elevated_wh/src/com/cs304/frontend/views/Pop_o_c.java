@@ -80,7 +80,7 @@ public class Pop_o_c extends JFrame {
 
             ++p;
         }
-        Object[] sa = {"ORDER ID", "CUSTOMER ID"};
+        Object[] sa = {"ORDER ID", "CID", "FIRST NAME", "LAST NAME"};
         //DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
         table = new JTable(finalres, sa);
         //table.setModel(DefaultTableModel);

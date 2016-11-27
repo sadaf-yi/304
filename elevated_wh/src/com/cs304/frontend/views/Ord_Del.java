@@ -1,5 +1,6 @@
 package com.cs304.frontend.views;
 
+import com.cs304.data_managers.FilledForDM;
 import com.cs304.data_managers.MaterialDM;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.Success_Pop;
@@ -109,7 +110,7 @@ public class Ord_Del extends JFrame {
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 			MaterialDM cdm = new MaterialDM();
-			if (textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals(""))
+			if (textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals(""))
 			{
 				Error_Pop ep = new Error_Pop();
 				ep.New_Pop();
@@ -117,14 +118,13 @@ public class Ord_Del extends JFrame {
 			}	
 			else
 			{
-				final String Mname = textField.getText().toString();
-				final String Stock = textField_1.getText().toString();
-				final String Unit = textField_2.getText().toString();
-				final String Price = textField_3.getText().toString();
+				final String orderID = textField.getText().toString();
+				final String prodID = textField_1.getText().toString();
+				final String quantity = textField_2.getText().toString();
 
 				int pnum;
-				MaterialDM mdm = new MaterialDM();
-				mdm.insertNewMaterial(Mname , Stock, Unit , Price);
+				FilledForDM ffdm = new FilledForDM();
+				ffdm.insertNewFilledFor(orderID, prodID, quantity , "0");
 				Success_Pop sp = new Success_Pop();
 				sp.New_Pop();
 			}

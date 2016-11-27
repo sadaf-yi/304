@@ -66,7 +66,7 @@ public class Pop_ResOrd extends JFrame {
 
             ++p;
         }
-        Object[] sa = {"ORDER ID", "CUSTOMER ID"};
+        Object[] sa = {"ORDER ID", "CUSTOMER ID", "First Name", "Last Name"};
         //DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
         table = new JTable(finalres, sa);
         //table.setModel(DefaultTableModel);

@@ -4,6 +4,14 @@ import com.cs304.data_objects.Filled_For;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.*;
+import java.util.Locale;
+
+import static java.util.Calendar.PM;
+import static javafx.scene.input.KeyCode.L;
+import static javafx.scene.input.KeyCode.M;
+import static javax.swing.text.html.HTML.Tag.DD;
 
 public class FilledForDM {
 
@@ -22,7 +30,7 @@ public class FilledForDM {
      */
 
     public int getStockProd4ProdID(String prodID) {
-        String getStockProdQuery = "SELECT * FROM Product WHERE prodID = " + prodID;
+        String getStockProdQuery = "SELECT stockProduct FROM Product WHERE prodID = " + prodID;
 
         String[][] getProdStock = new String[0][];
 
@@ -33,7 +41,7 @@ public class FilledForDM {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        int stockProd = Integer.parseInt(getProdStock[1][5]);
+        int stockProd = Integer.parseInt(getProdStock[1][0]);
         return stockProd;
     }
 
@@ -61,7 +69,8 @@ public class FilledForDM {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String numProdStr = numProdArray[1][2];
+
+        String numProdStr = numProdArray[1][0];
         int numProdInt = Integer.parseInt(numProdStr);
         int numfilledInt = Integer.parseInt(numfilled);
 
@@ -69,8 +78,14 @@ public class FilledForDM {
         int numProdPreviously = Integer.parseInt(previouslyNumProd);
 
         if (numProdInt >= numfilledInt && stockProd >= (numProdInt + numProdPreviously)){
+            // '19-NOV-16 01:58 PM','DD-MON-YY HH:MI AM'\
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
+            Date dateString = new Date();
+            String d = "";
+            d = sdf.format(dateString);
+
             String sqlCmd = "insert into Filled_For(dateupdated,prodID,orderID,numFilled,isShipped) " +
-                    "values(TO_DATE('19-NOV-16 12:56 PM','DD-MON-YY HH:MI PM')," +
+                    "values(TO_DATE('"+ d + "\','DD-MON-YY HH:MI PM')," +
                     prodID + "," +
                     orderID + "," +
                     numfilled + "," +
