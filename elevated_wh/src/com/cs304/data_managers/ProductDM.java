@@ -47,78 +47,63 @@ public class ProductDM {
         return result4;
     }
 
-//    public int addProductStock(String prodID, String quantity) {
-//        boolean canProduce = true;
-////        create table Recipe_Uses
-////                (recID integer not null,
-////                matID integer not null,
-////                quantity integer not null,
-////                recUnit varchar2(10) not null,
-////                primary key (recID, matID),
-////                foreign key (matID) references Material (matID),
-////                foreign key (recID) references Recipe (recID));
-//
-//        String sqlQuery = "select ru.recID, ru.matID, ru.quantity, ru.recUnit, m.matName, m.matStock, m.matPrice, m.matUnit " +
-//                        "from recipe_uses ru, build_product bp, material m " +
-//                        "where ru.recID=bp.recID AND m.matID=ru.matID AND bp.prodID=" + prodID;
-//        String[][] res = new String[0][];
-//        try {
-//            res = cm.submitQuery(sqlQuery);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        ArrayList<Material> mats = new ArrayList<Material>();
-//        ArrayList<Recipe_Uses> rus = new ArrayList<Recipe_Uses>();
-//        int numTuples = res.length;
-//        for (int i = 0; i < numTuples; i++) {
-//            String[] tuple = res[i];
-//            Recipe_Uses ru = new Recipe_Uses(
-//                    Integer.parseInt(tuple[0]),
-//                    Integer.parseInt(tuple[1]),
-//                    Integer.parseInt(tuple[2]),
-//                    tuple[3]);
-//            rus.add(ru);
-//            Material mat = new Material(
-//                    Integer.parseInt(tuple[1]),
-//                    tuple[4],
-//                    Float.parseFloat(tuple[5]),
-//                    Integer.parseInt(tuple[6]),
-//                    tuple[7]);
-//            mats.add(mat);
-//        }
-//
-//        // now we have a list of the materials and material used
-//        for (int j = 0; j < mats.size(); j++) {
-//            float matStock = mats.get(j).getMatStock();
-//            float recMatRequired = rus.get(j).getQuantity();
-//            String stockUnit = mats.get(j).getMatUnit();
-//            String recUnit = rus.get(j).getRecUnit();
-//            if (stockUnit.toLowerCase().equals(recUnit.toLowerCase())) {
-//                if (recMatRequired < matStock) {
-//                    mats.get(j).setMatStock(matStock-recMatRequired);
-//                } else {
-//                    canProduce = false;
-//                    break;
-//                }
-//            } else {
-//                if (recUnit.toLowerCase())
-//            }
-//            // look at each individual material
-//            // look at the quantity of material
-//            // look at quantity required for the recipe
-//            // put the quantity required in terms of the stock
-//            // if quantity required < quantity, mat.setStock(existing-current)
-//            //  else canProduce = false and break
-//
-//        }
-//        if (canProduce) {
-//            String sqlCmd = "UPDATE Product SET stockProduct = stockProduct + " + quantity + " WHERE prodID=" + prodID;
-//            int result = cm.executeStatement(sqlCmd);
-//            return result;
-//        } else {
-//            // TODO: implement the exception that triggers an error popup in the UI
-//        }
-//    }
+    public int addProductStock(String prodID, String quantity) {
+        int result = 0;
+        boolean canProduce = true;
+
+        String sqlQuery = "select ru.recID, ru.matID, ru.quantity, m.matName, m.matStock, m.matPrice, m.matUnit " +
+                        "from recipe_uses ru, build_product bp, material m " +
+                        "where ru.recID=bp.recID AND m.matID=ru.matID AND bp.prodID=" + prodID;
+        String[][] res = new String[0][];
+        try {
+            res = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Material> mats = new ArrayList<Material>();
+        ArrayList<Recipe_Uses> rus = new ArrayList<Recipe_Uses>();
+        int numTuples = res.length;
+        for (int i = 0; i < numTuples; i++) {
+            String[] tuple = res[i];
+            Recipe_Uses ru = new Recipe_Uses(
+                    Integer.parseInt(tuple[0]),
+                    Integer.parseInt(tuple[1]),
+                    Integer.parseInt(tuple[2]));
+            rus.add(ru);
+            Material mat = new Material(
+                    Integer.parseInt(tuple[1]),
+                    tuple[4],
+                    Float.parseFloat(tuple[4]),
+                    Integer.parseInt(tuple[5]),
+                    tuple[6]);
+            mats.add(mat);
+        }
+
+        // now we have a list of the materials and material used
+        for (int j = 0; j < mats.size(); j++) {
+            float matStock = mats.get(j).getMatStock();
+            float recMatRequired = rus.get(j).getQuantity();
+            if (recMatRequired < matStock) {
+                mats.get(j).setMatStock(matStock-recMatRequired);
+            } else {
+                canProduce = false;
+                break;
+            }
+        }
+        if (canProduce) {
+            String sqlCmd = "";
+            for (int k = 0; k < mats.size(); k++) {
+                sqlCmd = "update material set material = " + mats.get(k).getMatStock() + " where matID=" + mats.get(k).getMatID();
+                cm.executeStatement(sqlCmd);
+            }
+            sqlCmd = "UPDATE Product SET stockProduct = stockProduct + " + quantity + " WHERE prodID=" + prodID;
+            result = cm.executeStatement(sqlCmd);
+            return result;
+        } else {
+            // TODO: implement the exception that triggers an error popup in the UI
+        }
+        return result;
+    }
 
     /**
      * deletes products by prodID
