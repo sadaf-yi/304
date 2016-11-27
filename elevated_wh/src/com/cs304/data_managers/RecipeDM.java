@@ -47,7 +47,7 @@ public class RecipeDM {
 
         String sqlQuery = "select r.recID, r.recName, r.procedure " +
                 "from recipe r, build_product bp " +
-                "where bp.prodID=\'" + prodID + "\' AND ru.recID=bp.recID";
+                "where bp.prodID=" + prodID + " AND r.recID=bp.recID";
         String[][] results = new String[0][0];
         try {
             results = cm.submitQuery(sqlQuery);
