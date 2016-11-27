@@ -1,6 +1,5 @@
 package com.cs304;
 
-import com.cs304.data_managers.CustomerDM;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.views.Main_selections;
 import com.cs304.frontend.viewsUser.Main_selections_user;
@@ -20,13 +19,7 @@ public class Main_gui extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-        CustomerDM dm = new CustomerDM();
-        //dm.insertCustomer(oghiaehge);
-
-
-
-
-		EventQueue.invokeLater(new Runnable() {
+  		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Main_gui frame = new Main_gui();
@@ -42,8 +35,6 @@ public class Main_gui extends JFrame {
 	 * Create the frame.
 	 */
 	public Main_gui() {
-        CustomerDM customerDM;
-
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
