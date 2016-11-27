@@ -39,7 +39,7 @@ public class ProductDM {
         int numMats = materials.length;
         int result4 = -1;
         for (int i = 0; i < numMats; i++) {
-            result4 = rdm.addNewRecipeUses(recID, materials[i][0], materials[i][2], materials[i][3]);
+            result4 = rdm.addNewRecipeUses(recID, materials[i][0], materials[i][2]);
             if (result4==0 || result4 ==-1) {
                 // TODO: break and throw an error
             }

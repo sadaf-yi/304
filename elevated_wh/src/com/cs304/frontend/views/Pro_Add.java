@@ -108,7 +108,7 @@ public class Pro_Add extends JFrame {
 		contentPane.add(textField_2, "flowx,cell 1 3 3 1,alignx left,growy");
 		textField_2.setColumns(10);
 
-		String[] sa = {"MAT ID", "MAT NAME", "QUANTITY", "Unit"};
+		String[] sa = {"MAT ID", "MAT NAME", "QUANTITY"};
 		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
 
 		JLabel lblNewLabel_1 = new JLabel("Size");
@@ -153,7 +153,7 @@ public class Pro_Add extends JFrame {
 					final String a2 = textField14.getText();
 					//final String a3 = textField15.getText();
 					MaterialDM mdm = new MaterialDM();
-					String [] [] results_s = mdm.getNamefromID(textField13.getText());
+					String [][] results_s = mdm.getNamefromID(textField13.getText());
 					// code to add material to list
 					final String nameres = results_s[1][0];
 					tableModel.addRow(new Object[] {a1,nameres,a2});
