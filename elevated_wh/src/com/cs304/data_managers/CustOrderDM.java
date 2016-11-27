@@ -28,6 +28,18 @@ public class CustOrderDM {
         return newOrderID;
     }
 
+    public String[][] getAllPlacedFor() {
+        String sqlQuery = "SELECT * FROM Placed_For";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return results;
+    }
+
     public String[][] getAllOrderTuples() {
         String sqlQuery = "SELECT * FROM Cust_Order";
         String[][] results = new String[0][0];
@@ -40,6 +52,17 @@ public class CustOrderDM {
         return results;
     }
 
+    public String[][] getAllProdsReserved() {
+        String sqlQuery = "SELECT * FROM Cust_Order";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return results;
+    }
 
     /**
      * Ship the item: change the flag on FilledFor (isShipped to 1)

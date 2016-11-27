@@ -49,10 +49,10 @@ public class Mater_Ui extends JFrame {
 		JButton btnNewButton_1 = new JButton("Stock Material");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Mat_Rem mr = new Mat_Rem();
+				Mat_Sto mr = new Mat_Sto();
 				setVisible(false);
 				dispose();
-				mr.New_Rem();
+				mr.New_Sto();
 			}
 		});
 		btnNewButton_1.setBounds(145, 70, 150, 25);

@@ -4,9 +4,7 @@ import com.cs304.data_objects.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by tyh0 on 2016-11-20.
- */
+import static oracle.net.aso.C09.n;
 
 
 public class ProductDM {

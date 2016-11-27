@@ -69,7 +69,8 @@ public class Pro_Sto extends JFrame {
 		JButton btnNewButton_3 = new JButton("View PRODUCT List");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+			Pop_Pro pp = new Pop_Pro();
+				pp.New_Pop();
 			}
 		});
 		getContentPane().add(btnNewButton_3, "cell 1 7,growx,aligny top");
@@ -80,7 +81,7 @@ public class Pro_Sto extends JFrame {
 		JButton btnNewButton_8 = new JButton("Stock Prod");
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ProductDM cdm = new ProductDM();
+				ProductDM pdm = new ProductDM();
 				if (textField.getText().equals("") || textField_1.getText().equals(""))
 				{
 					Error_Pop ep = new Error_Pop();
@@ -89,8 +90,8 @@ public class Pro_Sto extends JFrame {
 				}
 				else
 				{
-					List<List<String>> dict = new ArrayList<>();
-					cdm.addProductStock(textField.getText(),textField_1.getText());
+
+					pdm.addProductStock(textField.getText(),textField_1.getText());
 					Success_Pop sp = new Success_Pop();
 					sp.New_Pop();
 				}

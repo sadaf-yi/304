@@ -16,6 +16,11 @@ import javax.swing.table.DefaultTableModel;
 
 import net.miginfocom.swing.MigLayout;
 
+import static javafx.scene.input.KeyCode.R;
+import static oracle.net.aso.C09.i;
+import static oracle.net.aso.C09.p;
+import static oracle.net.aso.C09.q;
+
 public class Cus_Sea extends JFrame {
 
 	private JPanel contentPane;
@@ -80,23 +85,33 @@ public class Cus_Sea extends JFrame {
 		contentPane.add(textField_1, "cell 1 4,growx,aligny top");
 		textField_1.setColumns(10);
 
-		JButton btnNewButton = new JButton("submit");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CustomerDM cdm = new CustomerDM();
-				final Object [] [] results_q = cdm.findCxByIdOrPhoneNumber(textField.getText(), textField1.getText(), textField_1.getText());
 
-			} 
-		});
-		contentPane.add(btnNewButton, "cell 1 5,alignx left,aligny top");
 
 		String[] sa = {"CID", "FNAME", "LNAME", "PHONE"};
-		table = new JTable();
+		DefaultTableModel tableModel = new DefaultTableModel(sa, 0);
+		table = new JTable(tableModel);
 		JScrollPane scrollPane = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 		contentPane.add(scrollPane, "cell 2 0 1 8,grow");
 
+		JButton btnNewButton = new JButton("submit");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerDM cdm = new CustomerDM();
 
+				final Object [] [] results_q = cdm.findCxByIdOrPhoneNumber(textField.getText(), textField_1.getText(), textField1.getText());
+				while (tableModel.getRowCount() != 0)
+					tableModel.removeRow(0);
+				for( int i = 1; i < results_q.length; ++i)
+				{
+
+					tableModel.addRow(results_q[i]);
+				}
+
+
+			}
+		});
+		contentPane.add(btnNewButton, "cell 1 5,alignx left,aligny top");
 		
 		JButton btnNewButton_9 = new JButton("Back to Main");
 		btnNewButton_9.addActionListener(new ActionListener() {

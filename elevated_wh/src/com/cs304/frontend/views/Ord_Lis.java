@@ -57,21 +57,21 @@ public class Ord_Lis extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		CustOrderDM cdm = new CustOrderDM();
 		Object[][] results_s = cdm.getAllOrderTuples();
-		Object[][] result_flip = flip(results_s);
-		Object finalres[][] = new Object[result_flip.length - 1][result_flip[0].length];
+		
+		Object finalres[][] = new Object[results_s.length - 1][results_s[0].length];
 		int p = 0;
-		for( int i = 0; i < result_flip.length; ++i)
+		for( int i = 0; i < results_s.length; ++i)
 		{
 			if ( i == 0)
 				continue;
 
 
 			int q = 0;
-			for( int j = 0; j < result_flip[0].length; ++j)
+			for( int j = 0; j < results_s[0].length; ++j)
 			{
 
 
-				finalres [p][q] = result_flip[i][j];
+				finalres [p][q] = results_s[i][j];
 				++q;
 			}
 
