@@ -19,9 +19,9 @@ public class RecipeDM {
         return result;
     }
 
-    public int addNewRecipeUses(String recID, String matID, String quantity, String unit) {
+    public int addNewRecipeUses(String recID, String matID, String quantity) {
         String sqlCmd = "insert into recipe_uses(recID, matID, quantity, recUnit) values("+
-                recID+","+matID+","+quantity+",\'"+unit+"\')";
+                recID+","+matID+","+quantity+")";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }
