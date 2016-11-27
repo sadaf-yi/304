@@ -170,11 +170,7 @@ public class FilledForDM {
         return result;
     }
 
-    /**
-     * Get the total cost of an order
-     * @param orderID
-     * @return
-     */
+
 
     public String[][] getFilledForByOrderID(String orderID) {
         String sqlQuery = "SELECT * FROM Filled_For WHERE orderID=\'"+orderID+"\'";
