@@ -26,6 +26,8 @@ public class ProductDM {
     }
 
     public int addProductStock(String prodID, String quantity) {
+
+        // TODO: Make logic changes
         String sqlCmd = "UPDATE Product SET stockProduct = stockProduct + " + quantity + " WHERE prodID=" + prodID;
         int result = cm.executeStatement(sqlCmd);
         return result;
@@ -196,13 +198,23 @@ public class ProductDM {
         }
         return results;
     }
+    
+    public String[][] getProductByID(String prodID) {
+        String sqlQuery = "select * from Product where prodID=" + prodID;
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 
     /**
      * Nested Query
      * Gives product ID, Name recipe and price for products whose price is lower than average price
      */
     public String[][] getProdsCheaperAVG() {
-
         String sqlQuery = "SELECT rp1.prodID, rp1.prodName,rp1.recID, rp1.prodPrice FROM Recipe4Product rp1 WHERE rp1.prodPrice < (SELECT AVG(rp2.prodPrice) FROM Recipe4Product rp2)";
 
         String[][] results = new String[0][0];
