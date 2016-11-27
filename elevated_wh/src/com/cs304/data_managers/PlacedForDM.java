@@ -26,7 +26,7 @@ public class PlacedForDM {
     }
 
     public String[][] getAllPlacedFor() {
-        String sqlQuery = "SELECT * FROM Placed_For";
+        String sqlQuery = "SELECT pf.orderID, pf.custID, c.custFName, c.custLName FROM Placed_For pf, Customer c WHERE pf.custID = c.custID";
         String[][] result = new String[1][1];
         try {
             result = cm.submitQuery(sqlQuery);

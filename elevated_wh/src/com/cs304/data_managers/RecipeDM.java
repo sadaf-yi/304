@@ -1,10 +1,8 @@
 package com.cs304.data_managers;
-import com.cs304.data_objects.*;
+import com.cs304.data_objects.Recipe;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.cs304.data_objects.Recipe;
 
 public class RecipeDM {
     ArrayList<Recipe> recipes;

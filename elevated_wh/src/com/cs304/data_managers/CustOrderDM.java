@@ -74,17 +74,14 @@ public class CustOrderDM {
 //    }
     //TODO pass me
 
+    /**
+     * List order by content returns prodID numReserved and SUM(numFilled)
+     * @param orderID
+     * @return
+     */
     public String[][] listOrderContent(String orderID) {
-        String sqlQuery = "";
+        String sqlQuery = "SELECT r.prodID, r.numProd, SUM(f.numFilled) FROM Reserves r LEFT JOIN Filled_For f ON r.prodID = f.prodID WHERE r.orderID = "+ orderID +" AND f.orderID = "+ orderID +" GROUP BY r.prodID, r.numProd ORDER BY r.prodID";
         String[][] results = new String[1][1];
-
-
-        //TODO: write the query for this
-        //SELECT p.prodName, f.prodID, SUM(f.numFilled)
-//        FROM product p, Filled_For f, Reserves r
-//        WHERE p.ProdID = f.ProdID AND r.orderID = f.orderID
-//        GROUP BY f.orderID
-//        HAVING SUM(f.numFilled) >0;
 
         try {
             results = cm.submitQuery(sqlQuery);
