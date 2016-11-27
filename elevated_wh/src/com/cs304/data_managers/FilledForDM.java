@@ -114,7 +114,7 @@ public class FilledForDM {
      */
 
     public int getAVGNumOrders4Customers(String prodID) {
-        String getQuery = "SELECT AVG(numOfProds) FROM (SELECT ff.orderID , SUM(ff.prodID) AS numOfProds FROM  Filled_For ff GROUP BY ff.orderID)";
+        String getQuery = "SELECT AVG(numOfOrdrs) FROM (SELECT pf.custID, c.custFname, c.custLName, SUM(r.orderID) AS numOfOrdrs FROM Reserves r, Placed_For pf, Customer c WHERE pf.orderID = r.orderID AND c.custID = pf.custID GROUP BY pf.custID, c.custFname, c.custLName)";
 
         String[][] getAVGNumOrders = new String[0][];
 
