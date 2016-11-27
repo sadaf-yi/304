@@ -1,6 +1,9 @@
 package com.cs304.frontend.views;
 
 import com.cs304.data_managers.CustomerDM;
+import com.cs304.data_managers.ProductDM;
+import com.cs304.data_managers.RecipeDM;
+import com.cs304.data_objects.Product;
 import com.cs304.frontend.Error_Pop;
 import com.cs304.frontend.Success_Pop;
 import net.miginfocom.swing.MigLayout;
@@ -15,6 +18,8 @@ import static java.awt.SystemColor.text;
 import static javafx.scene.input.KeyCode.J;
 import static javafx.scene.input.KeyCode.M;
 import static oracle.net.aso.C09.*;
+import static oracle.net.aso.C09.i;
+import static oracle.net.aso.C09.j;
 
 public class Pro_Inf extends JFrame {
 
@@ -60,6 +65,26 @@ public class Pro_Inf extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textField_input.getText().equals(""));
+					ProductDM pdm = new ProductDM();
+					RecipeDM  rdm = new RecipeDM();
+				String[][] results = pdm.getProductByID(textField_input.getText());
+				nameArea.setText(results[1][3]);
+				stockArea.setText(results[1][0]);
+					String[][] result_res = rdm.getRecipeDetailsByProdID(textField_input.getText());
+				recArea.setText(result_res[1][2]);
+					String[][] result_mat = rdm.getRecipeUsesDetailsByProdID(textField_input.getText());
+					for (int i = 0; i < result_mat.length; i++)
+						for (int j = 0; j<result_mat[i].length;j++)
+						{
+							if (j == result_mat[i].length - 1)
+							{
+								matArea.append(result_mat[i][j] + "\n");
+							}
+							else {
+								matArea.append(result_mat[i][j] + "  ");
+							}
+						}
+
 
 			}
 		});
@@ -67,7 +92,7 @@ public class Pro_Inf extends JFrame {
 		contentPane.add(btnNewButton);
 
 		textField_input = new JTextField();
-		textField_input.setBounds(200, 10, 100 , 25);
+		textField_input.setBounds(200, 10, 150 , 25);
 		contentPane.add(textField_input);
 
 		JLabel lblNewLabel_2 = new JLabel("Name");
@@ -98,6 +123,7 @@ public class Pro_Inf extends JFrame {
 		recArea.setBounds(50,170, 300, 200);
 		recArea.setColumns(10);
 		recArea.setRows(8);
+		recArea.setLineWrap(true);
 		contentPane.add(recArea);
 
 		JLabel matlab = new JLabel("Material Used");
@@ -108,6 +134,7 @@ public class Pro_Inf extends JFrame {
 		matArea.setBounds(50,400, 300, 200);
 		matArea.setColumns(10);
 		matArea.setRows(8);
+		matArea.setLineWrap(true);
 		contentPane.add(matArea);
 
 		JButton btnNewButton_4 = new JButton("Back to Main");
@@ -119,9 +146,18 @@ public class Pro_Inf extends JFrame {
 				ms.New_Window();
 			}
 		});
-		btnNewButton_4.setBounds(50,625, 250, 60);
+		btnNewButton_4.setBounds(60,625, 250, 60);
 		contentPane.add(btnNewButton_4);
 
+		JButton btnNewButton_5 = new JButton("Prod ID List");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			Pop_Pro pp = new Pop_Pro();
+				pp.New_Pop();
+			}
+		});
+		btnNewButton_5.setBounds(350,10, 200, 25);
+		contentPane.add(btnNewButton_5);
 
 
 
