@@ -14,7 +14,7 @@ public class RecipeDM {
     }
     public int addNewRecipe(String recName, String recID, String procedure) {
         String sqlCmd = "insert into Recipe(recID, recName, procedure) " +
-                "values(" + recID + ",\'" + recName + "\',\'" + procedure;
+                "values(" + recID + ",\'" + recName + "\',\'" + procedure + "\')";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }

@@ -19,7 +19,7 @@ public class ProductDM {
     }
 
     public int addNewProductToWarehouse(String name, String size, String unit, String price, String recName, String procedure, String[][] materials) {
-        String getIDsQuery = "SELECT product_counter.NEXTVAL, recipe_counter.nextval FROM dual";
+        String getIDsQuery = "SELECT product_counter.NEXTVAL, recipe_counter.NEXTVAL FROM dual";
         String[][] idsArray = new String[0][];
         try {
             idsArray = cm.submitQuery(getIDsQuery);
@@ -33,13 +33,13 @@ public class ProductDM {
                 "values("+ prodID + ",\' "+ name + "\'," + size + ",\'" + unit + "\'," + price + ", 0)";
         int result = cm.executeStatement(sqlCmd);
         RecipeDM rdm = new RecipeDM();
-        int result2 = rdm.addNewRecipe(recID, recName, procedure);
+        int result2 = rdm.addNewRecipe(recName, recID, procedure);
         BuildProductDM bpdm = new BuildProductDM();
         int result3 = bpdm.insertNewBuildProductTuple(prodID, recID);
         int numMats = materials.length;
         int result4 = -1;
         for (int i = 0; i < numMats; i++) {
-            result4 = rdm.addNewRecipeUses(recID, materials[i][0], materials[i][1], materials[i][2]);
+            result4 = rdm.addNewRecipeUses(recID, materials[i][0], materials[i][2], materials[i][3]);
             if (result4==0 || result4 ==-1) {
                 // TODO: break and throw an error
             }
