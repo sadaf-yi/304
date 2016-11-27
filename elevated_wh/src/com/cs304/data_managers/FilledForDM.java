@@ -87,6 +87,49 @@ public class FilledForDM {
 
     }
 
+    /**
+     * Find the average number of products in all orders
+     * @return
+     */
+
+    public int getAVGNumProd4Orders(String prodID) {
+        String getQuery = "SELECT AVG(numOfProds) FROM (SELECT ff.orderID , SUM(ff.prodID) AS numOfProds FROM  Filled_For ff GROUP BY ff.orderID)";
+
+        String[][] getAVGNumProds = new String[0][];
+
+        try {
+            getAVGNumProds = cm.submitQuery(getQuery);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int stockProd = Integer.parseInt(getAVGNumProds[1][0]);
+        return stockProd;
+    }
+
+    /**
+     * Find the average number of orders for all customers
+     * @return
+     */
+
+    public int getAVGNumOrders4Customers(String prodID) {
+        String getQuery = "SELECT AVG(numOfProds) FROM (SELECT ff.orderID , SUM(ff.prodID) AS numOfProds FROM  Filled_For ff GROUP BY ff.orderID)";
+
+        String[][] getAVGNumOrders = new String[0][];
+
+        try {
+            getAVGNumOrders = cm.submitQuery(getQuery);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        int stockProd = Integer.parseInt(getAVGNumOrders[1][0]);
+        return stockProd;
+    }
+
+
     public String[][] getAllFilledFor() {
         String sqlQuery = "SELECT * FROM Filled_For";
         String[][] result = new String[1][1];
@@ -108,9 +151,6 @@ public class FilledForDM {
         }
         return result;
     }
-    /**
-     *
-     */
 
 
     /**

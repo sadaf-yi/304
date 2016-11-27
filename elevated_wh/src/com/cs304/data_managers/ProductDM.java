@@ -1,6 +1,6 @@
 package com.cs304.data_managers;
 import com.cs304.data_objects.Product;
-
+import com.cs304.data_objects.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,6 +10,7 @@ public class ProductDM {
     ConnectionManager cm;
     private BuildProductDM build_product;
     private FilledForDM filledForDM;
+
 
     public ProductDM() {
         prods = null;
