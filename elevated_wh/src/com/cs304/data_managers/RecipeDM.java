@@ -14,9 +14,16 @@ public class RecipeDM {
         recipes = null;
         cm = new ConnectionManager();
     }
-    public int addNewRecipe(String recName, String procedure) {
+    public int addNewRecipe(String recName, String recID, String procedure) {
         String sqlCmd = "insert into Recipe(recID, recName, procedure) " +
-                "values(recipe_counter.nextval,\'" + recName + "\',\'" + procedure;
+                "values(" + recID + ",\'" + recName + "\',\'" + procedure;
+        int result = cm.executeStatement(sqlCmd);
+        return result;
+    }
+
+    public int addNewRecipeUses(String recID, String matID, String quantity, String unit) {
+        String sqlCmd = "insert into recipe_uses(recID, matID, quantity, recUnit) values("+
+                recID+","+matID+","+quantity+",\'"+unit+"\')";
         int result = cm.executeStatement(sqlCmd);
         return result;
     }

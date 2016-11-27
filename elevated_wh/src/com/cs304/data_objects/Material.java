@@ -42,31 +42,31 @@ public class Material {
     }
 
 
-    private void setMatID (int ID) {
+    public void setMatID (int ID) {
         this.matID = ID;
     }
 
-    private void setMatName (String name) {
+    public void setMatName (String name) {
         this.matName = name;
     }
 
-    private void setMatStock (float stock) {
+    public void setMatStock (float stock) {
         this.matStock = stock;
     }
 
-    private void setMatPrice (int price) {
+    public void setMatPrice (int price) {
         this.matPrice = price;
     }
 
-    private void setMatUnit (String unit) {
+    public void setMatUnit (String unit) {
         this.matUnit = unit;
     }
 
-    protected void addMaterial(int quantity) {
+    public void addMaterial(int quantity) {
         this.matStock += quantity;
     }
 
-    protected void removeMaterial(int quantity){
+    public void removeMaterial(int quantity){
         this.matStock -= quantity;
     }
 
