@@ -34,6 +34,37 @@ public class RecipeDM {
         return results;
     }
 
+    public String[][] getRecipeDetailsByProdID(String prodID) {
+
+        //select r.recID, r.recName, r.procedure
+        //  from recipe r, build_product bp
+        //  where r.recID=bp.recID AND bp.prodID=prodID;
+
+        String sqlQuery = "select r.recID, r.recName, r.procedure " +
+                "from recipe r, build_product bp " +
+                "where bp.prodID=\'" + prodID + "\' AND ru.recID=bp.recID";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String[][] getRecipeUsesDetailsByProdID(String prodID) {
+        String sqlQuery = "select ru.matID, ru.quantity, ru.recUnit " +
+                "from build_product bp, recipe_uses ru " +
+                "where bp.prodID=\'" + prodID + "\' AND ru.recID=bp.recID";
+        String[][] results = new String[0][0];
+        try {
+            results = cm.submitQuery(sqlQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
     
 
 
